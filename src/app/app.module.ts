@@ -7,11 +7,12 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './components/shared/shared.module';
 
 //Components
-
+import { DocenteComponent } from './components/docente/docente.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    DocenteComponent
   ],
   imports: [
     BrowserModule,
