@@ -1,17 +1,23 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './components/shared/shared.module';
+import { SideNavComponent } from './components/side-nav/side-nav.component';
+import { EstudianteComponent } from './components/estudiante/estudiante.component';
+import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 //Components
-
+ 
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    SideNavComponent,
+    EstudianteComponent,
+    ToolbarComponent
   ],
   imports: [
     BrowserModule,
@@ -20,6 +26,9 @@ import { SharedModule } from './components/shared/shared.module';
     SharedModule
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
+  schemas: [
+    CUSTOM_ELEMENTS_SCHEMA
+  ]
 })
 export class AppModule { }
