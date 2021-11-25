@@ -1,9 +1,9 @@
 .bg-dark{
-    background-color: #1e1e2f !important;
+    background-color: red !important;
 }
 a.sidenav-button{
     display: inline;
-    color: rgba(255, 255, 255, .5);
+    color: white;
     margin-right: 10px;
     transition: all .3s ease 0s;
 }
@@ -11,14 +11,13 @@ a.sidenav-button:hover{
     color: rgba(255, 255, 255, .8);
     transition: all .3s ease 0s;
 }
-.navbar .photo{
-    display: inline-block;
-    height: 30px;
-    width: 30px;
-    border-radius: 50%;
-    vertical-align: middle;
-    overflow: hidden;
+a.sidenav-button :hover{
+    cursor: pointer;
 }
-.navbar .photo img{
-    width: 100%;
+.navbar{
+    padding-top: 10px;
+    padding-left: 10px;
+}
+.navbar-brand{
+    color: white;
 }
