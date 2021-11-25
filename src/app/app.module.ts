@@ -11,13 +11,15 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 //Components
  
+import { DocenteComponent } from './components/docente/docente.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     SideNavComponent,
     EstudianteComponent,
-    ToolbarComponent
+    ToolbarComponent,
+    DocenteComponent
   ],
   imports: [
     BrowserModule,

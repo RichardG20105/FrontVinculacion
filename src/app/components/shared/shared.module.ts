@@ -4,21 +4,23 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatSidenavModule } from '@angular/material/sidenav';
 
 
-
+import { HttpClientModule } from '@angular/common/http';
+import {MatTableModule} from '@angular/material/table';
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
     MatSliderModule,
-    MatSidenavModule
+    MatSidenavModule,
+    HttpClientModule,
+    MatTableModule
   ],
   exports: [
     MatSliderModule,
-    MatSidenavModule
+    MatSidenavModule,
+    HttpClientModule,
+    MatTableModule
   ],
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA
-  ]
 })
 export class SharedModule { }
