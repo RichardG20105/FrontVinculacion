@@ -8,11 +8,13 @@ import { SharedModule } from './components/shared/shared.module';
 
 //Components
 import { DocenteComponent } from './components/docente/docente.component';
+import { ProyectoComponent } from './components/proyecto/proyecto.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DocenteComponent
+    DocenteComponent,
+    ProyectoComponent
   ],
   imports: [
     BrowserModule,

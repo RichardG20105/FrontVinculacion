@@ -1,5 +1,6 @@
 .body{
     margin: 10px;
+    display: block;
 }
 table {
     width: 100%;
