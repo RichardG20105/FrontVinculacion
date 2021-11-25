@@ -1,5 +1,8 @@
-import { NgModule } from '@angular/core';
+import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { MatSliderModule } from '@angular/material/slider';
+import { MatSidenavModule } from '@angular/material/sidenav';
+
 
 import { HttpClientModule } from '@angular/common/http';
 import {MatTableModule} from '@angular/material/table';
@@ -14,6 +17,8 @@ import { MatButtonModule } from '@angular/material/button';
   declarations: [],
   imports: [
     CommonModule,
+    MatSliderModule,
+    MatSidenavModule,
     HttpClientModule,
     MatFormFieldModule,
     MatTableModule,
@@ -24,6 +29,8 @@ import { MatButtonModule } from '@angular/material/button';
     ReactiveFormsModule
   ],
   exports: [
+    MatSliderModule,
+    MatSidenavModule,
     HttpClientModule,
     MatFormFieldModule,
     MatTableModule,
