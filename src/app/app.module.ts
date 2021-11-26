@@ -13,6 +13,7 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
  
 import { DocenteComponent } from './components/docente/docente.component';
 import { ProyectoComponent } from './components/proyecto/proyecto.component';
+import { ProyectoCrearComponent } from './components/proyecto-crear/proyecto-crear.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { ProyectoComponent } from './components/proyecto/proyecto.component';
     SideNavComponent,
     EstudianteComponent,
     ToolbarComponent,
-    DocenteComponent
+    DocenteComponent,
+    ProyectoCrearComponent
   ],
   imports: [
     BrowserModule,
