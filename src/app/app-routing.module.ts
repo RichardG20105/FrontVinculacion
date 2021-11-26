@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DocenteComponent } from './components/docente/docente.component';
-import { EstudianteComponent } from './components/estudiante/estudiante.component';
-import { ProyectoComponent } from './components/proyecto/proyecto.component';
+import { EstudianteListarComponent } from './components/Estudiante/estudiante-listar/estudiante-listar.component';
+import { ProyectoListarComponent } from './components/Proyecto/proyecto-listar/proyecto-listar.component';
 
 const routes: Routes = [
-  { path: '', component: ProyectoComponent},
-  { path: 'estudiante', component: EstudianteComponent },
+  { path: '', component: ProyectoListarComponent},
+  { path: 'estudiante', component: EstudianteListarComponent },
   { path: 'docente', component: DocenteComponent},
-  { path: 'proyecto', component: ProyectoComponent}
+  { path: 'proyecto', component: ProyectoListarComponent}
 ];
 
 @NgModule({

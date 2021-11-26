@@ -3,39 +3,34 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { SharedModule } from './components/shared/shared.module';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
-import { EstudianteComponent } from './components/estudiante/estudiante.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 //Components
- 
 import { DocenteComponent } from './components/docente/docente.component';
-import { ProyectoComponent } from './components/proyecto/proyecto.component';
-import { ProyectoCrearComponent } from './components/proyecto-crear/proyecto-crear.component';
+import { EstudianteListarComponent } from './components/Estudiante/estudiante-listar/estudiante-listar.component';
+import { ProyectoCrearComponent } from './components/Proyecto/proyecto-crear/proyecto-crear.component';
+import { ProyectoListarComponent } from './components/Proyecto/proyecto-listar/proyecto-listar.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     DocenteComponent,
-    ProyectoComponent,
     SideNavComponent,
-    EstudianteComponent,
     ToolbarComponent,
     DocenteComponent,
-    ProyectoCrearComponent
+    EstudianteListarComponent,
+    ProyectoCrearComponent,
+    ProyectoListarComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
-    BrowserAnimationsModule,
     SharedModule
   ],
   providers: [],
   bootstrap: [AppComponent],
-  schemas: [
-    CUSTOM_ELEMENTS_SCHEMA
-  ]
+  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
 })
 export class AppModule { }
