@@ -27,3 +27,15 @@ th{
     height: 40px;
     background-color: transparent;
 }
+.mat-column-codigo{
+    width: 12%;
+}
+.mat-column-nombreProyecto{
+    width: 70%;
+}
+.mat-column-resolucion{
+    width: 10%;
+}
+.mat-column-acciones{
+    width: 8%;
+}
