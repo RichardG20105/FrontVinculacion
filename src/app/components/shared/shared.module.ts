@@ -20,6 +20,7 @@ import {MatToolbarModule} from '@angular/material/toolbar';
 import {MatDialogModule} from '@angular/material/dialog';
 import {MatSelectModule} from '@angular/material/select';
 import {MatDividerModule} from '@angular/material/divider';
+import { MatSortModule } from '@angular/material/sort';
 
 @NgModule({
   declarations: [],
@@ -42,7 +43,9 @@ import {MatDividerModule} from '@angular/material/divider';
     MatToolbarModule,
     MatDialogModule,
     MatSelectModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
   exports: [
     MatSliderModule,
@@ -62,7 +65,9 @@ import {MatDividerModule} from '@angular/material/divider';
     MatToolbarModule,
     MatDialogModule,
     MatSelectModule,
-    BrowserAnimationsModule
+    BrowserAnimationsModule,
+    MatPaginatorModule,
+    MatSortModule
   ],
 })
 export class SharedModule { }

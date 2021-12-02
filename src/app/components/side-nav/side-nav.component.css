@@ -1,8 +1,8 @@
 
 .sidenav {
     background: #ec250d;
-    background: linear-gradient(0deg,#00BA54 0, #00D45F 100%);
-    height: calc(100vh - 5vh);
+    background: #00893E;
+    height: calc(100vh - 90 px);
     height: 100%;
     width: 230px;
     display: block;
