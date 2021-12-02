@@ -14,9 +14,18 @@ th{
     cursor: pointer;
 }
 .mat-form-field {
-    font-size: 14px;
     width: 100%;
+}
+.mat-cell{
+    font-size: 12px;
+}
+.mat-paginator{
+    height: 50px;
 }
 .body{
     background-color:transparent;
+}
+.mat-toolbar-row, .mat-toolbar-single-row{
+    justify-content: center;
+    height: 40px;
 }

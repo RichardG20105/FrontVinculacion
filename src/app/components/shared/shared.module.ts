@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { MatSliderModule } from '@angular/material/slider';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -13,6 +13,13 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { MatInputModule} from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
+import {MatPaginatorModule} from '@angular/material/paginator';
+import {MatGridListModule} from '@angular/material/grid-list';
+import {MatCardModule} from '@angular/material/card';
+import {MatToolbarModule} from '@angular/material/toolbar';
+import {MatDialogModule} from '@angular/material/dialog';
+import {MatSelectModule} from '@angular/material/select';
+import {MatDividerModule} from '@angular/material/divider';
 
 @NgModule({
   declarations: [],
@@ -27,7 +34,14 @@ import { MatButtonModule } from '@angular/material/button';
     MatTooltipModule,
     MatInputModule,
     MatButtonModule,
+    MatPaginatorModule,
     ReactiveFormsModule,
+    MatGridListModule,
+    MatCardModule,
+    MatDividerModule,
+    MatToolbarModule,
+    MatDialogModule,
+    MatSelectModule,
     BrowserAnimationsModule
   ],
   exports: [
@@ -40,7 +54,14 @@ import { MatButtonModule } from '@angular/material/button';
     MatTooltipModule,
     MatInputModule,
     MatButtonModule,
+    MatPaginatorModule,
     ReactiveFormsModule,
+    MatGridListModule,
+    MatCardModule,
+    MatDividerModule,
+    MatToolbarModule,
+    MatDialogModule,
+    MatSelectModule,
     BrowserAnimationsModule
   ],
 })

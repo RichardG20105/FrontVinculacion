@@ -16,4 +16,8 @@ export class ProyectoService {
   getProyectos(): Observable<Proyecto[]>{
     return this.http.get<Proyecto[]>(this.URLBase+'/Proyecto/ListarProyectos');
   }
+
+  saveProyecto(proyecto: Proyecto): Observable<Object>{
+    return this.http.post(this.URLBase+'/Proyecto/Registrar',proyecto);
+  }
 }

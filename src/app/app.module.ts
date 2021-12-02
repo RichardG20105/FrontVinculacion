@@ -1,4 +1,4 @@
-import { CUSTOM_ELEMENTS_SCHEMA, NgModule } from '@angular/core';
+import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -8,21 +8,25 @@ import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
 
 //Components
-import { DocenteComponent } from './components/docente/docente.component';
+//--Estudiante---
 import { EstudianteListarComponent } from './components/Estudiante/estudiante-listar/estudiante-listar.component';
-import { ProyectoCrearComponent } from './components/Proyecto/proyecto-crear/proyecto-crear.component';
+//---Proyecto----
 import { ProyectoListarComponent } from './components/Proyecto/proyecto-listar/proyecto-listar.component';
+import { ProyectoCrearComponent } from './components/Proyecto/proyecto-crear/proyecto-crear.component';
+//---Docente---
+import { DocenteListarComponent } from './components/Docente/docente-listar/docente-listar.component';
+import { DocenteCrearComponent } from './components/Docente/docente-crear/docente-crear.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    DocenteComponent,
     SideNavComponent,
     ToolbarComponent,
-    DocenteComponent,
     EstudianteListarComponent,
     ProyectoCrearComponent,
-    ProyectoListarComponent
+    ProyectoListarComponent,
+    DocenteListarComponent,
+    DocenteCrearComponent
   ],
   imports: [
     BrowserModule,
@@ -31,6 +35,6 @@ import { ProyectoListarComponent } from './components/Proyecto/proyecto-listar/p
   ],
   providers: [],
   bootstrap: [AppComponent],
-  schemas: [ CUSTOM_ELEMENTS_SCHEMA ]
+  entryComponents:[ProyectoCrearComponent]
 })
 export class AppModule { }
