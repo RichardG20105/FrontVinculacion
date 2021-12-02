@@ -2,22 +2,22 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { Docente } from '../interfaces/docente';
+import { Carrera } from '../interfaces/carrera';
 
 @Injectable({
   providedIn: 'root'
 })
-export class DocenteService {
+export class CarreraService {
   private URLBase: string
   constructor(private http: HttpClient) { 
     this.URLBase = environment.apiURL
   }
 
-  getDocentes(): Observable<Docente[]>{
-    return this.http.get<Docente[]>(this.URLBase+'/Docente/ListarDocentes');
+  getCarreras(): Observable<Carrera[]>{
+    return this.http.get<Carrera[]>(this.URLBase+'/Carrera/ListarCarreras');
   }
 
-  saveDocente(docente: Docente): Observable<Object>{
-    return this.http.post(this.URLBase+'/Docente/Registrar',docente);
+  getCarrerasFacultad(id: number): Observable<Carrera[]>{
+    return this.http.get<Carrera[]>(this.URLBase+'/Carrera/ListarCarrerasFacultad/'+id)
   }
 }

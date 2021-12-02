@@ -44,7 +44,6 @@ import { MatSortModule } from '@angular/material/sort';
     MatDialogModule,
     MatSelectModule,
     BrowserAnimationsModule,
-    MatPaginatorModule,
     MatSortModule
   ],
   exports: [
@@ -66,7 +65,6 @@ import { MatSortModule } from '@angular/material/sort';
     MatDialogModule,
     MatSelectModule,
     BrowserAnimationsModule,
-    MatPaginatorModule,
     MatSortModule
   ],
 })

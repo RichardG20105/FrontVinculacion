@@ -1,6 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
-import {MatPaginator} from '@angular/material/paginator';
+import { MatPaginator } from '@angular/material/paginator';
 import { Proyecto } from 'src/app/interfaces/proyecto';
 import { ProyectoService } from 'src/app/services/proyecto.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -46,7 +46,7 @@ export class ProyectoListarComponent implements OnInit {
   onCreate(){
     const dial = this.dialog.open(ProyectoCrearComponent)
     dial.afterClosed().subscribe(data => {
-      this.router.navigate(['proyecto']);
+      this.getProyectos();
     });
   }
 }

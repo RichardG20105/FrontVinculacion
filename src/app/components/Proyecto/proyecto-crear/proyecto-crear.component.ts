@@ -13,7 +13,8 @@ import { ProyectoService } from 'src/app/services/proyecto.service';
 export class ProyectoCrearComponent implements OnInit {
 
   form: FormGroup
-  constructor(private fb: FormBuilder,private service: ProyectoService,
+  constructor(private fb: FormBuilder,
+    private service: ProyectoService,
     private dialog: MatDialogRef<ProyectoCrearComponent>) { 
     this.form = this.fb.group({
       codigo: ["", Validators.required],

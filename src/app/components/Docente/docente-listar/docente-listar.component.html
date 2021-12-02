@@ -9,12 +9,14 @@
       <mat-icon style="padding-left: 0%;padding-right: 1px;">add_box</mat-icon>
       Nuevo Docente
     </button>
+    <mat-divider style="margin-top: 1%;"></mat-divider>
     <mat-form-field appearance="standard">
       <mat-label>Filter</mat-label>
       <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Pedro, FE" #input autocomplete="off">
     </mat-form-field>
     
-    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">          
+    <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource">          
         <!-- Cedula Column -->
         <ng-container matColumnDef="cedulaDocente">
           <th mat-header-cell *matHeaderCellDef> Cedula </th>
@@ -29,8 +31,8 @@
       
         <!-- Sexo Column -->
         <ng-container matColumnDef="sexoDocente">
-            <th mat-header-cell *matHeaderCellDef> Sexo </th>
-            <td mat-cell *matCellDef="let element"> {{element.sexoDocente}} </td>
+          <th mat-header-cell *matHeaderCellDef> Sexo </th>
+          <td mat-cell *matCellDef="let element"> {{element.sexoDocente}} </td>
         </ng-container>
       
         <!-- Contacto Column -->
@@ -47,8 +49,8 @@
           
         <!-- Relación Laboral Column -->
         <ng-container matColumnDef="relacionLaboral">
-            <th mat-header-cell *matHeaderCellDef> Relación Laboral </th>
-            <td mat-cell *matCellDef="let element"> {{element.relacionLaboral}} </td>
+          <th mat-header-cell *matHeaderCellDef> Relación Laboral </th>
+          <td mat-cell *matCellDef="let element"> {{element.relacionLaboral}} </td>
         </ng-container>
           
         <!-- Acciones Column -->
@@ -64,5 +66,10 @@
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
     </table>
+
+    <mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]"
+        showFirstLastButtons aria-label="Select page of periodic elements">
+    </mat-paginator>
+    </div>
   </div>
 </div>

@@ -64,7 +64,7 @@
                     <mat-grid-tile [colspan]="2" [rowspan]="1">
                         <mat-form-field class="ancho">
                             <mat-label>Facultad</mat-label>
-                            <mat-select formControlName="facultad">
+                            <mat-select formControlName="facultad"  (selectionChange)="select($event)">
                               <mat-option *ngFor="let item of facultad" [value]="item.idFacultad"> 
                                 {{item.nombreFacultad}}
                               </mat-option>
@@ -85,7 +85,21 @@
                             <mat-error *ngIf="checkError('relacion','required')">
                                 Seleccione una opción
                             </mat-error>
-                          </mat-form-field>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="2" [rowspan]="1"></mat-grid-tile>
+                    <mat-grid-tile [colspan]="2" [rowspan]="1">
+                        <mat-form-field class="ancho">
+                            <mat-label>Carrera</mat-label>
+                            <mat-select  formControlName="carrera">
+                              <mat-option *ngFor="let item of carrera" [value]="item.idCarrera">
+                                {{item.nombreCarrera}}
+                              </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="checkError('carrera','required')">
+                                Seleccione una opción
+                            </mat-error>
+                        </mat-form-field>
                     </mat-grid-tile>
                 </mat-grid-list>
                 
