@@ -18,14 +18,15 @@ import { EstudianteCrearComponent } from '../estudiante-crear/estudiante-crear.c
 export class EstudianteListarComponent implements OnInit {
   listaEstudiantes!: Estudiante[];
 
-  displayedColumns: string[] = ['cedulaEstudiante', 'nombreEstudiante', 'sexoEstudiante', 'semestre'];
+  displayedColumns: string[] = ['cedulaEstudiante', 'nombreEstudiante', 'sexoEstudiante', 'semestre', 'acciones'];
   dataSource = new MatTableDataSource<Estudiante>(this.listaEstudiantes);
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
   constructor(private servicio: EstudianteService,
-    private dialog: MatDialog, private router: Router) { }
+    private dialog: MatDialog, 
+    private router: Router) { }
 
   ngOnInit(): void {
     this.getEstudiantes();
@@ -50,9 +51,7 @@ export class EstudianteListarComponent implements OnInit {
   onCreate(){
     const dial = this.dialog.open(EstudianteCrearComponent);
 
-    dial.afterClosed().subscribe(data => {
-      this.router.navigate(['estudiante']);
-    })
+    dial.afterClosed().subscribe(data => this.getEstudiantes())
   }
 
 }

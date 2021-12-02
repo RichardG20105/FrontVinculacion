@@ -3,6 +3,6 @@ export interface Estudiante {
     idCarrera: number,
     cedulaEstudiante: String,
     nombreEstudiante: String,
-    semestre: number,
+    semestre: String,
     sexoEstudiante: String
 }

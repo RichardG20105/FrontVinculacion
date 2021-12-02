@@ -16,4 +16,8 @@ export class EstudianteService {
   getEstudiantes(): Observable<Estudiante[]>{
     return this.http.get<Estudiante[]>(this.URLBase+'/Estudiante/ListarEstudiantes')
   }
+
+  saveEstudiantes(estudiante: Estudiante): Observable<Object>{
+    return this.http.post(this.URLBase+'/Estudiante/Registrar',estudiante);
+  }
 }

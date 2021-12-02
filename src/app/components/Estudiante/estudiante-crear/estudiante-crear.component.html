@@ -27,16 +27,7 @@
                             </mat-error>
                         </mat-form-field>
                     </mat-grid-tile>
-                    <mat-grid-tile [colspan]="3" [rowspan]="1">
-                        <mat-form-field class="ancho">
-                            <mat-label>Semestre</mat-label>
-                            <input matInput autocomplete="off" formControlName="semestre">
-                            <mat-error *ngIf="checkError('semestre','required')">
-                                El semestre es requerido
-                            </mat-error>
-                        </mat-form-field>
-                    </mat-grid-tile>
-                    
+                    <mat-grid-tile [colspan]="1" [rowspan]="1"></mat-grid-tile>
                     <mat-grid-tile [colspan]="2" [rowspan]="1">
                         <mat-form-field class="ancho">
                             <mat-label>Sexo</mat-label>
@@ -48,12 +39,13 @@
                             <mat-error *ngIf="checkError('sexo','required')">
                                 Seleccione una opción
                             </mat-error>
-                          </mat-form-field>
-                    </mat-grid-tile>
+                        </mat-form-field> 
+                    </mat-grid-tile>                    
+                    
                     <mat-grid-tile [colspan]="2" [rowspan]="1">
                         <mat-form-field class="ancho">
                             <mat-label>Facultad</mat-label>
-                            <mat-select formControlName="facultad">
+                            <mat-select formControlName="facultad"(selectionChange)="select($event)">
                               <mat-option *ngFor="let item of facultad" [value]="item.idFacultad"> 
                                 {{item.nombreFacultad}}
                               </mat-option>
@@ -61,8 +53,38 @@
                             <mat-error *ngIf="checkError('facultad','required')">
                                 Seleccione una opción
                             </mat-error>
-                          </mat-form-field>
+                        </mat-form-field>    
                     </mat-grid-tile>
+                    <mat-grid-tile [colspan]="1" [rowspan]="1"></mat-grid-tile>
+                    <mat-grid-tile [colspan]="1" [rowspan]="1"></mat-grid-tile>
+                    
+                    <mat-grid-tile [colspan]="2" [rowspan]="1">
+                        <mat-form-field class="ancho">
+                            <mat-label>Carrera</mat-label>
+                            <mat-select  formControlName="carrera">
+                              <mat-option *ngFor="let item of carrera" [value]="item.idCarrera">
+                                {{item.nombreCarrera}}
+                              </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="checkError('carrera','required')">
+                                Seleccione una opción
+                            </mat-error>
+                        </mat-form-field>
+                    </mat-grid-tile>
+
+                    <mat-grid-tile [colspan]="2" [rowspan]="1">
+                        <mat-form-field class="ancho">
+                            <mat-label>Semestre</mat-label>
+                            <mat-select formControlName="semestre">
+                              <mat-option *ngFor="let item of semestre" [value]="item">
+                                {{item}}
+                              </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="checkError('semestre','required')">
+                                Seleccione una opción
+                            </mat-error>
+                        </mat-form-field> 
+                    </mat-grid-tile>  
                 </mat-grid-list>
                 
                 <button class="botonAceptar" type="submit" [disabled]="form.invalid" mat-raised-button color="primary">Aceptar</button>
