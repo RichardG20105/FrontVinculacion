@@ -44,7 +44,10 @@ export class ProyectoListarComponent implements OnInit {
   }
 
   onCreate(){
-    const dial = this.dialog.open(ProyectoCrearComponent)
+    const dial = this.dialog.open(ProyectoCrearComponent,{
+      height: '70vh',
+      width: '50vw'
+    })
     dial.afterClosed().subscribe(data => {
       this.getProyectos();
     });

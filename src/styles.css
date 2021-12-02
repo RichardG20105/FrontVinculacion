@@ -10,3 +10,6 @@ body {
     text-align: left;
     background-color: white;
 } 
+.mat-dialog-container{
+    overflow: hidden !important;
+}
