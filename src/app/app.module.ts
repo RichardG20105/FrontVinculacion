@@ -16,6 +16,7 @@ import { ProyectoCrearComponent } from './components/Proyecto/proyecto-crear/pro
 //---Docente---
 import { DocenteListarComponent } from './components/Docente/docente-listar/docente-listar.component';
 import { DocenteCrearComponent } from './components/Docente/docente-crear/docente-crear.component';
+import { EstudianteCrearComponent } from './components/Estudiante/estudiante-crear/estudiante-crear.component';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,8 @@ import { DocenteCrearComponent } from './components/Docente/docente-crear/docent
     ProyectoCrearComponent,
     ProyectoListarComponent,
     DocenteListarComponent,
-    DocenteCrearComponent
+    DocenteCrearComponent,
+    EstudianteCrearComponent
   ],
   imports: [
     BrowserModule,
