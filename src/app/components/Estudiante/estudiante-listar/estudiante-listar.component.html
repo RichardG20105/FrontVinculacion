@@ -1,10 +1,19 @@
 <div class="row" style="height: 95vh;">
     <div class="body">
-      
+      <p style="margin-bottom: 1%;">
+        <mat-toolbar>
+          <span style="text-align: center;">Estudiantes</span>
+        </mat-toolbar>
+      </p>
+      <button mat-raised-button color="primary" (click)="onCreate()">
+        <mat-icon style="padding-left: 0%;padding-right: 1px;">add_box</mat-icon>
+        Nuevo Estudiante
+      </button>
         <mat-form-field appearance="standard">
         <mat-label>Filtro de Búsqueda</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Pedro, FE" #input autocomplete="off">
       </mat-form-field>
+      
       <div class="mat-elevation-z8">
         <table mat-table [dataSource]="dataSource" matSort>          
             <!-- Cedula Column -->

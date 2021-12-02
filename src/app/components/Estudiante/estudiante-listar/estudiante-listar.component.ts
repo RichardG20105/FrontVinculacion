@@ -1,10 +1,13 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import { Router } from '@angular/router';
+import { MatSort } from '@angular/material/sort';
 
 import { Estudiante } from 'src/app/interfaces/estudiante';
 import { EstudianteService } from 'src/app/services/estudiante.service';
+import { EstudianteCrearComponent } from '../estudiante-crear/estudiante-crear.component';
 
 
 @Component({
@@ -21,7 +24,8 @@ export class EstudianteListarComponent implements OnInit {
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
 
-  constructor(private servicio: EstudianteService) { }
+  constructor(private servicio: EstudianteService,
+    private dialog: MatDialog, private router: Router) { }
 
   ngOnInit(): void {
     this.getEstudiantes();
@@ -41,6 +45,14 @@ export class EstudianteListarComponent implements OnInit {
   getEstudiantes(){
     let resp = this.servicio.getEstudiantes();
     resp.subscribe(datos=>this.dataSource.data=datos as Estudiante[])
+  }
+
+  onCreate(){
+    const dial = this.dialog.open(EstudianteCrearComponent);
+
+    dial.afterClosed().subscribe(data => {
+      this.router.navigate(['estudiante']);
+    })
   }
 
 }

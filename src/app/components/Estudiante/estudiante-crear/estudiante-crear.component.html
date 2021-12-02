@@ -1,0 +1,72 @@
+<div class="body" style="width: 80vh; height: 80vh;">
+    <div class="container">
+        <p style="margin-bottom: 1%;">
+            <mat-toolbar>
+              <span>Registrar Estudiante</span>
+            </mat-toolbar>
+        </p>
+    
+        <mat-card style="margin-top: 10px; margin-bottom: 10px;">
+            <form [formGroup]="form" (ngSubmit)="guardarEstudiante()" style="text-align: center;">
+                <mat-grid-list cols="6" rowHeight="90px">
+                    <mat-grid-tile [colspan]="3" [rowspan]="1">
+                        <mat-form-field class="ancho">
+                            <mat-label>Cedula</mat-label>
+                            <input matInput autocomplete="off" formControlName="cedula">
+                            <mat-error *ngIf="checkError('cedula','required')">
+                                La cedula es requerida
+                            </mat-error>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="3" [rowspan]="1">
+                        <mat-form-field class="ancho">
+                            <mat-label>Nombre</mat-label>
+                            <input matInput autocomplete="off" formControlName="nombre">
+                            <mat-error *ngIf="checkError('nombre','required')">
+                                El nombre es requerido
+                            </mat-error>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="3" [rowspan]="1">
+                        <mat-form-field class="ancho">
+                            <mat-label>Semestre</mat-label>
+                            <input matInput autocomplete="off" formControlName="semestre">
+                            <mat-error *ngIf="checkError('semestre','required')">
+                                El semestre es requerido
+                            </mat-error>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    
+                    <mat-grid-tile [colspan]="2" [rowspan]="1">
+                        <mat-form-field class="ancho">
+                            <mat-label>Sexo</mat-label>
+                            <mat-select formControlName="sexo">
+                              <mat-option *ngFor="let item of sexo" [value]="item">
+                                {{item}}
+                              </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="checkError('sexo','required')">
+                                Seleccione una opción
+                            </mat-error>
+                          </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="2" [rowspan]="1">
+                        <mat-form-field class="ancho">
+                            <mat-label>Facultad</mat-label>
+                            <mat-select formControlName="facultad">
+                              <mat-option *ngFor="let item of facultad" [value]="item.idFacultad"> 
+                                {{item.nombreFacultad}}
+                              </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="checkError('facultad','required')">
+                                Seleccione una opción
+                            </mat-error>
+                          </mat-form-field>
+                    </mat-grid-tile>
+                </mat-grid-list>
+                
+                <button class="botonAceptar" type="submit" [disabled]="form.invalid" mat-raised-button color="primary">Aceptar</button>
+            </form>
+        </mat-card>
+    </div>
+</div>
