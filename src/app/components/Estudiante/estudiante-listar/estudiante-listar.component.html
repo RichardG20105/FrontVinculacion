@@ -18,7 +18,7 @@
         <table mat-table [dataSource]="dataSource" matSort>          
             <!-- Cedula Column -->
             <ng-container matColumnDef="cedulaEstudiante">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Cedula </th>
+              <th mat-header-cell *matHeaderCellDef > Cedula </th>
               <td mat-cell *matCellDef="let element"> {{element.cedulaEstudiante}} </td>
             </ng-container>
             
@@ -30,13 +30,13 @@
           
             <!-- Sexo Column -->
             <ng-container matColumnDef="sexoEstudiante">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Sexo </th>
+                <th mat-header-cell *matHeaderCellDef> Sexo </th>
                 <td mat-cell *matCellDef="let element"> {{element.sexoEstudiante}} </td>
             </ng-container>
           
             <!-- Semestre Column -->
             <ng-container matColumnDef="semestre">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Semestre </th>
+              <th mat-header-cell *matHeaderCellDef> Semestre </th>
               <td mat-cell *matCellDef="let element"> {{element.semestre}} </td>
             </ng-container>
 
