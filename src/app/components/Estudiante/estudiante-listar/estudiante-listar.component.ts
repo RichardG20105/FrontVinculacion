@@ -49,7 +49,10 @@ export class EstudianteListarComponent implements OnInit {
   }
 
   onCreate(){
-    const dial = this.dialog.open(EstudianteCrearComponent);
+    const dial = this.dialog.open(EstudianteCrearComponent,{
+      width: '43vw',
+      height: '75vh'
+    });
 
     dial.afterClosed().subscribe(data => this.getEstudiantes())
   }
