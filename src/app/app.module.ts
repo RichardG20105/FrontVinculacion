@@ -10,13 +10,16 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 //Components
 //--Estudiante---
 import { EstudianteListarComponent } from './components/Estudiante/estudiante-listar/estudiante-listar.component';
+import { EstudianteCrearComponent } from './components/Estudiante/estudiante-crear/estudiante-crear.component';
 //---Proyecto----
 import { ProyectoListarComponent } from './components/Proyecto/proyecto-listar/proyecto-listar.component';
 import { ProyectoCrearComponent } from './components/Proyecto/proyecto-crear/proyecto-crear.component';
 //---Docente---
 import { DocenteListarComponent } from './components/Docente/docente-listar/docente-listar.component';
 import { DocenteCrearComponent } from './components/Docente/docente-crear/docente-crear.component';
-import { EstudianteCrearComponent } from './components/Estudiante/estudiante-crear/estudiante-crear.component';
+//---Certificado---
+import { CertificadoListarComponent } from './components/Certificado/certificado-listar/certificado-listar.component';
+import { CertificadoCrearComponent } from './components/Certificado/certificado-crear/certificado-crear.component';
 
 @NgModule({
   declarations: [
@@ -28,7 +31,9 @@ import { EstudianteCrearComponent } from './components/Estudiante/estudiante-cre
     ProyectoListarComponent,
     DocenteListarComponent,
     DocenteCrearComponent,
-    EstudianteCrearComponent
+    EstudianteCrearComponent,
+    CertificadoListarComponent,
+    CertificadoCrearComponent
   ],
   imports: [
     BrowserModule,

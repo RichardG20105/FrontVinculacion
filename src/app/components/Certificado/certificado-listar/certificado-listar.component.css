@@ -1,5 +1,6 @@
 .body{
     margin: 10px;
+    display: block;
 }
 table {
     width: 100%;
@@ -17,6 +18,9 @@ th{
 }
 .mat-cell{
     font-size: 12px;
+}
+.mat-paginator{
+    height: 50px;
 }
 .mat-toolbar-row, .mat-toolbar-single-row{
     justify-content: center;
