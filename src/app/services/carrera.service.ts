@@ -20,4 +20,8 @@ export class CarreraService {
   getCarrerasFacultad(id: number): Observable<Carrera[]>{
     return this.http.get<Carrera[]>(this.URLBase+'/Carrera/ListarCarrerasFacultad/'+id)
   }
+
+  getFacultad(id: number): Observable<number>{
+    return this.http.get<number>(this.URLBase+'/Carrera/Facultad/'+id);
+  }
 }

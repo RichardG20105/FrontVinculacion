@@ -26,10 +26,10 @@ export class DocenteCrearComponent implements OnInit {
     private carrer: CarreraService,
     private dialog: MatDialogRef<DocenteCrearComponent>) {
       this.form = this.fb.group({
-        cedula: ["", Validators.required],
-        nombre: ["", Validators.required],
-        contacto: ["", Validators.required],
-        correo: ["", [Validators.email,Validators.required]],
+        cedula: ["", [Validators.required, Validators.minLength(10), Validators.pattern("^[0-9]*$")]],
+        nombre: ["", [Validators.required,Validators.pattern("^[a-z A-Z]*$")]],
+        contacto: ["", [Validators.required,Validators.minLength(9), Validators.pattern("^[0-9]*$")]],
+        correo: ["", [Validators.email, Validators.required]],
         sexo: ["", Validators.required],
         facultad: ["", Validators.required],
         carrera: ["", Validators.required],

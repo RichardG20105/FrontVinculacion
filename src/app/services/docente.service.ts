@@ -16,8 +16,13 @@ export class DocenteService {
   getDocentes(): Observable<Docente[]>{
     return this.http.get<Docente[]>(this.URLBase+'/Docente/ListarDocentes');
   }
-
+  getDocente(id: number): Observable<Docente>{
+    return this.http.get<Docente>(this.URLBase+"/Docente/"+id)
+  }
   saveDocente(docente: Docente): Observable<Object>{
     return this.http.post(this.URLBase+'/Docente/Registrar',docente);
+  }
+  updateDocente(docente:Docente,idDoc:number): Observable<Object>{
+    return this.http.put(this.URLBase+'/Docente/Actualizar/'+idDoc,docente);
   }
 }

@@ -22,3 +22,22 @@ th{
     justify-content: center;
     height: 40px;
 }
+.mat-column-cedulaDocente{
+    width: 20%;
+}
+.mat-column-nombreDocente{
+    width: 20%;
+}
+.mat-column-sexoDocente{
+    width: 10%;
+}
+.mat-column-contacto{
+    width: 10%
+}
+.mat-column-correoElectronico{
+    width:20%
+}
+.mat-column-relacionLaboral{
+    width: 10%;
+    text-align: center;
+}

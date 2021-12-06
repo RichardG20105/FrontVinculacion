@@ -6,6 +6,7 @@ import { Router } from '@angular/router';
 import { Docente } from 'src/app/interfaces/docente';
 import { DocenteService } from 'src/app/services/docente.service';
 import { DocenteCrearComponent } from '../docente-crear/docente-crear.component';
+import { DocenteModificarComponent } from '../docente-modificar/docente-modificar.component';
 
 @Component({
   selector: 'app-docente-listar',
@@ -47,6 +48,17 @@ export class DocenteListarComponent implements OnInit {
       height: '95vh',
       width: '50vw'
     })
+    dial.afterClosed().subscribe(data => this.getDocentes())
+  }
+
+  onEdit(idDocente: number){
+    const dial = this.dialog.open(DocenteModificarComponent, {
+      width: '50vw',
+      height: '95vh',
+      data: {
+        id: idDocente
+      }
+    });
     dial.afterClosed().subscribe(data => this.getDocentes())
   }
 
