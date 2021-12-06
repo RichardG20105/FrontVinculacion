@@ -5,11 +5,15 @@
           <span style="text-align: center;">Estudiantes</span>
         </mat-toolbar>
       </p>
+
       <button mat-raised-button color="primary" (click)="onCreate()">
         <mat-icon style="padding-left: 0%;padding-right: 1px;">add_box</mat-icon>
         Nuevo Estudiante
       </button>
-        <mat-form-field appearance="standard">
+
+      <mat-divider style="margin-top: 1%;"></mat-divider>
+      
+      <mat-form-field appearance="standard">
         <mat-label>Filtro de Búsqueda</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Pedro, FE" #input autocomplete="off">
       </mat-form-field>
@@ -18,7 +22,7 @@
         <table mat-table [dataSource]="dataSource" matSort>          
             <!-- Cedula Column -->
             <ng-container matColumnDef="cedulaEstudiante">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Cedula </th>
+              <th mat-header-cell *matHeaderCellDef > Cedula </th>
               <td mat-cell *matCellDef="let element"> {{element.cedulaEstudiante}} </td>
             </ng-container>
             
@@ -30,13 +34,13 @@
           
             <!-- Sexo Column -->
             <ng-container matColumnDef="sexoEstudiante">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Sexo </th>
+                <th mat-header-cell *matHeaderCellDef> Sexo </th>
                 <td mat-cell *matCellDef="let element"> {{element.sexoEstudiante}} </td>
             </ng-container>
           
             <!-- Semestre Column -->
             <ng-container matColumnDef="semestre">
-              <th mat-header-cell *matHeaderCellDef mat-sort-header> Semestre </th>
+              <th mat-header-cell *matHeaderCellDef> Semestre </th>
               <td mat-cell *matCellDef="let element"> {{element.semestre}} </td>
             </ng-container>
 
