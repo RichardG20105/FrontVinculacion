@@ -17,14 +17,11 @@ import { ProyectoCrearComponent } from './components/Proyecto/proyecto-crear/pro
 //---Docente---
 import { DocenteListarComponent } from './components/Docente/docente-listar/docente-listar.component';
 import { DocenteCrearComponent } from './components/Docente/docente-crear/docente-crear.component';
-<<<<<<< HEAD
-import { EstudianteCrearComponent } from './components/Estudiante/estudiante-crear/estudiante-crear.component';
 import { DocenteModificarComponent } from './components/Docente/docente-modificar/docente-modificar.component';
-=======
 //---Certificado---
 import { CertificadoListarComponent } from './components/Certificado/certificado-listar/certificado-listar.component';
 import { CertificadoCrearComponent } from './components/Certificado/certificado-crear/certificado-crear.component';
->>>>>>> a863cfdccfe0fce03669b6824b47daf439c531ae
+import { ProyectoModificarComponent } from './components/Proyecto/proyecto-modificar/proyecto-modificar.component';
 
 @NgModule({
   declarations: [
@@ -37,12 +34,10 @@ import { CertificadoCrearComponent } from './components/Certificado/certificado-
     DocenteListarComponent,
     DocenteCrearComponent,
     EstudianteCrearComponent,
-<<<<<<< HEAD
-    DocenteModificarComponent
-=======
+    DocenteModificarComponent,
     CertificadoListarComponent,
-    CertificadoCrearComponent
->>>>>>> a863cfdccfe0fce03669b6824b47daf439c531ae
+    CertificadoCrearComponent,
+    ProyectoModificarComponent
   ],
   imports: [
     BrowserModule,

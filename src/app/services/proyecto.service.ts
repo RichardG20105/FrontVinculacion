@@ -17,7 +17,15 @@ export class ProyectoService {
     return this.http.get<Proyecto[]>(this.URLBase+'/Proyecto/ListarProyectos');
   }
 
+  getProyecto(id: number): Observable<Proyecto>{
+    return this.http.get<Proyecto>(this.URLBase+'/Proyecto/'+id);
+  }
+
   saveProyecto(proyecto: Proyecto): Observable<Object>{
     return this.http.post(this.URLBase+'/Proyecto/Registrar',proyecto);
+  }
+
+  updateProyecto(proyecto: Proyecto, idProy: number):Observable<Object>{
+    return this.http.put(this.URLBase+'/Proyecto/Actualizar/'+idProy,proyecto);
   }
 }

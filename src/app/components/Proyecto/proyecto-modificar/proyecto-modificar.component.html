@@ -1,0 +1,27 @@
+<div class="body" >
+    <div class="container" style="height: 100%;">
+        <p style="margin-bottom: 1%;">
+            <mat-toolbar>
+              <span>Modificar Proyecto</span>
+            </mat-toolbar>
+        </p>
+    
+        <mat-card style="margin-top: 10px; margin-bottom: 10px;">
+            <form [formGroup]="form" (ngSubmit)="guardarProyecto()" style="text-align: center;">
+                <mat-form-field class="ancho">
+                    <mat-label>Codigo</mat-label>
+                    <input matInput autocomplete="off" formControlName="codigo">
+                </mat-form-field>
+                <mat-form-field class="ancho">
+                    <mat-label>Nombre</mat-label>
+                    <textarea matInput autocomplete="off" formControlName="nombre" cdkTextareaAutosize></textarea>
+                </mat-form-field>
+                <mat-form-field class="ancho">
+                    <mat-label>Resolución</mat-label>
+                    <input matInput autocomplete="off" formControlName="resolucion">
+                </mat-form-field>
+                <button class="botonAceptar" type="submit" [disabled]="form.invalid" mat-raised-button color="primary">Aceptar</button>
+            </form>
+        </mat-card>
+    </div>
+</div>

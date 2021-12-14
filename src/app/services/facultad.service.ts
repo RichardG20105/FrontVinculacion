@@ -16,4 +16,8 @@ export class FacultadService {
   getFacultades(): Observable<Facultad[]>{
     return this.http.get<Facultad[]>(this.URLBase+"/Facultad/ListarFacultades");
   }
+
+  getFacultad(id: number):Observable<Facultad>{
+    return this.http.get<Facultad>(this.URLBase+"/Facultad/"+id);
+  }
 }

@@ -6,6 +6,7 @@ import { ProyectoService } from 'src/app/services/proyecto.service';
 import { MatDialog } from '@angular/material/dialog';
 import { ProyectoCrearComponent } from '../proyecto-crear/proyecto-crear.component';
 import { Router } from '@angular/router';
+import { ProyectoModificarComponent } from '../proyecto-modificar/proyecto-modificar.component';
 
 @Component({
   selector: 'app-proyecto-listar',
@@ -51,5 +52,16 @@ export class ProyectoListarComponent implements OnInit {
     dial.afterClosed().subscribe(data => {
       this.getProyectos();
     });
+  }
+
+  onEdit(idProyecto: number){
+    const dial = this.dialog.open(ProyectoModificarComponent, {
+      width: '50vw',
+      height: '95vh',
+      data:{
+        id: idProyecto
+      }
+    });
+    dial.afterClosed().subscribe(data => this.getProyectos())
   }
 }

@@ -22,7 +22,7 @@ export class DocenteModificarComponent implements OnInit {
   form!: FormGroup;
   idDoc!: number;
   idFacu!: number;
-  nombreFacultad!: string
+  facul!: Facultad
   docenteDatos!: Docente;
 
   constructor(private fb: FormBuilder,
@@ -56,25 +56,27 @@ export class DocenteModificarComponent implements OnInit {
 
   getDocente(){
     let resp = this.service.getDocente(this.idDoc)
-    resp.subscribe(datos => {this.docenteDatos = datos as Docente
-    this.setForm()});
+    resp.subscribe(datos => {this.docenteDatos = datos as Docente,
+      this.getCarrera(this.docenteDatos.idCarrera)});
+  }
+  getCarrera(id: number){
+    let resp = this.carrer.getFacultad(id)
+    resp.subscribe(data => {this.idFacu = data.valueOf(), this.getCarrerasFacultad(this.idFacu), this.getFacultad(this.idFacu)})
   }
   getFacultad(id: number){
-    this.carrer.getFacultad(id).subscribe(data => this.idFacu = data)
-    this.facu.getFacultad(this.idFacu).subscribe(data => this.nombreFacultad = data)
+    let res = this.facu.getFacultad(this.idFacu)
+    res.subscribe(data => {this.facul = data as Facultad, this.setForm()})
   }
 
   setForm(){
-    console.log("FORM")
-    console.log(this.docenteDatos)
     this.form = this.fb.group({
       cedula: [`${this.docenteDatos.cedulaDocente}`,[Validators.required, Validators.minLength(10), Validators.pattern("^[0-9]*$")]],
       nombre: [`${this.docenteDatos.nombreDocente}`, [Validators.required,Validators.pattern("^[a-z A-Z]*$")]],
       contacto: [`${this.docenteDatos.contacto}`, [Validators.required,Validators.minLength(9), Validators.pattern("^[0-9]*$")]],
       correo: [`${this.docenteDatos.correoElectronico}`, [Validators.email, Validators.required]],
       sexo: [`${this.docenteDatos.sexoDocente}`, Validators.required],
-      facultad: [`${this.idFacu}`, Validators.required],
-      carrera: [`${this.docenteDatos.idCarrera}`, Validators.required],
+      facultad: [this.facul.idFacultad, Validators.required],
+      carrera: [this.docenteDatos.idCarrera, Validators.required],
       relacion: [`${this.docenteDatos.relacionLaboral}`, Validators.required]
     })
     
@@ -87,7 +89,7 @@ export class DocenteModificarComponent implements OnInit {
   getCarrerasFacultad(id:number){
     this.carrer.getCarrerasFacultad(id).subscribe(data => {
       this.carrera = data;
-    })
+  })
   }
   guardarDocente(){
     const docente: Docente = {
