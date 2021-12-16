@@ -2,7 +2,7 @@
     <div class="container">
         <p style="margin-bottom: 1%;">
             <mat-toolbar>
-              <span>Registrar Estudiante</span>
+              <span>Modificar Estudiante</span>
             </mat-toolbar>
         </p>
     
@@ -11,14 +11,8 @@
                 <mat-grid-list cols="6" rowHeight="90px">
                     <mat-grid-tile [colspan]="3" [rowspan]="1">
                         <mat-form-field class="ancho">
-                            <mat-label>Cédula</mat-label>
-                            <input matInput autocomplete="off" formControlName="cedula" maxLength="10">
-                            <mat-error *ngIf="checkError('cedula','minlength') && !checkError('cedula','pattern')">
-                                La cedula no es valida
-                            </mat-error>
-                            <mat-error *ngIf="checkError('cedula','pattern')">
-                                Solo se permite el ingreso de números
-                            </mat-error>
+                            <mat-label>Cedula</mat-label>
+                            <input matInput autocomplete="off" formControlName="cedula">
                             <mat-error *ngIf="checkError('cedula','required')">
                                 La cedula es requerida
                             </mat-error>
@@ -30,9 +24,6 @@
                             <input matInput autocomplete="off" formControlName="nombre">
                             <mat-error *ngIf="checkError('nombre','required')">
                                 El nombre es requerido
-                            </mat-error>
-                            <mat-error *ngIf="checkError('nombre','pattern')">
-                                Solo permite le ingreso de letras
                             </mat-error>
                         </mat-form-field>
                     </mat-grid-tile>

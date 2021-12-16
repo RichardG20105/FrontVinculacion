@@ -2,51 +2,49 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Carrera } from 'src/app/interfaces/carrera';
-import { Docente } from 'src/app/interfaces/docente';
+import { Estudiante } from 'src/app/interfaces/estudiante';
 import { Facultad } from 'src/app/interfaces/facultad';
 import { CarreraService } from 'src/app/services/carrera.service';
-import { DocenteService } from 'src/app/services/docente.service';
+import { EstudianteService } from 'src/app/services/estudiante.service';
 import { FacultadService } from 'src/app/services/facultad.service';
 
 @Component({
-  selector: 'app-docente-modificar',
-  templateUrl: './docente-modificar.component.html',
-  styleUrls: ['./docente-modificar.component.css']
+  selector: 'app-estudiante-modificar',
+  templateUrl: './estudiante-modificar.component.html',
+  styleUrls: ['./estudiante-modificar.component.css']
 })
-export class DocenteModificarComponent implements OnInit {
+export class EstudianteModificarComponent implements OnInit {
 
   sexo: any[] = ["Masculino","Femenino"];
-  relacionLaboral: any[] = ["Titular","Ocasional"];
+  semestre: any[] = ["Primero", "Segundo", "Tercero", "Cuarto", "Quinto", "Sexto", "Septimo", "Octavo", "Noveno", "Decimo"]
   facultad!: Facultad[];
   carrera!: Carrera[];
   form!: FormGroup;
-  idDoc!: number;
+  idEst!: number;
   idFacu!: number;
-  facul!: Facultad
-  docenteDatos!: Docente;
+  facul!: Facultad;
+  estudianteDatos!: Estudiante;
 
   constructor(private fb: FormBuilder,
-    private service: DocenteService,
+    private service: EstudianteService,
     private facu: FacultadService,
     private carrer: CarreraService,
-    private dialog: MatDialogRef<DocenteModificarComponent>,
+    private dialog: MatDialogRef<EstudianteModificarComponent>,
     @Inject(MAT_DIALOG_DATA) datos:any) {
-      this.idDoc = datos.id
+      this.idEst = datos.id
       this.form = this.fb.group({
         cedula: [],
         nombre: [],
-        contacto: [],
-        correo: [],
+        semestre: [],
         sexo: [],
         facultad: [],
-        carrera: [],
-        relacion: []
+        carrera: []
       })
      }
 
   ngOnInit(): void {
     this.getFacultades();
-    this.getDocente();
+    this.getEstudiante();
   }
 
   getFacultades(){
@@ -54,15 +52,17 @@ export class DocenteModificarComponent implements OnInit {
     resp.subscribe(data => this.facultad = data as Facultad[])
   }
 
-  getDocente(){
-    let resp = this.service.getDocente(this.idDoc)
-    resp.subscribe(datos => {this.docenteDatos = datos as Docente,
-      this.getCarrera(this.docenteDatos.idCarrera)});
+  getEstudiante(){
+    let resp = this.service.getEstudiante(this.idEst)
+    resp.subscribe(datos => {this.estudianteDatos = datos as Estudiante,
+      this.getCarrera(this.estudianteDatos.idCarrera)});
   }
+
   getCarrera(id: number){
     let resp = this.carrer.getFacultad(id)
     resp.subscribe(data => {this.idFacu = data.valueOf(), this.getCarrerasFacultad(this.idFacu), this.getFacultad(this.idFacu)})
   }
+
   getFacultad(id: number){
     let res = this.facu.getFacultad(this.idFacu)
     res.subscribe(data => {this.facul = data as Facultad, this.setForm()})
@@ -70,17 +70,15 @@ export class DocenteModificarComponent implements OnInit {
 
   setForm(){
     this.form = this.fb.group({
-      cedula: [`${this.docenteDatos.cedulaDocente}`,[Validators.required, Validators.minLength(10), Validators.pattern("^[0-9]*$")]],
-      nombre: [`${this.docenteDatos.nombreDocente}`, [Validators.required,Validators.pattern("^[a-z A-Z]*$")]],
-      contacto: [`${this.docenteDatos.contacto}`, [Validators.required,Validators.minLength(9), Validators.pattern("^[0-9]*$")]],
-      correo: [`${this.docenteDatos.correoElectronico}`, [Validators.email, Validators.required]],
-      sexo: [`${this.docenteDatos.sexoDocente}`, Validators.required],
+      cedula: [`${this.estudianteDatos.cedulaEstudiante}`,[Validators.required, Validators.minLength(10), Validators.pattern("^[0-9]*$")]],
+      nombre: [`${this.estudianteDatos.nombreEstudiante}`, [Validators.required,Validators.pattern("^[a-z A-Z]*$")]],
+      semestre: [`${this.estudianteDatos.semestre}`, Validators.required],
+      sexo: [`${this.estudianteDatos.sexoEstudiante}`, Validators.required],
       facultad: [this.facul.idFacultad, Validators.required],
-      carrera: [this.docenteDatos.idCarrera, Validators.required],
-      relacion: [`${this.docenteDatos.relacionLaboral}`, Validators.required]
+      carrera: [this.estudianteDatos.idCarrera, Validators.required]
     })
   }
-  
+
   select(ob: any){
     this.carrera = [];
     this.getCarrerasFacultad(ob.value);
@@ -91,24 +89,23 @@ export class DocenteModificarComponent implements OnInit {
       this.carrera = data;
   })
   }
-  guardarDocente(){
-    const docente: Docente = {
+
+  guardarEstudiante(){
+    const estudiante: Estudiante = {
       idCarrera: this.form.value.carrera,
-      cedulaDocente: this.form.value.cedula,
-      nombreDocente: this.form.value.nombre,
-      contacto: this.form.value.contacto,
-      correoElectronico: this.form.value.correo,
-      relacionLaboral: this.form.value.relacion,
-      sexoDocente: this.form.value.sexo,
-      idDocente: this.idDoc 
+      cedulaEstudiante: this.form.value.cedula,
+      nombreEstudiante: this.form.value.nombre,
+      semestre: this.form.value.semestre,
+      sexoEstudiante: this.form.value.sexo,
+      idEstudiante: this.idEst 
     }
 
-    this.service.updateDocente(docente,this.idDoc).subscribe(data => {
+    this.service.updateEstudiante(estudiante,this.idEst).subscribe(data => {
       this.form.reset();
       this.dialog.close();
     },error => console.log(error));
   }
-  
+
   public checkError = (controlName: string, errorName: string) => {
     return this.form.controls[controlName].hasError(errorName);
   }

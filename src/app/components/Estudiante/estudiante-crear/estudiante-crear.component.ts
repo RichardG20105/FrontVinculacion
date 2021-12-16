@@ -7,11 +7,13 @@ import { Facultad } from 'src/app/interfaces/facultad';
 import { CarreraService } from 'src/app/services/carrera.service';
 import { EstudianteService } from 'src/app/services/estudiante.service';
 import { FacultadService } from 'src/app/services/facultad.service';
+
 @Component({
   selector: 'app-estudiante-crear',
   templateUrl: './estudiante-crear.component.html',
   styleUrls: ['./estudiante-crear.component.css']
 })
+
 export class EstudianteCrearComponent implements OnInit {
 
   sexo: any[] = ["Masculino","Femenino"];
@@ -26,8 +28,8 @@ export class EstudianteCrearComponent implements OnInit {
     private carrer: CarreraService,
     private dialog: MatDialogRef<EstudianteCrearComponent>) {
       this.form = this.fb.group({
-        cedula: ["", Validators.required],
-        nombre: ["", Validators.required],
+        cedula: ["", [Validators.required, Validators.minLength(10), Validators.pattern("^[0-9]*$")]],
+        nombre: ["", [Validators.required,Validators.pattern("^[a-z A-Z]*$")]],
         semestre: ["", Validators.required],
         sexo: ["", Validators.required],
         facultad: ["", Validators.required],

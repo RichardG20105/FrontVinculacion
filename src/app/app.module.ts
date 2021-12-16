@@ -11,9 +11,11 @@ import { ToolbarComponent } from './components/toolbar/toolbar.component';
 //--Estudiante---
 import { EstudianteListarComponent } from './components/Estudiante/estudiante-listar/estudiante-listar.component';
 import { EstudianteCrearComponent } from './components/Estudiante/estudiante-crear/estudiante-crear.component';
+import { EstudianteModificarComponent } from './components/Estudiante/estudiante-modificar/estudiante-modificar.component';
 //---Proyecto----
 import { ProyectoListarComponent } from './components/Proyecto/proyecto-listar/proyecto-listar.component';
 import { ProyectoCrearComponent } from './components/Proyecto/proyecto-crear/proyecto-crear.component';
+import { ProyectoModificarComponent } from './components/Proyecto/proyecto-modificar/proyecto-modificar.component';
 //---Docente---
 import { DocenteListarComponent } from './components/Docente/docente-listar/docente-listar.component';
 import { DocenteCrearComponent } from './components/Docente/docente-crear/docente-crear.component';
@@ -21,7 +23,9 @@ import { DocenteModificarComponent } from './components/Docente/docente-modifica
 //---Certificado---
 import { CertificadoListarComponent } from './components/Certificado/certificado-listar/certificado-listar.component';
 import { CertificadoCrearComponent } from './components/Certificado/certificado-crear/certificado-crear.component';
-import { ProyectoModificarComponent } from './components/Proyecto/proyecto-modificar/proyecto-modificar.component';
+import { CertificadoModificarComponent } from './components/Certificado/certificado-modificar/certificado-modificar.component';
+
+
 
 @NgModule({
   declarations: [
@@ -37,7 +41,9 @@ import { ProyectoModificarComponent } from './components/Proyecto/proyecto-modif
     DocenteModificarComponent,
     CertificadoListarComponent,
     CertificadoCrearComponent,
-    ProyectoModificarComponent
+    ProyectoModificarComponent,
+    EstudianteModificarComponent,
+    CertificadoModificarComponent
   ],
   imports: [
     BrowserModule,

@@ -8,6 +8,7 @@ import { MatSort } from '@angular/material/sort';
 import { Estudiante } from 'src/app/interfaces/estudiante';
 import { EstudianteService } from 'src/app/services/estudiante.service';
 import { EstudianteCrearComponent } from '../estudiante-crear/estudiante-crear.component';
+import { EstudianteModificarComponent } from '../estudiante-modificar/estudiante-modificar.component';
 
 
 @Component({
@@ -16,6 +17,7 @@ import { EstudianteCrearComponent } from '../estudiante-crear/estudiante-crear.c
   styleUrls: ['./estudiante-listar.component.css']
 })
 export class EstudianteListarComponent implements OnInit {
+  
   listaEstudiantes!: Estudiante[];
 
   displayedColumns: string[] = ['cedulaEstudiante', 'nombreEstudiante', 'sexoEstudiante', 'semestre', 'acciones'];
@@ -50,10 +52,21 @@ export class EstudianteListarComponent implements OnInit {
 
   onCreate(){
     const dial = this.dialog.open(EstudianteCrearComponent,{
-      width: '43vw',
-      height: '75vh'
+      width: '95vh',
+      height: '50vw'
     });
 
+    dial.afterClosed().subscribe(data => this.getEstudiantes())
+  }
+
+  onEdit(idEstudiante: number){
+    const dial = this.dialog.open(EstudianteModificarComponent, {
+      width: '50vw',
+      height: '95vh',
+      data: {
+        id: idEstudiante
+      }
+    });
     dial.afterClosed().subscribe(data => this.getEstudiantes())
   }
 

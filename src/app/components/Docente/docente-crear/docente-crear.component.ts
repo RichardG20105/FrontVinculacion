@@ -20,6 +20,7 @@ export class DocenteCrearComponent implements OnInit {
   facultad!: Facultad[];
   carrera!: Carrera[];
   form: FormGroup
+  
   constructor(private fb: FormBuilder,
     private service: DocenteService,
     private facu: FacultadService,
