@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Carrera } from 'src/app/interfaces/carrera';
 import { Estudiante } from 'src/app/interfaces/estudiante';
 import { Facultad } from 'src/app/interfaces/facultad';
+import { AlertifyService } from 'src/app/services/alertify.service';
 import { CarreraService } from 'src/app/services/carrera.service';
 import { EstudianteService } from 'src/app/services/estudiante.service';
 import { FacultadService } from 'src/app/services/facultad.service';
@@ -29,6 +30,7 @@ export class EstudianteModificarComponent implements OnInit {
     private service: EstudianteService,
     private facu: FacultadService,
     private carrer: CarreraService,
+    private alerta: AlertifyService,
     private dialog: MatDialogRef<EstudianteModificarComponent>,
     @Inject(MAT_DIALOG_DATA) datos:any) {
       this.idEst = datos.id
@@ -102,8 +104,9 @@ export class EstudianteModificarComponent implements OnInit {
 
     this.service.updateEstudiante(estudiante,this.idEst).subscribe(data => {
       this.form.reset();
+      this.alerta.success("Se ha modificado el Estudiante")
       this.dialog.close();
-    },error => console.log(error));
+    });
   }
 
   public checkError = (controlName: string, errorName: string) => {

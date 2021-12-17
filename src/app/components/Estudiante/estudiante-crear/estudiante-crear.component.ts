@@ -4,6 +4,7 @@ import { MatDialogRef } from '@angular/material/dialog';
 import { Carrera } from 'src/app/interfaces/carrera';
 import { Estudiante } from 'src/app/interfaces/estudiante';
 import { Facultad } from 'src/app/interfaces/facultad';
+import { AlertifyService } from 'src/app/services/alertify.service';
 import { CarreraService } from 'src/app/services/carrera.service';
 import { EstudianteService } from 'src/app/services/estudiante.service';
 import { FacultadService } from 'src/app/services/facultad.service';
@@ -26,6 +27,7 @@ export class EstudianteCrearComponent implements OnInit {
     private service: EstudianteService,
     private facu: FacultadService,
     private carrer: CarreraService,
+    private alerta: AlertifyService,
     private dialog: MatDialogRef<EstudianteCrearComponent>) {
       this.form = this.fb.group({
         cedula: ["", [Validators.required, Validators.minLength(10), Validators.pattern("^[0-9]*$")]],
@@ -71,8 +73,9 @@ export class EstudianteCrearComponent implements OnInit {
 
     this.service.saveEstudiantes(estudiante).subscribe(data => {
       this.form.reset();
+      this.alerta.success("Se ha creado el Estudiante");
       this.dialog.close();
-    },error => console.log(error));
+    });
   }
 
   public checkError = (controlName: string, errorName: string) => {

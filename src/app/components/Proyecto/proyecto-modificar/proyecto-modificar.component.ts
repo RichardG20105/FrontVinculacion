@@ -2,6 +2,7 @@ import { Component, Inject, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Proyecto } from 'src/app/interfaces/proyecto';
+import { AlertifyService } from 'src/app/services/alertify.service';
 import { ProyectoService } from 'src/app/services/proyecto.service';
 
 
@@ -16,6 +17,7 @@ export class ProyectoModificarComponent implements OnInit {
   proyecto!: Proyecto
   constructor(private fb: FormBuilder,
     private service: ProyectoService,
+    private alerta: AlertifyService,
     private dialog: MatDialogRef<ProyectoModificarComponent>,
     @Inject(MAT_DIALOG_DATA)datos: any) {
       this.idProy = datos.id;
@@ -44,8 +46,9 @@ export class ProyectoModificarComponent implements OnInit {
     }
     this.service.updateProyecto(proyecto,this.idProy).subscribe(data => {
       this.form.reset();
+      this.alerta.success("Se ha modificado el Proyecto");
       this.dialog.close();
-    },error => console.log(error));
+    });
   }
 
   setForm(){

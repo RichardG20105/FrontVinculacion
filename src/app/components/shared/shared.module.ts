@@ -44,7 +44,8 @@ import { MatSortModule } from '@angular/material/sort';
     MatDialogModule,
     MatSelectModule,
     BrowserAnimationsModule,
-    MatSortModule
+    MatSortModule,
+    HttpClientModule
   ],
   exports: [
     MatSliderModule,
@@ -65,7 +66,8 @@ import { MatSortModule } from '@angular/material/sort';
     MatDialogModule,
     MatSelectModule,
     BrowserAnimationsModule,
-    MatSortModule
+    MatSortModule,
+    HttpClientModule
   ],
 })
 export class SharedModule { }

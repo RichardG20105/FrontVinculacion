@@ -7,6 +7,7 @@ import { Facultad } from 'src/app/interfaces/facultad';
 import { CarreraService } from 'src/app/services/carrera.service';
 import { DocenteService } from 'src/app/services/docente.service';
 import { FacultadService } from 'src/app/services/facultad.service';
+import { AlertifyService } from 'src/app/services/alertify.service';
 
 @Component({
   selector: 'app-docente-crear',
@@ -25,6 +26,7 @@ export class DocenteCrearComponent implements OnInit {
     private service: DocenteService,
     private facu: FacultadService,
     private carrer: CarreraService,
+    private alerta: AlertifyService,
     private dialog: MatDialogRef<DocenteCrearComponent>) {
       this.form = this.fb.group({
         cedula: ["", [Validators.required, Validators.minLength(10), Validators.pattern("^[0-9]*$")]],
@@ -73,8 +75,9 @@ export class DocenteCrearComponent implements OnInit {
 
     this.service.saveDocente(docente).subscribe(data => {
       this.form.reset();
+      this.alerta.success("Se ha creado el Docente")
       this.dialog.close();
-    },error => console.log(error));
+    });
   }
   
   public checkError = (controlName: string, errorName: string) => {

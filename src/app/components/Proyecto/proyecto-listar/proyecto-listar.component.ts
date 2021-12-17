@@ -1,6 +1,7 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatTableDataSource } from '@angular/material/table';
 import { MatPaginator } from '@angular/material/paginator';
+import { AlertifyService } from 'src/app/services/alertify.service';
 import { Proyecto } from 'src/app/interfaces/proyecto';
 import { ProyectoService } from 'src/app/services/proyecto.service';
 import { MatDialog } from '@angular/material/dialog';
@@ -24,7 +25,8 @@ export class ProyectoListarComponent implements OnInit {
   
   constructor(private servicio: ProyectoService, 
     private dialog: MatDialog,
-    private router: Router) { }
+    private router: Router,
+    private alerta: AlertifyService) { }
 
   ngOnInit(): void {
     this.getProyectos();
@@ -41,7 +43,10 @@ export class ProyectoListarComponent implements OnInit {
 
   private getProyectos(){
     let resp = this.servicio.getProyectos();
-    resp.subscribe(datos => this.dataSource.data = datos as Proyecto[])
+    resp.subscribe(datos => {
+      this.dataSource.data = datos as Proyecto[]
+      console.log(datos)
+    })
   }
 
   onCreate(){
