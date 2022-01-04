@@ -2,12 +2,14 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatTableDataSource } from '@angular/material/table';
-import { ActivatedRoute, Router } from '@angular/router';
+import { ActivatedRoute, provideRoutes, Router } from '@angular/router';
 import { Docenteproyecto } from 'src/app/interfaces/docenteproyecto';
 import { ParticipaService } from '../../../services/participa.service';
 import { DocenteCrearComponent } from '../../Docente/docente-crear/docente-crear.component';
 import { DocenteModificarComponent } from '../../Docente/docente-modificar/docente-modificar.component';
 import { Participa } from '../../../interfaces/participa';
+import { ProyectoService } from 'src/app/services/proyecto.service';
+import { Docente } from 'src/app/interfaces/docente';
 
 @Component({
   selector: 'app-participa-listar',
@@ -16,14 +18,15 @@ import { Participa } from '../../../interfaces/participa';
 })
 export class ParticipaListarComponent implements OnInit {
   idProyecto!: number;
-  listaDocentes!: Docenteproyecto[];
+  listaDocentes!: Participa[];
 
-  displayedColumns: string[] = ['cedulaDocente', 'nombreDocente', 'contacto', 'correoElectronico', 'anioParticipacion', 'horas','acciones'];
-  dataSource = new MatTableDataSource<Docenteproyecto>(this.listaDocentes);
+  displayedColumns: string[] = ['cedulaDocente', 'nombreDocente','cargo','anioParticipaDoc', 'horasParticipacion','acciones'];
+  dataSource = new MatTableDataSource<Participa>(this.listaDocentes);
   
   @ViewChild(MatPaginator) paginator!: MatPaginator;
 
   constructor(private servicio: ParticipaService,
+    private servicioProyecto: ProyectoService,
     private dialog: MatDialog,
     private router: Router,
     private activo: ActivatedRoute) { 
@@ -43,15 +46,18 @@ export class ParticipaListarComponent implements OnInit {
   }
 
   getDocentes(id: number){
-    let i = 1;
-    let listado: Docenteproyecto[]
-    let resp = this.servicio.getDocentes(id);
-    resp.subscribe(datos => {
-      /*for(let i = 0; i <= datos.length; i++){
-        listado. = datos[i].idCarrera
-      }*/
-      this.dataSource.data=datos,console.log(listado)
+    let proy = this.servicioProyecto.getProyecto(id);
+    proy.subscribe(datos => {
+      let docentes = this.servicio.getDocentes(datos);
+      docentes.subscribe(datos => {
+        this.dataSource.data = datos as Participa[]
+        console.log(datos)
+      })  
     })
+    /* let resp = this.servicio.getDocentes()
+    resp.subscribe(datos => {
+      console.log(datos)
+    }) */
   }
 
   onCreate(){

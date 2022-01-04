@@ -91,6 +91,7 @@ export class DocenteModificarComponent implements OnInit {
   getCarrerasFacultad(id:number){
     this.carrer.getCarrerasFacultad(id).subscribe(data => {
       this.carrera = data;
+      console.log(data)
   })
   }
   guardarDocente(){

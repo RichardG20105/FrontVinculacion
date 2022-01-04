@@ -1,4 +1,5 @@
-<div class="body">
+<div class="row" style="height: 95vh;">
+  <div class="body">
     <p style="margin-bottom: 1%;">
       <mat-toolbar>
         <span style="text-align: center;">Docentes</span>
@@ -16,39 +17,35 @@
     
     <div class="mat-elevation-z8">
       <table mat-table [dataSource]="dataSource">          
+        
         <!-- Cedula Column -->
         <ng-container matColumnDef="cedulaDocente">
           <th mat-header-cell *matHeaderCellDef> Cedula </th>
-          <td mat-cell *matCellDef="let element"> {{element.cedulaDocente}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.docente.cedulaDocente}} </td>
         </ng-container>
-        
-        <!-- Nombre Column -->
+
+        <!-- Nombre Docente Column -->
         <ng-container matColumnDef="nombreDocente">
           <th mat-header-cell *matHeaderCellDef> Nombre </th>
-          <td mat-cell *matCellDef="let element"> {{element.nombreDocente}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.docente.nombreDocente}} </td>
         </ng-container>
-      
-        <!-- Contacto Column -->
-        <ng-container matColumnDef="contacto">
-          <th mat-header-cell *matHeaderCellDef> Contacto </th>
-          <td mat-cell *matCellDef="let element"> {{element.contacto}} </td>
+
+        <!-- Cargo Column -->
+        <ng-container matColumnDef="cargo">
+          <th mat-header-cell *matHeaderCellDef> Cargo </th>
+          <td mat-cell *matCellDef="let element"> {{element.cargo}} </td>
         </ng-container>
-        
-        <!-- Correo Electronico Column -->
-        <ng-container matColumnDef="correoElectronico">
-          <th mat-header-cell *matHeaderCellDef> Correo Electronico </th>
-          <td mat-cell *matCellDef="let element"> {{element.correoElectronico}} </td>
-        </ng-container>
-          
-        <!-- Relación Laboral Column -->
-        <ng-container matColumnDef="anioParticipacion">
+
+        <!-- Año de Participacion Column -->
+        <ng-container matColumnDef="anioParticipaDoc">
           <th mat-header-cell *matHeaderCellDef> Año de Participacion </th>
-          <td mat-cell *matCellDef="let element"> {{element.anioParticipacion}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.anioParticipaDoc}} </td>
         </ng-container>
           
-        <ng-container matColumnDef="horas">
+        <!-- Horas de Participacion Column -->
+        <ng-container matColumnDef="horasParticipacion">
           <th mat-header-cell *matHeaderCellDef> Horas de Participacion </th>
-          <td mat-cell *matCellDef="let element"> {{element.horas}} </td>
+          <td mat-cell *matCellDef="let element"> {{element.horasParticipacion}} </td>
         </ng-container>
         <!-- Acciones Column -->
         <ng-container matColumnDef="acciones">
@@ -69,3 +66,4 @@
     </mat-paginator>
     </div>
   </div>
+</div>

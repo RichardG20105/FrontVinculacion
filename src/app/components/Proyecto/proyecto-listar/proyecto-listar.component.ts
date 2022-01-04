@@ -71,6 +71,6 @@ export class ProyectoListarComponent implements OnInit {
   }
 
   onListado(idProyecto: number){
-    this.router.navigate(['/verproyecto',{id: idProyecto}]);
+    this.router.navigate(['/verproyecto',idProyecto]);
   }
 }
