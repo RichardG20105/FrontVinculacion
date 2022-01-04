@@ -69,4 +69,8 @@ export class ProyectoListarComponent implements OnInit {
     });
     dial.afterClosed().subscribe(data => this.getProyectos())
   }
+
+  onListado(idProyecto: number){
+    this.router.navigate(['/verproyecto',{id: idProyecto}]);
+  }
 }

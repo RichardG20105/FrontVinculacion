@@ -7,6 +7,10 @@ import { SharedModule } from './components/shared/shared.module';
 import { MatPaginatorIntl } from '@angular/material/paginator';
 import { SideNavComponent } from './components/side-nav/side-nav.component';
 import { ToolbarComponent } from './components/toolbar/toolbar.component';
+import { CustomMatPaginatorIntl } from './components/shared/paginacion';
+import { HTTP_INTERCEPTORS } from '@angular/common/http';
+import { HttperrorService } from './services/httperror.service';
+import { AlertifyService } from './services/alertify.service';
 
 //Components
 //--Estudiante---
@@ -25,10 +29,8 @@ import { DocenteModificarComponent } from './components/Docente/docente-modifica
 import { CertificadoListarComponent } from './components/Certificado/certificado-listar/certificado-listar.component';
 import { CertificadoCrearComponent } from './components/Certificado/certificado-crear/certificado-crear.component';
 import { CertificadoModificarComponent } from './components/Certificado/certificado-modificar/certificado-modificar.component';
-import { CustomMatPaginatorIntl } from './components/shared/paginacion';
-import { HTTP_INTERCEPTORS } from '@angular/common/http';
-import { HttperrorService } from './services/httperror.service';
-import { AlertifyService } from './services/alertify.service';
+
+import { ParticipaListarComponent } from './components/Participa/participa-listar/participa-listar.component';
 
 
 
@@ -48,7 +50,8 @@ import { AlertifyService } from './services/alertify.service';
     CertificadoCrearComponent,
     ProyectoModificarComponent,
     EstudianteModificarComponent,
-    CertificadoModificarComponent
+    CertificadoModificarComponent,
+    ParticipaListarComponent
   ],
   imports: [
     BrowserModule,
