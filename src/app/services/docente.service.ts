@@ -19,6 +19,10 @@ export class DocenteService {
   getDocente(id: number): Observable<Docente>{
     return this.http.get<Docente>(this.URLBase+"/Docente/"+id)
   }
+
+  getDocenteCedula(cedula: string): Observable<Docente>{
+    return this.http.get<Docente>(this.URLBase+"/Docente/Cedula/"+cedula)
+  }
   saveDocente(docente: Docente): Observable<Object>{
     return this.http.post(this.URLBase+'/Docente/Registrar',docente);
   }

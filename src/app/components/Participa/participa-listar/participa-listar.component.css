@@ -1,5 +1,6 @@
 .body{
     margin: 10px;
+    padding-bottom: 2%;
 }
 table {
     width: 100%;
@@ -23,21 +24,33 @@ th{
     height: 40px;
 }
 .mat-column-cedulaDocente{
-    width: 20%;
+    width: 10%;
 }
 .mat-column-nombreDocente{
-    width: 20%;
-}
-.mat-column-sexoDocente{
-    width: 10%;
+    width: 15%;
 }
 .mat-column-contacto{
     width: 10%
 }
 .mat-column-correoElectronico{
-    width:20%
+    width:10%
 }
-.mat-column-relacionLaboral{
-    width: 10%;
+.mat-column-facultad{
+    width: 15%;
     text-align: center;
+}
+.mat-column-anioParticipaDoc{
+    width: 15%;
+    text-align: center;
+}
+.mat-column-horasParticipacion{
+    width: 15%;
+    text-align: center;
+}
+.mat-raised-button{
+    padding-left: 1%;
+    padding-right: 1%;
+}
+.mat-grid-tile-content{
+    justify-content: left !important;
 }

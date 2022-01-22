@@ -1,0 +1,46 @@
+<div class="body" style="height: 90%;">
+    <div class="container">
+        <p style="margin-bottom: 1%">
+            <mat-toolbar>
+                <span>Asignar Docente al Proyecto</span>
+            </mat-toolbar>
+        </p>
+        
+        <mat-card style="margin-top: 10px; margin-bottom: 10px;">
+            <form [formGroup]="form" style="text-align: center;">
+                <mat-grid-list cols="3" rowHeight="90px">
+                    <mat-grid-tile [colspan]="2" [rowspan]="1">
+                        <mat-form-field>
+                            <mat-label>Cedula del Docente:</mat-label>
+                            <input matInput autocomplete="off" formControlName="cedula" maxlength="10" (input)="onTexto($event)">
+                            <mat-error *ngIf="checkError('cedula','minlength') && !checkError('cedula','pattern')">
+                                La cedula no es valida
+                            </mat-error>
+                            <mat-error *ngIf="checkError('cedula','pattern')">
+                                Solo se permite el ingreso de números
+                            </mat-error>
+                            <mat-error *ngIf="checkError('cedula','required')">
+                                La cedula es requerida
+                            </mat-error>
+                            <mat-hint *ngIf="onEncontrado()">El docente se encontro</mat-hint>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="1" [rowspan]="1" style="text-align: right;">
+                        <button mat-icon-button [disabled]="!tocoTexto()" class="pointer" matTooltip="Buscar Docente" (click)="onBuscar()" >
+                            <mat-icon class="pointer">search</mat-icon>
+                        </button>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="1" [rowspan]="1">
+                        <button class="botonAceptar" [disabled]="form.invalid || !onCliceado()"  mat-raised-button color="primary" (click)="asignarDocente()">Asignar</button>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="1" [rowspan]="1"> </mat-grid-tile>
+
+                    <mat-grid-tile [colspan]="1" [rowspan]="1">
+                        <button class="botonAceptar" (click)="onCrear()" mat-raised-button color="primary">Agregar</button>
+                    </mat-grid-tile>
+                </mat-grid-list>
+                
+            </form>
+        </mat-card>
+    </div>
+</div>

@@ -76,7 +76,7 @@ export class DocenteCrearComponent implements OnInit {
     this.service.saveDocente(docente).subscribe(data => {
       this.form.reset();
       this.alerta.success("Se ha creado el Docente")
-      this.dialog.close();
+      this.dialog.close(data);
     });
   }
   

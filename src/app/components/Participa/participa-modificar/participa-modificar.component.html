@@ -1,0 +1,52 @@
+<div class="body" style="height: 90%">
+    <div class="container">
+        <p style="margin-bottom: 1%">
+            <mat-toolbar>
+                <span>Modificar Participacion del Docentes </span>
+            </mat-toolbar>
+        </p>
+        <mat-card style="margin-top: 10px; margin-bottom: 10px;">
+            <form [formGroup]="form" (ngSubmit)="guardarDocente()" style="text-align: center;">
+                <mat-grid-list cols="6" rowHeight="90px">
+                    <mat-grid-tile [colspan]="3" [rowspan]="1">
+                        <mat-form-field class="ancho">
+                            <mat-label>Cedula</mat-label>
+                            <input matInput [readonly]="true" formControlName="cedula">         
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="3" [rowspan]="1">
+                        <mat-form-field class="ancho">
+                            <mat-label>Nombre</mat-label>
+                            <input matInput [readonly]="true" formControlName="nombre">
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="3" [rowspan]=1>
+                        <mat-form-field class="ancho">
+                            <mat-label>Año de Participacion</mat-label>
+                            <input matInput autocomplete="off" formControlName="anioParticipacion" [matDatepicker]="picker">
+                            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker startView="multi-year"></mat-datepicker>
+                            <mat-error *ngIf="checkError('anioParticipacion','required')">
+                                La fecha de la participación es necesaria.
+                            </mat-error>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="3" [rowspan]="1">
+                        <mat-form-field class="ancho">
+                            <mat-label>Horas de Participación</mat-label>
+                            <input matInput autocomplete="off" formControlName="horasParticipacion">
+                            <mat-error *ngIf="checkError('horasParticipacion','required')">
+                                Las horas de participación son necesarias
+                            </mat-error>
+                            <mat-error *ngIf="checkError('horasParticipacion','pattern')">
+                                Solo se aceptan un valor numérico
+                            </mat-error>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                </mat-grid-list>
+                
+                <button class="botonAceptar" type="submit" [disabled]="form.invalid" mat-raised-button color="primary">Aceptar</button>
+            </form>
+        </mat-card> 
+    </div>
+</div>

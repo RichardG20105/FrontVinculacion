@@ -21,6 +21,10 @@ export class EstudianteService {
     return this.http.get<Estudiante>(this.URLBase+"/Estudiante/"+id)
   }
 
+  getEstudianteCedula(cedula: string): Observable<Estudiante>{
+    return this.http.get<Estudiante>(this.URLBase+'/Estudiante/Cedula/'+cedula);
+  }
+
   saveEstudiantes(estudiante: Estudiante): Observable<Object>{
     return this.http.post(this.URLBase+'/Estudiante/Registrar',estudiante);
   }

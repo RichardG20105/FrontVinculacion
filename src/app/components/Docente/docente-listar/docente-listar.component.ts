@@ -43,14 +43,6 @@ export class DocenteListarComponent implements OnInit {
     resp.subscribe(datos => this.dataSource.data=datos as Docente[])
   }
 
-  onCreate(){
-    const dial = this.dialog.open(DocenteCrearComponent,{
-      height: '95vh',
-      width: '50vw'
-    })
-    dial.afterClosed().subscribe(data => this.getDocentes())
-  }
-
   onEdit(idDocente: number){
     const dial = this.dialog.open(DocenteModificarComponent, {
       width: '50vw',

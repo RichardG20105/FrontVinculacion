@@ -13,6 +13,9 @@ export class CarreraService {
     this.URLBase = environment.apiURL
   }
 
+  getCarrera(id:number): Observable<Carrera>{
+    return this.http.get<Carrera>(this.URLBase+'/Carrera/'+id);
+  }
   getCarreras(): Observable<Carrera[]>{
     return this.http.get<Carrera[]>(this.URLBase+'/Carrera/ListarCarreras');
   }

@@ -32,7 +32,12 @@ import { CertificadoModificarComponent } from './components/Certificado/certific
 
 import { ParticipaListarComponent } from './components/Participa/participa-listar/participa-listar.component';
 
-
+import { registerLocaleData } from '@angular/common';
+import localeES from "@angular/common/locales/es";
+import { AsignarDocenteComponent } from './components/Participa/asignar-docente/asignar-docente.component';
+import { ParticipaModificarComponent } from './components/Participa/participa-modificar/participa-modificar.component';
+import { AsignarEstudianteComponent } from './components/Participa/asignar-estudiante/asignar-estudiante.component';
+registerLocaleData(localeES, "es");
 
 @NgModule({
   declarations: [
@@ -51,7 +56,10 @@ import { ParticipaListarComponent } from './components/Participa/participa-lista
     ProyectoModificarComponent,
     EstudianteModificarComponent,
     CertificadoModificarComponent,
-    ParticipaListarComponent
+    ParticipaListarComponent,
+    AsignarDocenteComponent,
+    ParticipaModificarComponent,
+    AsignarEstudianteComponent
   ],
   imports: [
     BrowserModule,

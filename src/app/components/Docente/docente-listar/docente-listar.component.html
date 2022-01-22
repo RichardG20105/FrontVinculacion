@@ -5,14 +5,9 @@
         <span style="text-align: center;">Docentes</span>
       </mat-toolbar>
     </p>
-    <button mat-raised-button color="primary" (click)="onCreate()">
-      <mat-icon style="padding-left: 0%;padding-right: 1px;">add_box</mat-icon>
-      Nuevo Docente
-    </button>
-    <mat-divider style="margin-top: 1%;"></mat-divider>
     <mat-form-field appearance="standard">
       <mat-label>Filtro de Búsqueda</mat-label>
-      <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Pedro, FE" #input autocomplete="off">
+      <input matInput (keyup)="applyFilter($event)" #input autocomplete="off">
     </mat-form-field>
     
     <div class="mat-elevation-z8">
