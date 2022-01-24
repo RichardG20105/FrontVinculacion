@@ -23,6 +23,8 @@ import {MatDividerModule} from '@angular/material/divider';
 import { MatSortModule } from '@angular/material/sort';
 import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
+import { MatTableFilterModule } from 'mat-table-filter';
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [],
@@ -49,6 +51,8 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatSortModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatTableFilterModule,
+    FormsModule,
     HttpClientModule
   ],
   exports: [
@@ -73,6 +77,8 @@ import {MatNativeDateModule} from '@angular/material/core';
     MatSortModule,
     MatDatepickerModule,
     MatNativeDateModule,
+    MatTableFilterModule,
+    FormsModule,
     HttpClientModule
   ],
 })

@@ -33,4 +33,8 @@ export class ParticipaService {
   upadateParticipa(participa: Participa,idParticipa: number): Observable<Object>{
     return this.http.put(this.URLBase+'/Participa/Actualizar/'+idParticipa,participa);
   }
+
+  deleteParticipa(idParticipa: number): Observable<Object>{
+    return this.http.delete(this.URLBase+'/Participa/Eliminar/'+idParticipa);
+  }
 }

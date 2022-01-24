@@ -52,7 +52,6 @@ export class ParticipaModificarComponent implements OnInit {
   }
 
   guardarDocente(){
-    console.log(this.form.value.anioParticipacion)
     const participa: Participa = {
       idParticipa: this.idParticipa,
       cargo: this.participaDocente.cargo,

@@ -130,8 +130,7 @@ export class AsignarDocenteComponent implements OnInit {
   }
 
   guardarParticipacion(participa : Participa){
-    this.servicioParticipa.saveParticipa(participa).subscribe(data => {
-      console.log(data)
+    this.servicioParticipa.saveParticipa(participa).subscribe(() => {
       this.form.reset();
       this.alerta.success("Se ha asignado el Docente")
       this.dialog.close();

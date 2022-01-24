@@ -12,6 +12,10 @@ import { Proyecto } from 'src/app/interfaces/proyecto';
 import { Integra } from 'src/app/interfaces/integra';
 import { IntegraService } from 'src/app/services/integra.service';
 import { AsignarEstudianteComponent } from '../asignar-estudiante/asignar-estudiante.component';
+import { MatSort } from '@angular/material/sort';
+import { MatTableFilter } from 'mat-table-filter';
+import { IntegraModificarComponent } from '../integra-modificar/integra-modificar.component';
+import Alert from 'sweetalert2';
 
 @Component({
   selector: 'app-participa-listar',
@@ -29,13 +33,18 @@ export class ParticipaListarComponent implements OnInit {
   docentesFind: Boolean = false
   estudiantesFind: Boolean = false
 
+  filterType!: MatTableFilter;
+
   displayedColumns: string[] = ['cedulaDocente', 'nombreDocente','contacto','correoElectronico','facultad','anioParticipaDoc', 'horasParticipacion','acciones'];
   displayedColumnsEstudiantes: string[] = ['cedulaEstudiante', 'nombreEstudiante','carrera','semestre','formaParticipacion','anioParticipaEst','acciones']
-  dataSource = new MatTableDataSource<Participa>(this.listaDocentes);
-  dataSourceEstudiantes = new MatTableDataSource<Integra>(this.listaEstudiantes);
   
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatPaginator) paginator2!: MatPaginator;
+  dataSourceDocentes = new MatTableDataSource<Participa>(this.listaDocentes);
+  @ViewChild('TablaUnoPaginador',{static: true}) tablaUnoPaginador!: MatPaginator;
+  @ViewChild('TablaUnoSort',{static: true}) tablaUnoSort!: MatSort;
+  
+  dataSourceEstudiantes = new MatTableDataSource<Integra>(this.listaEstudiantes);
+  @ViewChild('TablaDosPaginador',{static: true}) tablaDosPaginador!: MatPaginator;
+  @ViewChild('TablaDosSort',{static: true}) tablaDosSort!: MatSort;
 
   constructor(private servicio: ParticipaService,
     private servicioProyecto: ProyectoService,
@@ -50,16 +59,36 @@ export class ParticipaListarComponent implements OnInit {
     this.getCoordinador(this.idProyecto);
     this.getDocentes(this.idProyecto);
     this.getEstudiantes(this.idProyecto);
+    this.filtroDocente();
+    this.filtroEstudiante();
+  }
+
+  filtroDocente(){
+    const defaultPredicate = this.dataSourceDocentes.filterPredicate;
+    this.dataSourceDocentes.filterPredicate = function (data, filter: string): boolean {
+      return data.docente.nombreDocente.toLowerCase().includes(filter) || data.docente.cedulaDocente.toLowerCase().includes(filter) ||
+      data.facultad.toLowerCase().includes(filter) || defaultPredicate(data, filter);
+    };
+  }
+
+  filtroEstudiante(){
+    const defaultPredicate = this.dataSourceEstudiantes.filterPredicate;
+    this.dataSourceEstudiantes.filterPredicate = function (data,filter:string): boolean {
+      return data.estudiante.cedulaEstudiante.toLowerCase().includes(filter) || data.estudiante.nombreEstudiante.toLowerCase().includes(filter) ||
+      data.estudiante.semestre.toLowerCase().includes(filter) || defaultPredicate(data,filter);
+    }
   }
   
   ngAfterViewInit(){
-    this.dataSource.paginator = this.paginator;
-    this.dataSourceEstudiantes.paginator = this.paginator2;
+    this.dataSourceDocentes.paginator = this.tablaUnoPaginador;
+    this.dataSourceDocentes.sort = this.tablaUnoSort
+    this.dataSourceEstudiantes.paginator = this.tablaDosPaginador;
+    this.dataSourceEstudiantes.sort = this.tablaDosSort;
   }
 
   applyFilter(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.dataSourceDocentes.filter = filterValue.trim().toLowerCase();
   }
 
   applyFilterEstudiantes(event: Event){
@@ -80,7 +109,7 @@ export class ParticipaListarComponent implements OnInit {
     proy.subscribe(datos => {
       let docentes = this.servicio.getDocentes(datos);
       docentes.subscribe(datos => {
-        this.dataSource.data = datos as Participa[]
+        this.dataSourceDocentes.data = datos as Participa[]
         this.docentesFind = true
       })
     })
@@ -91,7 +120,6 @@ export class ParticipaListarComponent implements OnInit {
     proy.subscribe(datos => {
       let estudiantes = this.servicioIntegra.getEstudiantes(datos);
       estudiantes.subscribe(datos => {
-        console.log(datos);
         this.dataSourceEstudiantes.data = datos as Integra[];
         this.estudiantesFind = true;
       })
@@ -152,5 +180,74 @@ export class ParticipaListarComponent implements OnInit {
       }
     });
     dial.afterClosed().subscribe(() => this.getDocentes(this.idProyecto))
+  }
+
+  onDelete(idParticipacion: number){
+    Alert.fire({
+      title: 'Desea eliminar la Participación del Docente',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Si, eliminalo',
+      cancelButtonText: 'No, cancela'
+    }).then((result) => {
+      if(result.isConfirmed){
+        this.servicio.deleteParticipa(idParticipacion).subscribe(data => {
+          this.getDocentes(this.idProyecto);
+          if(data){
+            Alert.fire(
+              'Eliminado!',
+              'El docente se elimino del proyecto',
+              'success'
+            )
+          }
+        });
+      } else if(result.dismiss === Alert.DismissReason.cancel){
+        Alert.fire(
+          'Cancelado!',
+          'El docente no se ha Eliminado',
+          'error'
+        )
+      }
+    })
+  }
+
+  onEditEstudiante(idIntegra: number){
+    const dial = this.dialog.open(IntegraModificarComponent, {
+      width: '50vw',
+      height: '95vh',
+      data: {
+        id: idIntegra
+      }
+    });
+    dial.afterClosed().subscribe(() => this.getEstudiantes(this.idProyecto))
+  }
+  
+  onDeleteEstudiante(idIntegra: number){
+    Alert.fire({
+      title: 'Desea eliminar la Participación del Estudiante',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Si, eliminalo',
+      cancelButtonText: 'No, cancela'
+    }).then((result) => {
+      if(result.isConfirmed){
+        this.servicioIntegra.deleteIntegra(idIntegra).subscribe(data => {
+          this.getEstudiantes(this.idProyecto);
+          if(data){
+            Alert.fire(
+              'Eliminado!',
+              'El estudiante se elimino del proyecto',
+              'success'
+            )
+          }
+        });
+      } else if(result.dismiss === Alert.DismissReason.cancel){
+        Alert.fire(
+          'Cancelado!',
+          'El estudinate no se ha Eliminado',
+          'error'
+        )
+      }
+    })
   }
 }

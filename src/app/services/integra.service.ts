@@ -18,7 +18,19 @@ export class IntegraService {
     return this.http.post<Integra[]>(this.URLBase+'/Integra/ListarIntegracion',proyecto)
   }
 
+  getIntegra(idIntegra: number): Observable<Integra>{
+    return this.http.get<Integra>(this.URLBase+'/Integra/'+idIntegra);
+  }
+
   saveIntegra(integra: Integra): Observable<Object>{
     return this.http.post(this.URLBase+'/Integra/Registrar',integra);
+  }
+
+  updateIntegra(integra: Integra, idIntegra: number): Observable<Object>{
+    return this.http.put(this.URLBase+'/Integra/Actualizar/'+idIntegra,integra);
+  }
+
+  deleteIntegra(idIntegra: number): Observable<Object>{
+    return this.http.delete(this.URLBase+'/Integra/Eliminar/'+idIntegra);
   }
 }

@@ -57,7 +57,6 @@ export class EstudianteCrearComponent implements OnInit {
   getCarrerasFacultad(id:number){
     this.carrer.getCarrerasFacultad(id).subscribe(data => {
       this.carrera = data;
-      console.log(data);
     })
   }
 
@@ -74,7 +73,7 @@ export class EstudianteCrearComponent implements OnInit {
     this.service.saveEstudiantes(estudiante).subscribe(data => {
       this.form.reset();
       this.alerta.success("Se ha creado el Estudiante");
-      this.dialog.close();
+      this.dialog.close(data);
     });
   }
 

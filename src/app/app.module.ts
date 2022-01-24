@@ -37,6 +37,7 @@ import localeES from "@angular/common/locales/es";
 import { AsignarDocenteComponent } from './components/Participa/asignar-docente/asignar-docente.component';
 import { ParticipaModificarComponent } from './components/Participa/participa-modificar/participa-modificar.component';
 import { AsignarEstudianteComponent } from './components/Participa/asignar-estudiante/asignar-estudiante.component';
+import { IntegraModificarComponent } from './components/Participa/integra-modificar/integra-modificar.component';
 registerLocaleData(localeES, "es");
 
 @NgModule({
@@ -59,7 +60,8 @@ registerLocaleData(localeES, "es");
     ParticipaListarComponent,
     AsignarDocenteComponent,
     ParticipaModificarComponent,
-    AsignarEstudianteComponent
+    AsignarEstudianteComponent,
+    IntegraModificarComponent
   ],
   imports: [
     BrowserModule,

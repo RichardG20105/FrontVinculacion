@@ -18,14 +18,15 @@ import { EstudianteService } from '../../../services/estudiante.service';
 })
 export class AsignarEstudianteComponent implements OnInit {
 
-  encontrado = false
-  clic = false
-  texto = false
-  proyecto!: Proyecto
-  estudiante!: Estudiante
-  idProy!: number
-  carrera!: string
+  encontrado = false;
+  clic = false;
+  texto = false;
+  proyecto!: Proyecto;
+  estudiante!: Estudiante;
+  idProy!: number;
+  carrera!: string;
   form: FormGroup;
+
   constructor(
     private servicioIntegra: IntegraService,
     private servicioEstudiante: EstudianteService,
@@ -92,17 +93,21 @@ export class AsignarEstudianteComponent implements OnInit {
     fecha.setFullYear(2020);
 
     this.estudiante = data;
-    this.definirCarrera();
-
-    const integra: Integra = {
-      idIntegra: 0,
-      carrera: this.carrera,
-      formaParticipacion: '',
-      anioParticipaEst: fecha,
-      estudiante: this.estudiante,
-      proyecto: this.proyecto
-    }
-    this.guardarIntegra(integra);
+    let resp = this.servicioCarrera.getCarrera(this.estudiante.idCarrera);
+    resp.subscribe(datos => {
+      this.carrera = datos.nombreCarrera
+      
+      const integra: Integra = {
+        idIntegra: 0,
+        carrera: this.carrera,
+        formaParticipacion: '',
+        anioParticipaEst: fecha,
+        estudiante: this.estudiante,
+        proyecto: this.proyecto
+      }
+      console.log(integra);
+      this.guardarIntegra(integra);
+    })
   }
 
   asignarEstudiante(){
@@ -122,7 +127,6 @@ export class AsignarEstudianteComponent implements OnInit {
 
   guardarIntegra(integra: Integra){
     this.servicioIntegra.saveIntegra(integra).subscribe(data => {
-      console.log(data)
       this.form.reset();
       this.alerta.success("Se ha asignado el Estudiante");
       this.dialog.close();
@@ -130,10 +134,8 @@ export class AsignarEstudianteComponent implements OnInit {
   }
 
   definirCarrera(){
-    let resp = this.servicioCarrera.getCarrera(this.estudiante.idCarrera)
-    resp.subscribe(data => {
-      this.carrera = data.nombreCarrera;
-    })
+    let resp = this.servicioCarrera.getCarrera(this.estudiante.idCarrera);
+    resp.subscribe(datos => this.carrera = datos.nombreCarrera)
   }
 
   public checkError = (controlName: string, errorName: string) => {
