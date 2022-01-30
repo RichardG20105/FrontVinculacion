@@ -1,11 +1,11 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { DateAdapter } from '@angular/material/core';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AlertifyService } from '../../../services/alertify.service';
 import { IntegraService } from '../../../services/integra.service';
 import { Integra } from '../../../interfaces/integra';
-import { Proyecto } from '../../../interfaces/proyecto';
+import { MatDatepicker } from "@angular/material/datepicker";
 
 @Component({
   selector: 'app-integra-modificar',
@@ -36,7 +36,7 @@ export class IntegraModificarComponent implements OnInit {
   ngOnInit(): void {
     this.getIntegraEstudiante();
   }
-
+  
   getIntegraEstudiante(){
     let resp = this.servicioIntegra.getIntegra(this.idIntegra);
     resp.subscribe(data => {

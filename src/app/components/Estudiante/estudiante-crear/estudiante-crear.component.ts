@@ -31,7 +31,7 @@ export class EstudianteCrearComponent implements OnInit {
     private dialog: MatDialogRef<EstudianteCrearComponent>) {
       this.form = this.fb.group({
         cedula: ["", [Validators.required, Validators.minLength(10), Validators.pattern("^[0-9]*$")]],
-        nombre: ["", [Validators.required,Validators.pattern("^[a-z A-Z]*$")]],
+        nombre: ["", [Validators.required,Validators.pattern("^[a-z A-ZñÑáéíóúÁÉÍÓÚ]*$")]],
         semestre: ["", Validators.required],
         sexo: ["", Validators.required],
         facultad: ["", Validators.required],

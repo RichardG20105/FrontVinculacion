@@ -5,72 +5,136 @@
             <mat-toolbar>
               <span style="text-align: center;">Certificados</span>
             </mat-toolbar>
+          </p>
+
+        <p style="margin-bottom: 1%; text-align: center;font-size: x-large;font-weight: bold;">
+            <span style="text-align: center;">Certificados Docentes</span>
         </p>
-
-        <button mat-raised-button color="primary" (click)="onCreate()">
-            <mat-icon style="padding-left: 0%;padding-right: 1px;">add_box</mat-icon>
-            Nuevo Certificado
-        </button>
-
-        <mat-divider style="margin-top: 1%;"></mat-divider>
 
         <mat-form-field appearance="standard">
             <mat-label>Filtro de Búsqueda</mat-label>
-            <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Pedro, FE" #input autocomplete="off">
+            <input matInput (keyup)="applyFilterDocentes($event)" placeholder="Ex. Pedro, FE" autocomplete="off">
+        </mat-form-field>
+
+        <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSourceDocentes">          
+              <!-- Integrante Column -->
+              <ng-container matColumnDef="nombreDocente">
+                  <th mat-header-cell *matHeaderCellDef> Nombre </th>
+                <td mat-cell *matCellDef="let element"> {{element.participa.docente.nombreDocente}} </td>
+              </ng-container>
+              
+              <!-- Facultad Column -->
+              <ng-container matColumnDef="nombreFacultad">
+                 <th mat-header-cell *matHeaderCellDef> Facultad </th>
+                <td mat-cell *matCellDef="let element"> {{element.participa.facultad}} </td>
+              </ng-container>
+            
+              <!-- Proyecto Column -->
+              <ng-container matColumnDef="nombreProyecto">
+                  <th mat-header-cell *matHeaderCellDef> Proyecto </th>
+                 <td mat-cell *matCellDef="let element"> {{element.participa.proyecto.nombreProyecto}} </td>
+              </ng-container>
+  
+              <!-- Fecha Recepción -->
+              <ng-container matColumnDef="fechaRecepcion">
+                  <th mat-header-cell *matHeaderCellDef> F. Recepción </th>
+                  <td mat-cell *matCellDef="let element"> {{element.fechaRecepcion}} </td>
+              </ng-container>
+  
+              <!-- Fecha Entrega -->
+              <ng-container matColumnDef="fechaEntrega">
+                  <th mat-header-cell *matHeaderCellDef> F. Entrega </th>
+                 <td mat-cell *matCellDef="let element"> {{element.fechaEntrega}} </td>
+              </ng-container>
+  
+              <!-- Fecha Entrega -->
+              <ng-container matColumnDef="observacion">
+                  <th mat-header-cell *matHeaderCellDef> Observación </th>
+                 <td mat-cell *matCellDef="let element"> {{element.observacionCertificado}} </td>
+              </ng-container>
+            
+              <!-- Acciones Column -->
+              <ng-container matColumnDef="acciones">
+                <th mat-header-cell *matHeaderCellDef></th>
+                <td mat-cell *matCellDef="let element" style="text-align: right;">
+                    <a class="pointer" matTooltip="Modificar Certificado" (click)="onEditCertificado(element.idCertificado)">
+                        <mat-icon class="pointer">edit</mat-icon>
+                    </a>
+                </td>
+              </ng-container>
+              
+              <tr mat-header-row *matHeaderRowDef="displayedColumnsDocentes"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumnsDocentes;"></tr>
+          </table>
+          <mat-paginator #TablaUnoPaginador="matPaginator" [pageSizeOptions]="[5, 10, 20, 50, 100]"
+                showFirstLastButtons aria-label="Select page of periodic elements">
+          </mat-paginator>
+        </div>
+
+        <mat-divider style="margin-top: 1%;margin-bottom: 1%;"></mat-divider>
+
+        <p style="margin-bottom: 1%; text-align: center;font-size: x-large;font-weight: bold;">
+            <span style="text-align: center;">Certificados Estudiantes</span>
+        </p>
+
+        <mat-form-field appearance="standard">
+            <mat-label>Filtro de Búsqueda</mat-label>
+            <input matInput (keyup)="applyFilterEstudiantes($event)" placeholder="Ex. Pedro, FE" autocomplete="off">
         </mat-form-field>
         
         <div class="mat-elevation-z8">
-          <table mat-table [dataSource]="dataSource" matSort>          
+          <table mat-table [dataSource]="dataSourceEstudiantes">          
             <!-- Integrante Column -->
             <ng-container matColumnDef="nombreIntegrante">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Nombre </th>
-              <!-- <td mat-cell *matCellDef="let element"> {{element.codigo}} </td> -->
+                <th mat-header-cell *matHeaderCellDef> Nombre </th>
+              <td mat-cell *matCellDef="let element"> {{element.integra.estudiante.nombreEstudiante}} </td>
             </ng-container>
             
             <!-- Facultad Column -->
-            <ng-container matColumnDef="nombreFacultad">
-               <th mat-header-cell *matHeaderCellDef mat-sort-header> Facultad </th>
-              <!-- <td mat-cell *matCellDef="let element"> {{element.nombreProyecto}} </td> -->
+            <ng-container matColumnDef="nombreCarrera">
+               <th mat-header-cell *matHeaderCellDef> Carrera </th>
+              <td mat-cell *matCellDef="let element"> {{element.integra.carrera}} </td>
             </ng-container>
           
             <!-- Proyecto Column -->
             <ng-container matColumnDef="nombreProyecto">
                 <th mat-header-cell *matHeaderCellDef> Proyecto </th>
-               <!-- <td mat-cell *matCellDef="let element"> {{element.resolucion}} </td> -->
+               <td mat-cell *matCellDef="let element"> {{element.integra.proyecto.nombreProyecto}} </td>
             </ng-container>
 
             <!-- Fecha Recepción -->
             <ng-container matColumnDef="fechaRecepcion">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> F. Recepción </th>
-               <!-- <td mat-cell *matCellDef="let element"> {{element.resolucion}} </td> -->
+                <th mat-header-cell *matHeaderCellDef> F. Recepción </th>
+                <td mat-cell *matCellDef="let element"> {{element.fechaRecepcion | date:'dd/MM/yyyy'}} </td>
             </ng-container>
 
             <!-- Fecha Entrega -->
             <ng-container matColumnDef="fechaEntrega">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> F. Entrega </th>
-               <!-- <td mat-cell *matCellDef="let element"> {{element.resolucion}} </td> -->
+                <th mat-header-cell *matHeaderCellDef> F. Entrega </th>
+               <td mat-cell *matCellDef="let element"> {{element.fechaEntrega | date:'dd/MM/yyyy'}} </td>
             </ng-container>
 
             <!-- Fecha Entrega -->
             <ng-container matColumnDef="observacion">
-                <th mat-header-cell *matHeaderCellDef mat-sort-header> Observación </th>
-               <!-- <td mat-cell *matCellDef="let element"> {{element.resolucion}} </td> -->
+                <th mat-header-cell *matHeaderCellDef> Observación </th>
+               <td mat-cell *matCellDef="let element"> {{element.observacionCertificado}} </td>
             </ng-container>
           
             <!-- Acciones Column -->
             <ng-container matColumnDef="acciones">
               <th mat-header-cell *matHeaderCellDef></th>
               <td mat-cell *matCellDef="let element" style="text-align: right;">
-                  <a class="pointer" matTooltip="Modificar Proyecto">
+                  <a class="pointer" matTooltip="Modificar Certificado" (click)="onEditCertificado(element.idCertificado)">
                       <mat-icon class="pointer">edit</mat-icon>
                   </a>
               </td>
             </ng-container>
             
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            <tr mat-header-row *matHeaderRowDef="displayedColumnsEstudiantes"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumnsEstudiantes;"></tr>
         </table>
-        <mat-paginator [pageSizeOptions]="[5, 10, 20, 50, 100]"
+        <mat-paginator #TablaDosPaginador="matPaginator" [pageSizeOptions]="[5, 10, 20, 50, 100]"
               showFirstLastButtons aria-label="Select page of periodic elements">
         </mat-paginator>
         </div>

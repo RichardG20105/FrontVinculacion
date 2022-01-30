@@ -31,6 +31,9 @@ export class AsignarDocenteComponent implements OnInit {
   cargo: string = '';
   texto: boolean = false;
 
+  fecha!: Date;
+  hora!: number
+
   constructor(
     private servicioDocente: DocenteService,
     private servicioCarrera: CarreraService,
@@ -96,33 +99,33 @@ export class AsignarDocenteComponent implements OnInit {
   }
 
   docenteParticipa(data: Docente){
-    var fecha = new Date();
-    fecha.setFullYear(2020);
-
     this.docente = data;
-    this.definirFacultad();
-
-    const participa: Participa = {
-      idParticipa: 0,
-      cargo: this.cargo,
-      facultad: this.facultad,
-      anioParticipaDoc: fecha,
-      horasParticipacion: 0,
-      docente: this.docente,
-      proyecto: this.proyecto
-    }
-    this.guardarParticipacion(participa);
+    let resp = this.servicioCarrera.getFacultad(this.docente.idCarrera);
+    resp.subscribe(data => {
+      let res = this.servicioFacultad.getFacultad(data)
+      res.subscribe(datos => {
+        this.facultad = datos.nombreFacultad;
+        const participa: Participa = {
+          idParticipa: 0,
+          cargo: this.cargo,
+          facultad: this.facultad,
+          anioParticipaDoc: this.fecha,
+          horasParticipacion: this.hora,
+          docente: this.docente,
+          proyecto: this.proyecto
+        }
+        this.guardarParticipacion(participa);
+      })
+    })
   }
 
   asignarDocente(){
-    var fecha = new Date()
-    fecha.setFullYear(2020)
     const participa: Participa = {
       idParticipa: 0,
       cargo: this.cargo,
       facultad: this.facultad,
-      anioParticipaDoc: fecha,
-      horasParticipacion: 0,
+      anioParticipaDoc: this.fecha,
+      horasParticipacion: this.hora,
       docente: this.docente,
       proyecto: this.proyecto,
     }

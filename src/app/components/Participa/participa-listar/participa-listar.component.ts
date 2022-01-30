@@ -16,6 +16,8 @@ import { MatSort } from '@angular/material/sort';
 import { MatTableFilter } from 'mat-table-filter';
 import { IntegraModificarComponent } from '../integra-modificar/integra-modificar.component';
 import Alert from 'sweetalert2';
+import { CertificadoService } from 'src/app/services/certificado.service';
+import { Certificado } from 'src/app/interfaces/certificado';
 
 @Component({
   selector: 'app-participa-listar',
@@ -49,6 +51,7 @@ export class ParticipaListarComponent implements OnInit {
   constructor(private servicio: ParticipaService,
     private servicioProyecto: ProyectoService,
     private servicioIntegra: IntegraService,
+    private servicioCertificado: CertificadoService,
     private dialog: MatDialog,
     private activo: ActivatedRoute) { 
       this.idProyecto = Number(this.activo.snapshot.paramMap.get("id"));
@@ -171,6 +174,41 @@ export class ParticipaListarComponent implements OnInit {
     dial.afterClosed().subscribe(() => this.getEstudiantes(this.idProyecto))
   }
 
+  onCertificadoDocente(idParticipa: number){
+    Alert.fire({
+      title: '¿Desea generar el certificado?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Si',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if(result.isConfirmed){
+        var Fecha: Date;
+        var Integra: Integra
+        let res = this.servicio.getParticipa(idParticipa);
+        res.subscribe(data => {
+          const certificado: Certificado = {
+            idCertificado: 0,
+            fechaEntrega: Fecha,
+            fechaRecepcion: Fecha,
+            observacionCertificado: '',
+            integra: Integra,
+            participa: data,
+          }
+          this.servicioCertificado.saveCertificado(certificado).subscribe(data => {
+            if(data){
+              Alert.fire(
+                'Generado!',
+                'El certificado del Docente se genero',
+                'success'
+              )
+            }
+          })
+        })
+      }
+    })
+  }
+
   onEdit(idParticipacion: number){
     const dial = this.dialog.open(ParticipaModificarComponent, {
       width: '50vw',
@@ -201,12 +239,41 @@ export class ParticipaListarComponent implements OnInit {
             )
           }
         });
-      } else if(result.dismiss === Alert.DismissReason.cancel){
-        Alert.fire(
-          'Cancelado!',
-          'El docente no se ha Eliminado',
-          'error'
-        )
+      }
+    })
+  }
+
+  onCertificadoEstudiante(idIntegra: number){
+    Alert.fire({
+      title: '¿Desea generar el certificado?',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Si',
+      cancelButtonText: 'No'
+    }).then((result) => {
+      if(result.isConfirmed){
+        var Fecha: Date;
+        var Participa: Participa
+        let res = this.servicioIntegra.getIntegra(idIntegra);
+        res.subscribe(data => {
+          const certificado: Certificado = {
+            idCertificado: 0,
+            fechaEntrega: Fecha,
+            fechaRecepcion: Fecha,
+            observacionCertificado: '',
+            integra: data,
+            participa: Participa,
+          }
+          this.servicioCertificado.saveCertificado(certificado).subscribe(data => {
+            if(data){
+              Alert.fire(
+                'Generado!',
+                'El certificado de estudiante se genero',
+                'success'
+              )
+            }
+          })
+        })
       }
     })
   }
@@ -241,12 +308,6 @@ export class ParticipaListarComponent implements OnInit {
             )
           }
         });
-      } else if(result.dismiss === Alert.DismissReason.cancel){
-        Alert.fire(
-          'Cancelado!',
-          'El estudinate no se ha Eliminado',
-          'error'
-        )
       }
     })
   }

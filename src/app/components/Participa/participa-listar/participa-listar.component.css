@@ -27,7 +27,7 @@ th{
     width: 10%;
 }
 .mat-column-nombreDocente{
-    width: 15%;
+    width: 14%;
 }
 .mat-column-contacto{
     width: 10%
@@ -35,22 +35,41 @@ th{
 .mat-column-correoElectronico{
     width:10%
 }
-.mat-column-facultad{
-    width: 15%;
+.mat-column-facultad {
+    width: 14%;
     text-align: center;
 }
 .mat-column-anioParticipaDoc{
-    width: 15%;
+    width: 13%;
     text-align: center;
 }
 .mat-column-horasParticipacion{
-    width: 12%;
+    width: 14%;
     text-align: center;
 }
 .mat-raised-button{
     padding-left: 1%;
     padding-right: 1%;
 }
-.mat-grid-tile-content{
-    justify-content: left !important;
+.mat-icon-button{
+    width: 20px
+}
+.mat-column-cedulaEstudiante{
+    width: 10%;
+}
+.mat-column-nombreEstudiante{
+    width: 30%;
+}
+.mat-column-carrera{
+    width: 14%;
+    text-align: center;
+}
+.mat-column-semestre{
+    text-align: center;
+}
+.mat-column-formaParticipacion{
+    text-align: center;
+}
+.mat-column-anioParticipaEst{
+    text-align: center;
 }

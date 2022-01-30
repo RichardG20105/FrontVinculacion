@@ -36,7 +36,9 @@
                             <mat-label>Año de Participación</mat-label>
                             <input matInput autocomplete="off" formControlName="anioParticipacion" [matDatepicker]="picker">
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker startView="multi-year"></mat-datepicker>
+                            <mat-datepicker #picker 
+                                startView="multi-year">
+                            </mat-datepicker>
                         </mat-form-field>
                     </mat-grid-tile>
                     <mat-grid-tile [colspan]="4" [rowspan]="1">

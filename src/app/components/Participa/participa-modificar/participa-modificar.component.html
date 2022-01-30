@@ -25,7 +25,9 @@
                             <mat-label>Año de Participacion</mat-label>
                             <input matInput autocomplete="off" formControlName="anioParticipacion" [matDatepicker]="picker">
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker startView="multi-year"></mat-datepicker>
+                            <mat-datepicker #picker
+                                startView="multi-year">
+                            </mat-datepicker>
                             <mat-error *ngIf="checkError('anioParticipacion','required')">
                                 La fecha de la participación es necesaria.
                             </mat-error>

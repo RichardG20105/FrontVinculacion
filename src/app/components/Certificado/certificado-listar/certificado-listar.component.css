@@ -1,6 +1,6 @@
 .body{
     margin: 10px;
-    display: block;
+    padding-bottom: 2%;
 }
 table {
     width: 100%;
@@ -13,17 +13,45 @@ th{
 .pointer{
     cursor: pointer;
 }
+.mat-header-cell-fechaRecepcion .mat-header-cell-fechaEntrega .mat-header-cell-observacion{
+    text-align: center;
+}
 .mat-form-field {
     width: 100%;
 }
 .mat-cell{
     font-size: 12px;
 }
-.mat-paginator{
-    height: 50px;
-}
 .mat-toolbar-row, .mat-toolbar-single-row{
     justify-content: center;
     height: 40px;
-    background-color: transparent;
+}
+.mat-column-nombreDocente{
+    width: 17%;
+}
+.mat-column-nombreIntegrante{
+    width: 17%;
+}
+.mat-column-nombreFacultad {
+    width: 15%;
+    text-align: center;
+}
+.mat-column-nombreCarrera{
+    width: 15%;
+    text-align: center;
+}
+.mat-column-nombreProyecto{
+    width: 35%;
+}
+.mat-column-fechaRecepcion{
+    width: 11%;
+    text-align: center;
+}
+.mat-column-fechaEntrega{
+    width: 11%;
+    text-align: center;
+}
+.mat-column-observacion{
+    width: 12%;
+    text-align: center;
 }

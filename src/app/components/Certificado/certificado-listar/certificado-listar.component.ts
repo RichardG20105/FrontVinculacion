@@ -6,6 +6,8 @@ import { Router } from '@angular/router';
 import { MatSort } from '@angular/material/sort';
 
 import { Certificado } from 'src/app/interfaces/certificado';
+import { CertificadoService } from '../../../services/certificado.service';
+import { CertificadoModificarComponent } from '../certificado-modificar/certificado-modificar.component';
 
 @Component({
   selector: 'app-certificado-listar',
@@ -13,33 +15,87 @@ import { Certificado } from 'src/app/interfaces/certificado';
   styleUrls: ['./certificado-listar.component.css']
 })
 export class CertificadoListarComponent implements OnInit {
-  listaCertificados!: Certificado[];
+  listaCertificadosEstudiantes!: Certificado[];
+  listaCertificadosDocentes!: Certificado[];
   
-  displayedColumns: string[] = ['nombreIntegrante', 'nombreFacultad', 'nombreProyecto', 'fechaRecepcion', 'fechaEntrega', 'observacion', 'acciones'];
-  dataSource = new MatTableDataSource<Certificado>(this.listaCertificados);
+  displayedColumnsEstudiantes: string[] = ['nombreIntegrante', 'nombreCarrera', 'nombreProyecto', 'fechaRecepcion', 'fechaEntrega', 'observacion', 'acciones'];
+  displayedColumnsDocentes: string[] = ['nombreDocente', 'nombreFacultad', 'nombreProyecto', 'fechaRecepcion', 'fechaEntrega', 'observacion', 'acciones'];
+  
+  dataSourceEstudiantes = new MatTableDataSource<Certificado>(this.listaCertificadosEstudiantes);
+  @ViewChild('TablaUnoPaginador',{static: true})tablaUnoPaginador!: MatPaginator;
+  @ViewChild('TablaUnoSort',{static: true}) tablaUnoSort!: MatSort;
+  
+  dataSourceDocentes = new MatTableDataSource<Certificado>(this.listaCertificadosDocentes);
+  @ViewChild('TablaDosPaginador',{static: true})tablaDosPaginador!: MatPaginator;
+  @ViewChild('TablaDosSort',{static: true}) tablaDosSort!: MatSort;
 
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild(MatSort) sort!: MatSort;
 
   constructor(
+    private servicio: CertificadoService,
     private dialog: MatDialog, 
     private router: Router) { }
 
   ngOnInit(): void {
+    this.getCertificadosDocentes();
+    this.getCertificadosEstudiantes();
+    this.filtroDocente();
+    this.filtroEstudiante();
   }
 
   ngAfterViewInit() {
-    this.dataSource.paginator = this.paginator;
-    this.dataSource.sort = this.sort;
+    this.dataSourceEstudiantes.paginator = this.tablaUnoPaginador;
+    this.dataSourceEstudiantes.sort = this.tablaUnoSort;
+    this.dataSourceDocentes.paginator = this.tablaDosPaginador;
+    this.dataSourceDocentes.sort = this.tablaDosSort;
   }
 
-  applyFilter(event: Event) {
+  filtroDocente(){
+    const defaultPredicate = this.dataSourceDocentes.filterPredicate;
+    this.dataSourceDocentes.filterPredicate = function (data, filter: string): boolean{
+      return data.participa.docente.nombreDocente.toLowerCase().includes(filter) || data.participa.facultad.toLowerCase().includes(filter) || 
+      data.participa.proyecto.nombreProyecto.toLowerCase().includes(filter) ||defaultPredicate(data, filter);
+    }
+  }
+
+  filtroEstudiante(){
+    const defaultPredicate = this.dataSourceEstudiantes.filterPredicate;
+    this.dataSourceEstudiantes.filterPredicate = function(data,filter: string):boolean{
+      return data.integra.estudiante.nombreEstudiante.toLowerCase().includes(filter) || data.integra.carrera.toLowerCase().includes(filter) ||
+      data.integra.proyecto.nombreProyecto.toLowerCase().includes(filter) || defaultPredicate(data,filter);
+    }
+  }
+
+  applyFilterDocentes(event: Event) {
     const filterValue = (event.target as HTMLInputElement).value;
-    this.dataSource.filter = filterValue.trim().toLowerCase();
+    this.dataSourceDocentes.filter = filterValue.trim().toLowerCase();
   }
 
-  onCreate(){
-    
+  applyFilterEstudiantes(event: Event) {
+    const filterValue = (event.target as HTMLInputElement).value;
+    this.dataSourceEstudiantes.filter = filterValue.trim().toLowerCase();
   }
 
+  getCertificadosDocentes(){
+    let resp = this.servicio.getCertificadosDocentes();
+    resp.subscribe(data => {
+      this.dataSourceDocentes.data = data as Certificado[];
+    })
+  }
+  getCertificadosEstudiantes(){
+    let res = this.servicio.getCertificadosEstudiantes();
+    res.subscribe(data => {
+      this.dataSourceEstudiantes.data = data as Certificado[];
+    })
+  }
+
+  onEditCertificado(idCertificado: number){
+    const dial = this.dialog.open(CertificadoModificarComponent, {
+      width: '50vw',
+      height: '95vh',
+      data: {
+        id: idCertificado
+      }
+    });
+    dial.afterClosed().subscribe(() => {this.getCertificadosDocentes(), this.getCertificadosEstudiantes()})
+  }
 }

@@ -27,7 +27,6 @@ import { DocenteCrearComponent } from './components/Docente/docente-crear/docent
 import { DocenteModificarComponent } from './components/Docente/docente-modificar/docente-modificar.component';
 //---Certificado---
 import { CertificadoListarComponent } from './components/Certificado/certificado-listar/certificado-listar.component';
-import { CertificadoCrearComponent } from './components/Certificado/certificado-crear/certificado-crear.component';
 import { CertificadoModificarComponent } from './components/Certificado/certificado-modificar/certificado-modificar.component';
 
 import { ParticipaListarComponent } from './components/Participa/participa-listar/participa-listar.component';
@@ -53,7 +52,6 @@ registerLocaleData(localeES, "es");
     EstudianteCrearComponent,
     DocenteModificarComponent,
     CertificadoListarComponent,
-    CertificadoCrearComponent,
     ProyectoModificarComponent,
     EstudianteModificarComponent,
     CertificadoModificarComponent,

@@ -4,7 +4,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ParticipaService } from '../../../services/participa.service';
 import { Participa } from '../../../interfaces/participa';
 import { AlertifyService } from 'src/app/services/alertify.service';
-import { DateAdapter } from '@angular/material/core';
+import { DateAdapter, MAT_DATE_FORMATS, MAT_DATE_LOCALE } from '@angular/material/core';
+
 
 @Component({
   selector: 'app-participa-modificar',

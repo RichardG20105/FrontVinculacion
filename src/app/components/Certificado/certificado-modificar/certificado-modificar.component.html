@@ -1,1 +1,87 @@
-<p>certificado-modificar works!</p>
+<div class="body" style="height: 90%;">
+    <div class="container">
+        <p style="margin-bottom: 1%;">
+            <mat-toolbar>
+              <span>Certificado</span>
+            </mat-toolbar>
+        </p>
+    </div>
+
+    <mat-card style="margin-top: 10px; margin-bottom: 10px;">
+        <form [formGroup]="form" (ngSubmit)="modificarCertificado()" style="text-align: center;">
+            <mat-grid-list cols="4" rowHeight="75px">
+                <mat-grid-tile [colspan]="2" [rowspan]="1">
+                    <mat-form-field class="ancho">
+                        <mat-label>Nombre del Proyecto</mat-label>
+                        <textarea matInput [readonly]="true" formControlName="nombreProyecto" class="scroll"></textarea>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="2" [rowspan]="1">
+                    <mat-form-field class="ancho">
+                        <mat-label>Resolución</mat-label>
+                        <input matInput [readonly]="true" formControlName="resolucion">
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="2" [rowspan]="1">
+                    <mat-form-field class="ancho">
+                        <mat-label>Nombre del Solicitante</mat-label>
+                        <input matInput [readonly]="true" formControlName="nombreSolicitante">
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="2" [rowspan]="1">
+                    <mat-form-field class="ancho">
+                        <mat-label>Cargo</mat-label>
+                        <input matInput [readonly]="true" formControlName="cargo">
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="1" [rowspan]="1"></mat-grid-tile>
+                <mat-grid-tile [colspan]="2" [rowspan]="1">
+                    <mat-form-field class="ancho">
+                        <mat-label>Facultad o Carrera</mat-label>
+                        <input matInput [readonly]="true" formControlName="facultad">
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="1" [rowspan]="1"></mat-grid-tile>
+                <mat-grid-tile [colspan]="2" [rowspan]="1">
+                    <mat-form-field class="ancho">
+                        <mat-label>Fecha Recepcion</mat-label>
+                        <input matInput [readonly]="true" autocomplete="off" (dateChange)="modificoFechaRec()" formControlName="fechaRecepcion" [matDatepicker]="picker">
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                            <mat-datepicker #picker disable="false"
+                                startView="multi-year">
+                            </mat-datepicker>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="2" [rowspan]="1">
+                    <mat-form-field class="ancho">
+                        <mat-label>Fecha Entrega</mat-label>
+                        <input matInput autocomplete="off" [readonly]="true" (dateChange)="modificoFechaEnt()" formControlName="fechaEntrega" [matDatepicker]="dp">
+                        <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                            <mat-datepicker #dp disabled="false"
+                                startView="multi-year">
+                            </mat-datepicker>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="2" [rowspan]="1">
+                    <mat-form-field class="ancho">
+                        <mat-label>Tiempo en días</mat-label>
+                        <input matInput [readonly]="true" [value]="getTiempo()" [disabled]="true">
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="2" [rowspan]="1">
+                    <mat-form-field class="ancho">
+                        <mat-label>Observación</mat-label>
+                        <mat-select formControlName="observacion" (selectionChange)="modificoAlgo()">
+                            <mat-option *ngFor="let item of observaciones" [value]="item">
+                                {{item}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="4" [rowspan]="1">
+                    <button class="botonAceptar" type="submit" [disabled]="!getModifico()" mat-raised-button color="primary">Aceptar</button>
+                </mat-grid-tile>
+            </mat-grid-list>
+        </form>
+    </mat-card>
+</div>
