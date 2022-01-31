@@ -212,7 +212,7 @@ export class ParticipaListarComponent implements OnInit {
   onEdit(idParticipacion: number){
     const dial = this.dialog.open(ParticipaModificarComponent, {
       width: '50vw',
-      height: '95vh',
+      height: '62vh',
       data: {
         id: idParticipacion
       }
@@ -281,7 +281,7 @@ export class ParticipaListarComponent implements OnInit {
   onEditEstudiante(idIntegra: number){
     const dial = this.dialog.open(IntegraModificarComponent, {
       width: '50vw',
-      height: '95vh',
+      height: '68vh',
       data: {
         id: idIntegra
       }
