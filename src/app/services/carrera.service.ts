@@ -27,4 +27,8 @@ export class CarreraService {
   getFacultad(id: number): Observable<number>{
     return this.http.get<number>(this.URLBase+'/Carrera/Facultad/'+id);
   }
+
+  getNombreFacultad(id: number): Observable<String>{
+    return this.http.get<String>(this.URLBase+'/Carrera/FacultadNombre/'+id);
+  }
 }

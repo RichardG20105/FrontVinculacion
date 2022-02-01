@@ -18,6 +18,8 @@ import { IntegraModificarComponent } from '../integra-modificar/integra-modifica
 import Alert from 'sweetalert2';
 import { CertificadoService } from 'src/app/services/certificado.service';
 import { Certificado } from 'src/app/interfaces/certificado';
+import { CarreraService } from '../../../services/carrera.service';
+import { FacultadService } from '../../../services/facultad.service';
 
 @Component({
   selector: 'app-participa-listar',
@@ -35,6 +37,7 @@ export class ParticipaListarComponent implements OnInit {
   docentesFind: Boolean = false
   estudiantesFind: Boolean = false
 
+  nombreFacultad!: String
   filterType!: MatTableFilter;
 
   displayedColumns: string[] = ['cedulaDocente', 'nombreDocente','contacto','correoElectronico','facultad','anioParticipaDoc', 'horasParticipacion','acciones'];
@@ -52,6 +55,8 @@ export class ParticipaListarComponent implements OnInit {
     private servicioProyecto: ProyectoService,
     private servicioIntegra: IntegraService,
     private servicioCertificado: CertificadoService,
+    private servicioCarrera: CarreraService,
+    private servicioFacultad: FacultadService,
     private dialog: MatDialog,
     private activo: ActivatedRoute) { 
       this.idProyecto = Number(this.activo.snapshot.paramMap.get("id"));
@@ -192,6 +197,7 @@ export class ParticipaListarComponent implements OnInit {
             fechaEntrega: Fecha,
             fechaRecepcion: Fecha,
             observacionCertificado: '',
+            facultadIntegrante: data.facultad,
             integra: Integra,
             participa: data,
           }
@@ -256,22 +262,30 @@ export class ParticipaListarComponent implements OnInit {
         var Participa: Participa
         let res = this.servicioIntegra.getIntegra(idIntegra);
         res.subscribe(data => {
-          const certificado: Certificado = {
-            idCertificado: 0,
-            fechaEntrega: Fecha,
-            fechaRecepcion: Fecha,
-            observacionCertificado: '',
-            integra: data,
-            participa: Participa,
-          }
-          this.servicioCertificado.saveCertificado(certificado).subscribe(data => {
-            if(data){
-              Alert.fire(
-                'Generado!',
-                'El certificado de estudiante se genero',
-                'success'
-              )
-            }
+          let resp = this.servicioCarrera.getFacultad(data.estudiante.idCarrera);
+          resp.subscribe(dato => {
+            let resultado = this.servicioFacultad.getFacultad(dato);
+            resultado.subscribe(facultad => {
+              this.nombreFacultad = facultad.nombreFacultad
+              const certificado: Certificado = {
+                idCertificado: 0,
+                fechaEntrega: Fecha,
+                fechaRecepcion: Fecha,
+                observacionCertificado: '',
+                facultadIntegrante: this.nombreFacultad,
+                integra: data,
+                participa: Participa,
+              }
+              this.servicioCertificado.saveCertificado(certificado).subscribe(data => {
+                if(data){
+                  Alert.fire(
+                    'Generado!',
+                  'El certificado de estudiante se genero',
+                  'success'
+                )
+              }
+              })
+            });
           })
         })
       }

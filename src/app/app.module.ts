@@ -37,6 +37,7 @@ import { AsignarDocenteComponent } from './components/Participa/asignar-docente/
 import { ParticipaModificarComponent } from './components/Participa/participa-modificar/participa-modificar.component';
 import { AsignarEstudianteComponent } from './components/Participa/asignar-estudiante/asignar-estudiante.component';
 import { IntegraModificarComponent } from './components/Participa/integra-modificar/integra-modificar.component';
+import { ReportesListaComponent } from './components/Reportes/reportes-lista/reportes-lista.component';
 registerLocaleData(localeES, "es");
 
 @NgModule({
@@ -59,7 +60,8 @@ registerLocaleData(localeES, "es");
     AsignarDocenteComponent,
     ParticipaModificarComponent,
     AsignarEstudianteComponent,
-    IntegraModificarComponent
+    IntegraModificarComponent,
+    ReportesListaComponent
   ],
   imports: [
     BrowserModule,

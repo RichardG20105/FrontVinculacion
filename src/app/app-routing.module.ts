@@ -5,6 +5,7 @@ import { EstudianteListarComponent } from './components/Estudiante/estudiante-li
 import { ProyectoListarComponent } from './components/Proyecto/proyecto-listar/proyecto-listar.component';
 import { CertificadoListarComponent } from './components/Certificado/certificado-listar/certificado-listar.component';
 import { ParticipaListarComponent } from './components/Participa/participa-listar/participa-listar.component';
+import { ReportesListaComponent } from './components/Reportes/reportes-lista/reportes-lista.component';
 
 const routes: Routes = [
   { path: '', component: ProyectoListarComponent},
@@ -12,7 +13,7 @@ const routes: Routes = [
   { path: 'docente', component: DocenteListarComponent},
   { path: 'proyecto', component: ProyectoListarComponent},
   { path: 'certificado', component: CertificadoListarComponent},
-  { path: 'reporte', component: CertificadoListarComponent},
+  { path: 'reporte', component: ReportesListaComponent},
   { path: 'verproyecto/:id', component: ParticipaListarComponent}
 ];
 

@@ -25,7 +25,6 @@ th{
 .mat-toolbar-row, .mat-toolbar-single-row{
     justify-content: center;
     height: 40px;
-    background-color: transparent;
 }
 .mat-column-codigo{
     width: 12%;
