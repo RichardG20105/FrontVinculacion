@@ -13,8 +13,10 @@
 }
 .logo{
     position: relative;
-    padding: 0.5rem 0.7rem;
+    padding: 0.1rem 0.6rem;
     z-index: 4;
+    background-color: whitesmoke;
+
 }
 .logo a.logo-min{
     opacity: 1;
@@ -54,7 +56,9 @@
     overflow: hidden;
 }
 .logo-img img{
-    width: 35px;
+    width: 160px;
+    justify-self: center;
+    padding-left: 15px;
 }
 .nav li>a{
     margin: 10px 15px 0;

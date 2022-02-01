@@ -62,7 +62,7 @@ export class EstudianteListarComponent implements OnInit {
   onEdit(idEstudiante: number){
     const dial = this.dialog.open(EstudianteModificarComponent, {
       width: '50vw',
-      height: '95vh',
+      height: '75vh',
       data: {
         id: idEstudiante
       }

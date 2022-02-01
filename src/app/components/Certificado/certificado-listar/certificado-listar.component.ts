@@ -91,7 +91,7 @@ export class CertificadoListarComponent implements OnInit {
   onEditCertificado(idCertificado: number){
     const dial = this.dialog.open(CertificadoModificarComponent, {
       width: '50vw',
-      height: '95vh',
+      height: '93vh',
       data: {
         id: idCertificado
       }

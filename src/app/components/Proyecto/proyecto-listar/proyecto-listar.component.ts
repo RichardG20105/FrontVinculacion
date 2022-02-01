@@ -51,7 +51,7 @@ export class ProyectoListarComponent implements OnInit {
 
   onCreate(){
     const dial = this.dialog.open(ProyectoCrearComponent,{
-      height: '70vh',
+      height: '68vh',
       width: '50vw'
     })
     dial.afterClosed().subscribe(data => {
@@ -62,7 +62,7 @@ export class ProyectoListarComponent implements OnInit {
   onEdit(idProyecto: number){
     const dial = this.dialog.open(ProyectoModificarComponent, {
       width: '50vw',
-      height: '95vh',
+      height: '68vh',
       data:{
         id: idProyecto
       }

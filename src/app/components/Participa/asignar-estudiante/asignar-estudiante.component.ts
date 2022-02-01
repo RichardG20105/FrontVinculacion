@@ -82,7 +82,7 @@ export class AsignarEstudianteComponent implements OnInit {
 
   onCrear(){
     const dial = this.dialogoCrear.open(EstudianteCrearComponent,{
-      height: '95vh',
+      height: '75vh',
       width: '50vw'
     })
     dial.afterClosed().subscribe(data => this.estudianteParticipa(data))
