@@ -1,0 +1,21 @@
+<div class="container">
+    <p style="margin-bottom: 1%"></p>
+    <mat-toolbar>
+        <span>Escoga la Facultad</span>
+    </mat-toolbar>
+    <mat-card>
+        <form [formGroup]="form">
+            <mat-form-field [style.width.%]="50">
+                <mat-label>Facultad</mat-label>
+                <mat-select (selectionChange)="escogio($event)" formControlName="opcion">
+                    <mat-option *ngFor="let item of Facultades" [value]="item.nombreFacultad">
+                        {{item.nombreFacultad}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button class="botonAceptar" [disabled]="form.invalid" mat-raised-button color="primary" (click)="PDF()">
+                PDF
+            </button>
+        </form>
+    </mat-card>
+</div>

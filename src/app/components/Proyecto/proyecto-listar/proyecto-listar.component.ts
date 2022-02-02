@@ -41,11 +41,10 @@ export class ProyectoListarComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  private getProyectos(){
+  getProyectos(){
     let resp = this.servicio.getProyectos();
     resp.subscribe(datos => {
       this.dataSource.data = datos as Proyecto[]
-      console.log(datos)
     })
   }
 

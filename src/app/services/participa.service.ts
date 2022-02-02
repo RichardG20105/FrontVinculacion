@@ -22,12 +22,16 @@ export class ParticipaService {
     return this.http.post<Participa>(this.URLBase+'/Participa/Coordinador',proyecto);
   }
 
-  saveParticipa(participacion:Participa): Observable<Object>{
-    return this.http.post(this.URLBase+'/Participa/Registrar',participacion)
-  }
-
   getParticipa(idParticipa: number): Observable<Participa>{
     return this.http.get<Participa>(this.URLBase+'/Participa/'+idParticipa);
+  }
+
+  getDocentesFacultad(facultad: String): Observable<Participa[]>{
+    return this.http.get<Participa[]>(this.URLBase+'/Participa/Listado/'+facultad);
+  }
+
+  saveParticipa(participacion:Participa): Observable<Object>{
+    return this.http.post(this.URLBase+'/Participa/Registrar',participacion)
   }
 
   upadateParticipa(participa: Participa,idParticipa: number): Observable<Object>{
