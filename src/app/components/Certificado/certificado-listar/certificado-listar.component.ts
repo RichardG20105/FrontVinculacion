@@ -17,6 +17,8 @@ import { CertificadoModificarComponent } from '../certificado-modificar/certific
 export class CertificadoListarComponent implements OnInit {
   listaCertificadosEstudiantes!: Certificado[];
   listaCertificadosDocentes!: Certificado[];
+  certEstudiantesFind: Boolean = false;
+  certDocentesFind: Boolean = false;
   
   displayedColumnsEstudiantes: string[] = ['nombreIntegrante', 'nombreCarrera', 'nombreProyecto', 'fechaRecepcion', 'fechaEntrega', 'observacion', 'acciones'];
   displayedColumnsDocentes: string[] = ['nombreDocente', 'nombreFacultad', 'nombreProyecto', 'fechaRecepcion', 'fechaEntrega', 'observacion', 'acciones'];
@@ -79,12 +81,14 @@ export class CertificadoListarComponent implements OnInit {
     let resp = this.servicio.getCertificadosDocentes();
     resp.subscribe(data => {
       this.dataSourceDocentes.data = data as Certificado[];
+      this.certDocentesFind = true;
     })
   }
   getCertificadosEstudiantes(){
     let res = this.servicio.getCertificadosEstudiantes();
     res.subscribe(data => {
       this.dataSourceEstudiantes.data = data as Certificado[];
+      this.certEstudiantesFind = true;
     })
   }
 

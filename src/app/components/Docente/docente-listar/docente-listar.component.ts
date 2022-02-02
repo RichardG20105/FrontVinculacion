@@ -16,6 +16,7 @@ import { DocenteModificarComponent } from '../docente-modificar/docente-modifica
 export class DocenteListarComponent implements OnInit {
 
   listaDocentes!: Docente[];
+  docentesFind: Boolean = false
 
   displayedColumns: string[] = ['cedulaDocente', 'nombreDocente', 'sexoDocente', 'contacto', 'correoElectronico', 'relacionLaboral','acciones'];
   dataSource = new MatTableDataSource<Docente>(this.listaDocentes);
@@ -40,7 +41,10 @@ export class DocenteListarComponent implements OnInit {
 
   getDocentes(){
     let resp = this.servicio.getDocentes();
-    resp.subscribe(datos => this.dataSource.data=datos as Docente[])
+    resp.subscribe(datos => {
+      this.dataSource.data=datos as Docente[]
+      this.docentesFind = true;
+    })
   }
 
   onEdit(idDocente: number){

@@ -10,7 +10,9 @@
         <p style="margin-bottom: 1%; text-align: center;font-size: x-large;font-weight: bold;">
             <span style="text-align: center;">Certificados Docentes</span>
         </p>
-
+        <mat-divider style="margin-top: 1%;"></mat-divider>
+  
+        <div class="CertDocentes" *ngIf="certDocentesFind; else noCertDocentes">
         <mat-form-field appearance="standard">
             <mat-label>Filtro de Búsqueda</mat-label>
             <input matInput (keyup)="applyFilterDocentes($event)" placeholder="Ex. Pedro, FE" autocomplete="off">
@@ -71,6 +73,14 @@
                 showFirstLastButtons aria-label="Select page of periodic elements">
           </mat-paginator>
         </div>
+        </div>
+
+        <ng-template #noCertDocentes>
+          <br/> <br/>
+          <p style="margin-bottom: 1%; text-align: center;font-size: large;">
+            <span style = "color: #c3c3c3; font-size: 20px;">No existen Certificados de Docentes registrados</span>
+          </p>
+        </ng-template>
 
         <mat-divider style="margin-top: 3%;margin-bottom: 1%;"></mat-divider>
         
@@ -78,6 +88,9 @@
             <span style="text-align: center;">Certificados Estudiantes</span>
         </p>
 
+        <mat-divider style="margin-top: 1%;"></mat-divider>
+  
+        <div class="CertEstudiantes" *ngIf="certEstudiantesFind; else noCertEstudiantes">
         <mat-form-field appearance="standard">
             <mat-label>Filtro de Búsqueda</mat-label>
             <input matInput (keyup)="applyFilterEstudiantes($event)" placeholder="Ex. Pedro, FE" autocomplete="off">
@@ -138,5 +151,14 @@
               showFirstLastButtons aria-label="Select page of periodic elements">
         </mat-paginator>
         </div>
+        </div>
+
+        <ng-template #noCertEstudiantes>
+          <br/> <br/>
+          <p style="margin-bottom: 1%; text-align: center;font-size: large;">
+            <span style = " font-size: 20px; color: #c3c3c3;">No existen Certificados de Estudiantes registrados</span>
+          </p>
+        </ng-template>
+
     </div>
 </div>
