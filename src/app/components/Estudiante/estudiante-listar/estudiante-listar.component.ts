@@ -19,6 +19,7 @@ import { EstudianteModificarComponent } from '../estudiante-modificar/estudiante
 export class EstudianteListarComponent implements OnInit {
   
   listaEstudiantes!: Estudiante[];
+  estudiantesFind: Boolean = false
 
   displayedColumns: string[] = ['cedulaEstudiante', 'nombreEstudiante', 'sexoEstudiante', 'semestre', 'acciones'];
   dataSource = new MatTableDataSource<Estudiante>(this.listaEstudiantes);
@@ -47,7 +48,10 @@ export class EstudianteListarComponent implements OnInit {
 
   getEstudiantes(){
     let resp = this.servicio.getEstudiantes();
-    resp.subscribe(datos=>this.dataSource.data=datos as Estudiante[])
+    resp.subscribe(datos=> {
+      this.dataSource.data=datos as Estudiante[]
+      this.estudiantesFind = true;
+    })
   }
 
   onCreate(){

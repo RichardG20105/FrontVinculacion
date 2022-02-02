@@ -118,7 +118,7 @@ export class ParticipaListarComponent implements OnInit {
       let docentes = this.servicio.getDocentes(datos);
       docentes.subscribe(datos => {
         this.dataSourceDocentes.data = datos as Participa[]
-        this.docentesFind = true
+        this.docentesFind = true;
       })
     })
   }

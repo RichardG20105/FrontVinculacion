@@ -16,7 +16,8 @@ import { ProyectoModificarComponent } from '../proyecto-modificar/proyecto-modif
 })
 export class ProyectoListarComponent implements OnInit {
 
-  listaProyectos!: Proyecto[]
+  listaProyectos!: Proyecto[];
+  proyectoFind: Boolean = false
 
   displayedColumns: string[] = ['codigo','nombreProyecto','resolucion','acciones']
   dataSource = new MatTableDataSource<Proyecto>(this.listaProyectos);
@@ -41,11 +42,11 @@ export class ProyectoListarComponent implements OnInit {
     this.dataSource.filter = filterValue.trim().toLowerCase();
   }
 
-  private getProyectos(){
+  getProyectos(){
     let resp = this.servicio.getProyectos();
     resp.subscribe(datos => {
       this.dataSource.data = datos as Proyecto[]
-      console.log(datos)
+      this.proyectoFind = true;
     })
   }
 
