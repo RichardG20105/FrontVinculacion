@@ -8,4 +8,8 @@
 }
 .botonAceptar{
     margin-left: 10px;
+    padding: 2%;
+}
+.Carta{
+    max-width: 400px;
 }

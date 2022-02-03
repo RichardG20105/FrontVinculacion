@@ -13,13 +13,7 @@ import autoTable from 'jspdf-autotable'
 export class ParticipaDocenteFacultadTotalComponent implements OnInit {
   listaDocentes!: Participa[];
   facultad!: string;
-  Cabecera  = [[
-    "Cedula",
-    "Nombre",
-    "Relacion Laboral"
-  ]]
-  @ViewChild('datosDocentes')
-  datosDocentes!: ElementRef;
+  anterior = 0;
    
   constructor(private servicioParticipa: ParticipaService,
     private dialog: MatDialogRef<ParticipaDocenteFacultadTotalComponent>,
@@ -30,20 +24,30 @@ export class ParticipaDocenteFacultadTotalComponent implements OnInit {
   ngOnInit(): void {
     this.getDocentes();
   }
-
+  setAnterior(){
+    this.anterior += 10;
+    return this.anterior
+  }
   getDocentes(){
     let resp = this.servicioParticipa.getDocentesFacultad(this.facultad);
     resp.subscribe(data => {
       this.listaDocentes = data as Participa[];
-    })
+    }, error => {
+      this.dialog.close();
+    });
   }
   getPDF(){
     let fecha = new Date();
     let Titulo = "ParticipacionDocentesFacultad_"+`${fecha.getDay()}${fecha.getMonth()}${fecha.getFullYear()}${fecha.getHours()}${fecha.getMinutes()}${fecha.getSeconds()}`;
-    const PDF = new jsPDF()
-    PDF.text("Reporte Participación Docente", 50, 10);
-    autoTable(PDF,{html: '#datosDocentes' })
-    PDF.html('datosDocentes');
+    
+    const PDF = new jsPDF("p","mm","a4")
+    PDF.setFontSize(14)
+    PDF.setFont("times","normal","bold")
+    PDF.text("Reporte Participación Docentes",75, this.setAnterior());
+    PDF.setFontSize(12)
+    PDF.setFont("times","normal","normal")
+    PDF.text("Cantidad de Docentes de la Facultad de "+this.facultad+": "+this.listaDocentes.length, 14 ,this.setAnterior());
+    autoTable(PDF,{startY: this.setAnterior(),html: '#datosDocentes' })
     PDF.save(Titulo+".pdf");
     this.dialog.close()
   }

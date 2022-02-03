@@ -25,6 +25,10 @@ export class EstudianteService {
     return this.http.get<Estudiante>(this.URLBase+'/Estudiante/Cedula/'+cedula);
   }
 
+  getEstudiantesFacultadSexo(facultad:string,sexo:string):Observable<Estudiante[]>{
+    return this.http.get<Estudiante[]>(this.URLBase+'/Estudiante/Listado/'+facultad+'/'+sexo);
+  }
+
   saveEstudiantes(estudiante: Estudiante): Observable<Object>{
     return this.http.post(this.URLBase+'/Estudiante/Registrar',estudiante);
   }

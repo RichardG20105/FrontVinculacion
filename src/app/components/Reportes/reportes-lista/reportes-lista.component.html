@@ -6,9 +6,9 @@
             </mat-toolbar>
         </p>
 
-        <mat-card>
+        <mat-card class="Carta">
             <form [formGroup]="form">
-                <mat-form-field [style.width.%]="40">
+                <mat-form-field [style.width.%]="80">
                     <mat-label>Reportes</mat-label>
                     <mat-select (selectionChange)="escogio($event)" formControlName="opcion">
                         <mat-option *ngFor="let item of opcionesReportes" [value]="item.id">
@@ -17,7 +17,7 @@
                     </mat-select>
                 </mat-form-field>
                 <button class="botonAceptar" type="submit" [disabled]="form.invalid" mat-raised-button color="primary" (click)="generarReporte()">
-                    <mat-icon class="pointer">save_alt_icon</mat-icon>
+                    <mat-icon class="pointer">assignment</mat-icon>
                 </button>
             </form>
         </mat-card>

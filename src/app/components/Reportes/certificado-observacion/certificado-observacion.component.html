@@ -1,0 +1,36 @@
+<div >
+    <button class="botonAceptar" (click)="getPDF()" mat-raised-button color="primary">
+        <mat-icon>picture_as_pdf</mat-icon>
+    </button>
+    <div *ngIf="Docente">
+        <h3 style="text-align: center;">Docentes</h3>
+        <table id="datosDocentes">
+            <tr>
+                <th>Cedula</th>
+                <th>Nombre</th>
+                <th>Relacion Laboral</th>
+            </tr>
+            <tr *ngFor="let item of listadoDocenteCertificados">
+                <td>{{item.participa.docente.cedulaDocente}}</td>
+                <td>{{item.participa.docente.nombreDocente}}</td>
+                <td>{{item.participa.docente.relacionLaboral}}</td>
+            </tr>
+        </table>
+    </div>
+
+    <div *ngIf="Estudiante">
+        <h3 style="text-align: center;">Estudiantes</h3>
+        <table id="datosEstudiantes">
+            <tr>
+                <th>Cedula</th>
+                <th>Nombre</th>
+                <th>Semestre</th>
+            </tr>
+            <tr *ngFor="let item of listadoEstudianteCertificados">
+                <td>{{item.integra.estudiante.cedulaEstudiante}}</td>
+                <td>{{item.integra.estudiante.nombreEstudiante}}</td>
+                <td>{{item.integra.estudiante.semestre}}</td>
+            </tr>
+        </table>
+    </div>
+</div>

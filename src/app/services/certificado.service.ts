@@ -26,6 +26,22 @@ export class CertificadoService {
     return this.http.get<Certificado>(this.URLBase + '/Certificado/'+idCertificado);
   }
 
+  getCertificadosDocenteFacultad(facultad:string):Observable<Certificado[]>{
+    return this.http.get<Certificado[]>(this.URLBase+'/Certificado/ListadoDocente/'+facultad);
+  }
+
+  getCertificadosEstudianteFacultad(facultad:string):Observable<Certificado[]>{
+    return this.http.get<Certificado[]>(this.URLBase+'/Certificado/ListadoEstudiante/'+facultad);
+  }
+
+  getCertificadosDocenteObservacion(observacion: string): Observable<Certificado[]>{
+    return this.http.get<Certificado[]>(this.URLBase+'/Certificado/ListadoCertificadoDocente/'+observacion);
+  }
+
+  getCertificadosEstudianteObservacion(observacion: string): Observable<Certificado[]>{
+    return this.http.get<Certificado[]>(this.URLBase+'/Certificado/ListadoCertificadoEstudiante/'+observacion);
+  }
+
   saveCertificado(certificado: Certificado): Observable<Object>{
     return this.http.post(this.URLBase+'/Certificado/Registrar',certificado)
   }

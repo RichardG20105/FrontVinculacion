@@ -22,6 +22,10 @@ export class IntegraService {
     return this.http.get<Integra>(this.URLBase+'/Integra/'+idIntegra);
   }
 
+  getEstudiantesFacultad(facultad: string):Observable<Integra[]>{
+    return this.http.get<Integra[]>(this.URLBase+"/Integra/Listado/"+facultad);
+  }
+
   saveIntegra(integra: Integra): Observable<Object>{
     return this.http.post(this.URLBase+'/Integra/Registrar',integra);
   }

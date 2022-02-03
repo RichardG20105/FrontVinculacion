@@ -40,6 +40,12 @@ import { IntegraModificarComponent } from './components/Participa/integra-modifi
 import { ReportesListaComponent } from './components/Reportes/reportes-lista/reportes-lista.component';
 import { ParticipaDocenteFacultadTotalComponent } from './components/Reportes/participa-docente-facultad-total/participa-docente-facultad-total.component';
 import { SeleccionFacultadComponent } from './components/Reportes/seleccion-facultad/seleccion-facultad.component';
+import { ParticipaEstudianteFacultadComponent } from './components/Reportes/participa-estudiante-facultad/participa-estudiante-facultad.component';
+import { EstudiantesFacultadGeneroComponent } from './components/Reportes/estudiantes-facultad-genero/estudiantes-facultad-genero.component';
+import { SeleccionFacultadGeneroComponent } from './components/Reportes/seleccion-facultad-genero/seleccion-facultad-genero.component';
+import { CertificadosFacultadComponent } from './components/Reportes/certificados-facultad/certificados-facultad.component';
+import { SeleccionObservacionComponent } from './components/Reportes/seleccion-observacion/seleccion-observacion.component';
+import { CertificadoObservacionComponent } from './components/Reportes/certificado-observacion/certificado-observacion.component';
 registerLocaleData(localeES, "es");
 
 @NgModule({
@@ -65,7 +71,13 @@ registerLocaleData(localeES, "es");
     IntegraModificarComponent,
     ReportesListaComponent,
     ParticipaDocenteFacultadTotalComponent,
-    SeleccionFacultadComponent
+    SeleccionFacultadComponent,
+    ParticipaEstudianteFacultadComponent,
+    EstudiantesFacultadGeneroComponent,
+    SeleccionFacultadGeneroComponent,
+    CertificadosFacultadComponent,
+    SeleccionObservacionComponent,
+    CertificadoObservacionComponent,
   ],
   imports: [
     BrowserModule,

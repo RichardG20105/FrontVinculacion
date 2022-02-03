@@ -1,0 +1,17 @@
+<div >
+    <button class="botonAceptar" (click)="getPDF()" mat-raised-button color="primary">
+        <mat-icon>picture_as_pdf</mat-icon>
+    </button>
+    <table id="datosEstudiantes">
+        <tr>
+            <th>Cedula</th>
+            <th>Nombre</th>
+            <th>Semestre</th>
+        </tr>
+        <tr *ngFor="let item of listaEstudiantes">
+            <td>{{item.estudiante.cedulaEstudiante}}</td>
+            <td>{{item.estudiante.nombreEstudiante}}</td>
+            <td>{{item.estudiante.semestre}}</td>
+        </tr>
+    </table>
+</div>
