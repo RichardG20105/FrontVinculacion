@@ -20,6 +20,7 @@ import { CertificadoService } from 'src/app/services/certificado.service';
 import { Certificado } from 'src/app/interfaces/certificado';
 import { CarreraService } from '../../../services/carrera.service';
 import { FacultadService } from '../../../services/facultad.service';
+import { CertificadoCodigoComponent } from '../../Certificado/certificado-codigo/certificado-codigo.component';
 
 @Component({
   selector: 'app-participa-listar',
@@ -198,16 +199,25 @@ export class ParticipaListarComponent implements OnInit {
             fechaRecepcion: Fecha,
             observacionCertificado: '',
             facultadIntegrante: data.facultad,
+            codigoCertificado: '',
             integra: Integra,
             participa: data,
           }
           this.servicioCertificado.saveCertificado(certificado).subscribe(data => {
             if(data){
-              Alert.fire(
+              const dial = this.dialog.open(CertificadoCodigoComponent, {
+                height: '35vh',
+                width: '25vw',
+                data:{
+                  codigo: data.codigoCertificado,
+                } 
+              })
+              
+              dial.afterOpened().subscribe(() =>Alert.fire(
                 'Generado!',
                 'El certificado del Docente se genero',
                 'success'
-              )
+              ))
             }
           })
         })
@@ -273,17 +283,25 @@ export class ParticipaListarComponent implements OnInit {
                 fechaRecepcion: Fecha,
                 observacionCertificado: '',
                 facultadIntegrante: this.nombreFacultad,
+                codigoCertificado: '',
                 integra: data,
                 participa: Participa,
               }
               this.servicioCertificado.saveCertificado(certificado).subscribe(data => {
                 if(data){
-                  Alert.fire(
+                  const dial = this.dialog.open(CertificadoCodigoComponent, {
+                    height: '35vh',
+                    width: '25vw',
+                    data:{
+                      codigo: data.codigoCertificado,
+                    } 
+                  })
+                  dial.afterOpened().subscribe(() => Alert.fire(
                     'Generado!',
-                  'El certificado de estudiante se genero',
-                  'success'
-                )
-              }
+                    'El certificado de estudiante se genero',
+                    'success'
+                  ))
+                }
               })
             });
           })

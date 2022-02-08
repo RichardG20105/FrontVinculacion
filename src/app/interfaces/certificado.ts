@@ -7,6 +7,7 @@ export interface Certificado{
     fechaRecepcion: Date,
     observacionCertificado: String,
     facultadIntegrante: String,
+    codigoCertificado: String,
     integra: Integra,
     participa: Participa
 }

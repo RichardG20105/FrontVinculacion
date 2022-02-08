@@ -1,0 +1,58 @@
+<div class="container">
+    <mat-toolbar>
+        <span>Información del Certificado</span>
+    </mat-toolbar>
+
+    <mat-card>
+        <form [formGroup]="form">
+            <mat-grid-list cols="3" rowHeight="75px">
+                <mat-grid-tile [colspan]="1" rowspan="1">
+                    <mat-form-field class="ancho">
+                        <mat-label>Codigo</mat-label>
+                        <input matInput [readonly]="true" autocomplete="off" formControlName="codigo">
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="1" rowspan="1">
+                    <mat-form-field class="ancho">
+                        <mat-label>Fecha de Entrega</mat-label>
+                        <input matInput [readonly]="true" autocomplete="off" formControlName="fechaEntrega">
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="1" rowspan="1">
+                    <mat-form-field class="ancho">
+                        <mat-label>Forma de Participación</mat-label>
+                        <input matInput [readonly]="true" autocomplete="off" formControlName="formaParticipacion">
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="2" rowspan="1">
+                    <mat-form-field class="ancho">
+                        <mat-label>Nombre</mat-label>
+                        <input matInput [readonly]="true" autocomplete="off" formControlName="nombreIntegrante">
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="1" rowspan="1">
+                    <mat-form-field class="ancho">
+                        <mat-label>Facultad</mat-label>
+                        <input matInput [readonly]="true" autocomplete="off" formControlName="facultad">
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="2" rowspan="1">
+                    <mat-form-field class="ancho">
+                        <mat-label>Proyecto</mat-label>
+                        <textarea class="scroll" matInput [readonly]="true" autocomplete="off" formControlName="proyecto"></textarea>
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="1" rowspan="1">
+                    <mat-form-field class="ancho">
+                        <mat-label>Resolución</mat-label>
+                        <input matInput [readOnly]="true" autocomplete="off" formControlName="resolucion">
+                    </mat-form-field>
+                </mat-grid-tile>
+                <mat-grid-tile [colspan]="1" rowspan="1"></mat-grid-tile>            
+                <mat-grid-tile [colspan]="1" rowspan="1">
+                    <button mat-raised-button color="warn" (click)="Cerrar()">Cerrar</button>
+                </mat-grid-tile>
+                </mat-grid-list>
+        </form>
+    </mat-card>
+</div>

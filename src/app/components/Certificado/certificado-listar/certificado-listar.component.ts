@@ -8,6 +8,7 @@ import { MatSort } from '@angular/material/sort';
 import { Certificado } from 'src/app/interfaces/certificado';
 import { CertificadoService } from '../../../services/certificado.service';
 import { CertificadoModificarComponent } from '../certificado-modificar/certificado-modificar.component';
+import { CertificadoValidarComponent } from '../certificado-validar/certificado-validar.component';
 
 @Component({
   selector: 'app-certificado-listar',
@@ -77,6 +78,12 @@ export class CertificadoListarComponent implements OnInit {
     this.dataSourceEstudiantes.filter = filterValue.trim().toLowerCase();
   }
 
+  validarCodigo(){
+    this.dialog.open(CertificadoValidarComponent, {
+      height: '35vh',
+      width: '25vw',
+    })
+  }
   getCertificadosDocentes(){
     let resp = this.servicio.getCertificadosDocentes();
     resp.subscribe(data => {

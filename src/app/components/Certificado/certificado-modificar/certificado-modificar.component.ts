@@ -177,6 +177,7 @@ export class CertificadoModificarComponent implements OnInit {
       fechaRecepcion: this.form.value.fechaRecepcion,
       observacionCertificado: this.form.value.observacion,
       facultadIntegrante: '',
+      codigoCertificado: this.certificado.codigoCertificado,
       integra: this.certificado.integra,
       participa: this.certificado.participa,
     }

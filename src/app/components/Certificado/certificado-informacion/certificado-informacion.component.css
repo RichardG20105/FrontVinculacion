@@ -1,0 +1,9 @@
+.ancho{
+    width: 90%;
+}
+.scroll{
+    resize: none;
+}
+.scroll::-webkit-scrollbar {
+    display: none;
+}

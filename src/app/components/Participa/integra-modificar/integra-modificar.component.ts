@@ -46,7 +46,6 @@ export class IntegraModificarComponent implements OnInit {
   }
 
   setForm(){
-    console.log(this.integraEstudiante)
     this.form = this.fb.group({
       cedula: [`${this.integraEstudiante.estudiante.cedulaEstudiante}`],
       nombre: [`${this.integraEstudiante.estudiante.nombreEstudiante}`],

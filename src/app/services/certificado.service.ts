@@ -42,8 +42,12 @@ export class CertificadoService {
     return this.http.get<Certificado[]>(this.URLBase+'/Certificado/ListadoCertificadoEstudiante/'+observacion);
   }
 
-  saveCertificado(certificado: Certificado): Observable<Object>{
-    return this.http.post(this.URLBase+'/Certificado/Registrar',certificado)
+  getCertificadoCodigo(codigo: string): Observable<Certificado>{
+    return this.http.get<Certificado>(this.URLBase+'/Certificado/ValidarCertificado/'+codigo);
+  }
+
+  saveCertificado(certificado: Certificado): Observable<Certificado>{
+    return this.http.post<Certificado>(this.URLBase+'/Certificado/Registrar',certificado)
   }
 
   updateCertificado(certificado: Certificado, idCertificado: number){

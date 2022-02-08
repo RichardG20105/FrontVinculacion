@@ -25,6 +25,7 @@ import {MatDatepickerModule} from '@angular/material/datepicker';
 import {MatNativeDateModule} from '@angular/material/core';
 import { MatTableFilterModule } from 'mat-table-filter';
 import { FormsModule } from '@angular/forms';
+import { ClipboardModule } from '@angular/cdk/clipboard';
 
 @NgModule({
   declarations: [],
@@ -53,6 +54,7 @@ import { FormsModule } from '@angular/forms';
     MatNativeDateModule,
     MatTableFilterModule,
     FormsModule,
+    ClipboardModule,
     HttpClientModule
   ],
   exports: [
@@ -79,6 +81,7 @@ import { FormsModule } from '@angular/forms';
     MatNativeDateModule,
     MatTableFilterModule,
     FormsModule,
+    ClipboardModule,
     HttpClientModule
   ],
 })

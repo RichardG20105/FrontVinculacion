@@ -2,10 +2,15 @@
     <div class="body">
 
         <p style="margin-bottom: 1%;">
-            <mat-toolbar>
-              <span style="text-align: center;">Certificados</span>
-            </mat-toolbar>
-          </p>
+          <mat-toolbar>
+            <span style="text-align: center;">Certificados</span>
+          </mat-toolbar>
+        </p>
+
+        <button mat-raised-button color="primary" (click)="validarCodigo()">
+          <mat-icon style="padding-left: 0%;padding-right: 1px;">pageview</mat-icon>
+          Validar Certificado
+        </button>
 
         <p style="margin-bottom: 1%; text-align: center;font-size: x-large;font-weight: bold;">
             <span style="text-align: center;">Certificados Docentes</span>

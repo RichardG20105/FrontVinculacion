@@ -1,0 +1,15 @@
+.ancho{
+    width: 90%;
+}
+.mat-icon{
+    height: 24px;
+}
+.pointer{
+    font-size: medium;
+    height: 50px;
+    width: 50px;
+    cursor: pointer;
+}
+.mat-icon{
+    font-size: large;
+}

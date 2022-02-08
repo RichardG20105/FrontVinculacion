@@ -46,6 +46,10 @@ import { SeleccionFacultadGeneroComponent } from './components/Reportes/seleccio
 import { CertificadosFacultadComponent } from './components/Reportes/certificados-facultad/certificados-facultad.component';
 import { SeleccionObservacionComponent } from './components/Reportes/seleccion-observacion/seleccion-observacion.component';
 import { CertificadoObservacionComponent } from './components/Reportes/certificado-observacion/certificado-observacion.component';
+import { CertificadoCodigoComponent } from './components/Certificado/certificado-codigo/certificado-codigo.component';
+import { CertificadoValidarComponent } from './components/Certificado/certificado-validar/certificado-validar.component';
+import { CertificadoInformacionComponent } from './components/Certificado/certificado-informacion/certificado-informacion.component';
+import { CertificadoInformacionEstudianteComponent } from './components/Certificado/certificado-informacion-estudiante/certificado-informacion-estudiante.component';
 registerLocaleData(localeES, "es");
 
 @NgModule({
@@ -78,6 +82,10 @@ registerLocaleData(localeES, "es");
     CertificadosFacultadComponent,
     SeleccionObservacionComponent,
     CertificadoObservacionComponent,
+    CertificadoCodigoComponent,
+    CertificadoValidarComponent,
+    CertificadoInformacionComponent,
+    CertificadoInformacionEstudianteComponent,
   ],
   imports: [
     BrowserModule,
