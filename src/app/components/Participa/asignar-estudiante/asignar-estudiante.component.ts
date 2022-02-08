@@ -26,6 +26,7 @@ export class AsignarEstudianteComponent implements OnInit {
   idProy!: number;
   carrera!: string;
   form: FormGroup;
+  fecha!: Date;
 
   constructor(
     private servicioIntegra: IntegraService,
@@ -89,9 +90,6 @@ export class AsignarEstudianteComponent implements OnInit {
   }
 
   estudianteParticipa(data: Estudiante){
-    var fecha = new Date();
-    fecha.setFullYear(2020);
-
     this.estudiante = data;
     let resp = this.servicioCarrera.getCarrera(this.estudiante.idCarrera);
     resp.subscribe(datos => {
@@ -101,24 +99,20 @@ export class AsignarEstudianteComponent implements OnInit {
         idIntegra: 0,
         carrera: this.carrera,
         formaParticipacion: '',
-        anioParticipaEst: fecha,
+        anioParticipaEst: this.fecha,
         estudiante: this.estudiante,
         proyecto: this.proyecto
       }
-      console.log(integra);
       this.guardarIntegra(integra);
     })
   }
 
   asignarEstudiante(){
-    var fecha = new Date();
-    fecha.setFullYear(2020);
-
     const integra: Integra = {
       idIntegra: 0,
       carrera: this.carrera,
       formaParticipacion: '',
-      anioParticipaEst: fecha,
+      anioParticipaEst: this.fecha,
       estudiante: this.estudiante,
       proyecto: this.proyecto
     }
