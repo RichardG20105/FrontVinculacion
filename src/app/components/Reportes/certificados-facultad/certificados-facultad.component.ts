@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Certificado } from '../../../interfaces/certificado';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-certificados-facultad',
@@ -94,5 +95,23 @@ export class CertificadosFacultadComponent implements OnInit {
     }
     PDF.save(Titulo+".pdf");
     this.dialog.close()
+  }
+
+  getEXCEL(){
+    let fecha = new Date();
+    let Titulo = "CertificadosFacultad_"+`${fecha.getDay()}${fecha.getMonth()}${fecha.getFullYear()}${fecha.getHours()}${fecha.getMinutes()}${fecha.getSeconds()}`;
+    
+    let element = document.getElementById('datosDocentes');
+    let element2 = document.getElementById('datosEstudiantes');
+
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+    const ws2: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element2);
+
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+
+    XLSX.utils.book_append_sheet(wb, ws, 'Certificados Docentes');
+    XLSX.utils.book_append_sheet(wb, ws2, 'Certificados Estudiantes');
+
+    XLSX.writeFile(wb, Titulo+'.xlsx');
   }
 }

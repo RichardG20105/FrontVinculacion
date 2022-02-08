@@ -4,6 +4,7 @@ import { EstudianteService } from '../../../services/estudiante.service';
 import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-estudiantes-facultad-genero',
@@ -53,5 +54,20 @@ export class EstudiantesFacultadGeneroComponent implements OnInit {
     autoTable(PDF,{startY: this.setAnterior(),html: '#datosEstudiantes' })
     PDF.save(Titulo+".pdf");
     this.dialog.close()
+  }
+
+  getEXCEL(){
+    let fecha = new Date();
+    let Titulo = "EstudiantesFacultadSexo_"+`${fecha.getDay()}${fecha.getMonth()}${fecha.getFullYear()}${fecha.getHours()}${fecha.getMinutes()}${fecha.getSeconds()}`;
+    
+    let element = document.getElementById('datosDocentes');
+
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+
+    XLSX.utils.book_append_sheet(wb, ws, 'Estudiantes');
+
+    XLSX.writeFile(wb, Titulo+'.xlsx');
   }
 }

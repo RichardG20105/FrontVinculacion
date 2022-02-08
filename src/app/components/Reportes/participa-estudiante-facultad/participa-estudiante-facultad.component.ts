@@ -4,6 +4,7 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Integra } from '../../../interfaces/integra';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable';
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-participa-estudiante-facultad',
@@ -54,5 +55,18 @@ export class ParticipaEstudianteFacultadComponent implements OnInit {
     PDF.save(Titulo+".pdf");
     this.dialog.close()
   }
+  getEXCEL(){
+    let fecha = new Date();
+    let Titulo = "ParticipacionEstudiantesFacultad_"+`${fecha.getDay()}${fecha.getMonth()}${fecha.getFullYear()}${fecha.getHours()}${fecha.getMinutes()}${fecha.getSeconds()}`;
+    
+    let element = document.getElementById('datosEstudiantes');
 
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+
+    XLSX.utils.book_append_sheet(wb, ws, 'Estudiantes por Facultad');
+
+    XLSX.writeFile(wb, Titulo+'.xlsx');
+  }
 }

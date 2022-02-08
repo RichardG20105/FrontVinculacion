@@ -4,6 +4,7 @@ import { ParticipaService } from '../../../services/participa.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable'
+import * as XLSX from 'xlsx';
 
 @Component({
   selector: 'app-participa-docente-facultad-total',
@@ -50,5 +51,20 @@ export class ParticipaDocenteFacultadTotalComponent implements OnInit {
     autoTable(PDF,{startY: this.setAnterior(),html: '#datosDocentes' })
     PDF.save(Titulo+".pdf");
     this.dialog.close()
+  }
+
+  getEXCEL(){
+    let fecha = new Date();
+    let Titulo = "ParticipacionDocentesFacultad_"+`${fecha.getDay()}${fecha.getMonth()}${fecha.getFullYear()}${fecha.getHours()}${fecha.getMinutes()}${fecha.getSeconds()}`;
+    
+    let element = document.getElementById('datosDocentes');
+
+    const ws: XLSX.WorkSheet = XLSX.utils.table_to_sheet(element);
+
+    const wb: XLSX.WorkBook = XLSX.utils.book_new();
+
+    XLSX.utils.book_append_sheet(wb, ws, 'Docentes por Facultad');
+
+    XLSX.writeFile(wb, Titulo+'.xlsx');
   }
 }

@@ -2,8 +2,13 @@
     <button class="botonAceptar" (click)="getPDF()" mat-raised-button color="primary">
         <mat-icon>picture_as_pdf</mat-icon>
     </button>
+    <button class="botonAceptar" (click)="getEXCEL()" mat-raised-button color="primary">
+        <mat-icon>table_chart</mat-icon>
+    </button>
     <div *ngIf="Docente" style="margin-top: 2px;">
-        <h3 style="text-align: center;">Docentes</h3>
+        <mat-toolbar>
+            <span>Docentes</span>
+        </mat-toolbar>
         <table id="datosDocentes" >
             <tr>
                 <th>Cedula</th>
@@ -18,7 +23,9 @@
         </table>
     </div>
     <div *ngIf="Estudiante" style="margin-top: 2px;">
-        <h3 style="text-align: center;">Estudiantes</h3>
+        <mat-toolbar>
+            <span>Estudiantes</span>
+        </mat-toolbar>
         <table id="datosEstudiantes">
         <tr>
             <th>Cedula</th>
