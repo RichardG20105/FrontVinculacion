@@ -44,7 +44,7 @@ export class DocenteListarComponent implements OnInit {
     resp.subscribe(datos => {
       this.dataSource.data=datos as Docente[]
       this.docentesFind = true;
-    })
+    }, () => this.docentesFind = false)
   }
 
   onEdit(idDocente: number){

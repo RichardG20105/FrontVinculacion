@@ -110,7 +110,7 @@ export class ParticipaListarComponent implements OnInit {
     proy.subscribe(datos => {
       this.proyectoInfo = datos as Proyecto;
       this.proyectoFind = true;
-    })
+    }, () => this.proyectoFind = false)
   }
 
   getDocentes(id: number){
@@ -120,7 +120,7 @@ export class ParticipaListarComponent implements OnInit {
       docentes.subscribe(datos => {
         this.dataSourceDocentes.data = datos as Participa[]
         this.docentesFind = true;
-      })
+      }, () => this.docentesFind = false)
     })
   }
 
@@ -131,7 +131,7 @@ export class ParticipaListarComponent implements OnInit {
       estudiantes.subscribe(datos => {
         this.dataSourceEstudiantes.data = datos as Integra[];
         this.estudiantesFind = true;
-      })
+      }, () => this.estudiantesFind = false)
     })
   }
 
@@ -142,7 +142,7 @@ export class ParticipaListarComponent implements OnInit {
       coord.subscribe(datos => {
         this.coordinador = datos as Participa;
         this.coordinadorFind = true;
-      })
+      }, () => this.coordinadorFind = false)
     })
   }
 
@@ -206,7 +206,7 @@ export class ParticipaListarComponent implements OnInit {
           this.servicioCertificado.saveCertificado(certificado).subscribe(data => {
             if(data){
               const dial = this.dialog.open(CertificadoCodigoComponent, {
-                height: '35vh',
+                height: '40vh',
                 width: '25vw',
                 data:{
                   codigo: data.codigoCertificado,
@@ -290,7 +290,7 @@ export class ParticipaListarComponent implements OnInit {
               this.servicioCertificado.saveCertificado(certificado).subscribe(data => {
                 if(data){
                   const dial = this.dialog.open(CertificadoCodigoComponent, {
-                    height: '35vh',
+                    height: '40vh',
                     width: '25vw',
                     data:{
                       codigo: data.codigoCertificado,

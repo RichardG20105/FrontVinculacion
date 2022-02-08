@@ -47,7 +47,7 @@ export class ProyectoListarComponent implements OnInit {
     resp.subscribe(datos => {
       this.dataSource.data = datos as Proyecto[]
       this.proyectoFind = true;
-    })
+    }, () => this.proyectoFind = false)
   }
 
   onCreate(){

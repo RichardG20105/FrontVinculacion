@@ -51,7 +51,7 @@ export class EstudianteListarComponent implements OnInit {
     resp.subscribe(datos=> {
       this.dataSource.data=datos as Estudiante[]
       this.estudiantesFind = true;
-    })
+    },() => this.estudiantesFind = false)
   }
 
   onCreate(){

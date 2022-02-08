@@ -1,5 +1,5 @@
 import { Component, Inject, OnInit } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import { FormGroup, FormBuilder } from '@angular/forms';
 
 @Component({
@@ -12,6 +12,7 @@ export class CertificadoCodigoComponent implements OnInit {
   form: FormGroup
   copiado = false;
   constructor(private fb: FormBuilder,
+    private dialog: MatDialogRef<CertificadoCodigoComponent>,
     @Inject(MAT_DIALOG_DATA)datos: any) {
       this.codigo = datos.codigo
       this.form = this.fb.group({
@@ -35,5 +36,9 @@ export class CertificadoCodigoComponent implements OnInit {
 
   onCopiado(){
     return this.copiado;
+  }
+
+  Cerrar(){
+    this.dialog.close();
   }
 }

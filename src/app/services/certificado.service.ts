@@ -53,4 +53,8 @@ export class CertificadoService {
   updateCertificado(certificado: Certificado, idCertificado: number){
     return this.http.put(this.URLBase+'/Certificado/Actualizar/'+idCertificado,certificado);
   }
+
+  deleteCertificado(idCertificado: number):Observable<Object>{
+    return this.http.delete(this.URLBase+'/Certificado/Eliminar/'+idCertificado);
+  }
 }

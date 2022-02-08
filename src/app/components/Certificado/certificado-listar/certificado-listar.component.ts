@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { MatPaginator } from '@angular/material/paginator';
 import { MatDialog } from '@angular/material/dialog';
 import { MatTableDataSource } from '@angular/material/table';
+import Alert from 'sweetalert2';
 import { Router } from '@angular/router';
 import { MatSort } from '@angular/material/sort';
 
@@ -9,6 +10,8 @@ import { Certificado } from 'src/app/interfaces/certificado';
 import { CertificadoService } from '../../../services/certificado.service';
 import { CertificadoModificarComponent } from '../certificado-modificar/certificado-modificar.component';
 import { CertificadoValidarComponent } from '../certificado-validar/certificado-validar.component';
+import { CertificadoCodigoComponent } from '../certificado-codigo/certificado-codigo.component';
+import { AlertifyService } from '../../../services/alertify.service';
 
 @Component({
   selector: 'app-certificado-listar',
@@ -35,8 +38,7 @@ export class CertificadoListarComponent implements OnInit {
 
   constructor(
     private servicio: CertificadoService,
-    private dialog: MatDialog, 
-    private router: Router) { }
+    private dialog: MatDialog) { }
 
   ngOnInit(): void {
     this.getCertificadosDocentes();
@@ -89,13 +91,28 @@ export class CertificadoListarComponent implements OnInit {
     resp.subscribe(data => {
       this.dataSourceDocentes.data = data as Certificado[];
       this.certDocentesFind = true;
-    })
+    }, () => this.certDocentesFind = false)
   }
   getCertificadosEstudiantes(){
     let res = this.servicio.getCertificadosEstudiantes();
     res.subscribe(data => {
       this.dataSourceEstudiantes.data = data as Certificado[];
       this.certEstudiantesFind = true;
+    }, () => this.certEstudiantesFind = false)
+  }
+
+  onCodigoCertificado(idCertificado: number){
+    let res = this.servicio.getCertificado(idCertificado);
+    res.subscribe(data => {
+      if(data){
+        const dial = this.dialog.open(CertificadoCodigoComponent, {
+          height: '40vh',
+          width: '25vw',
+          data:{
+            codigo: data.codigoCertificado,
+          } 
+        })
+      }
     })
   }
 
@@ -108,5 +125,50 @@ export class CertificadoListarComponent implements OnInit {
       }
     });
     dial.afterClosed().subscribe(() => {this.getCertificadosDocentes(), this.getCertificadosEstudiantes()})
+  }
+
+  onEliminarCertificadoDocente(idCertificado:number){
+    Alert.fire({
+      title: 'Desea eliminar el Certificado del Docente',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Si, eliminalo',
+      cancelButtonText: 'No, cancela'
+    }).then((result) => {
+      if(result.isConfirmed){
+        this.servicio.deleteCertificado(idCertificado).subscribe(data => {
+          if(data){
+            this.getCertificadosDocentes();
+            Alert.fire(
+              'Eliminado!',
+              'El certificado se elimino',
+              'success'
+            )
+          }
+        });
+      }
+    })
+  }
+  onEliminarCertificadoEstudiante(idCertificado: number){
+    Alert.fire({
+      title: 'Desea eliminar el Certificado del Estudiante',
+      icon: 'warning',
+      showCancelButton: true,
+      confirmButtonText: 'Si, eliminalo',
+      cancelButtonText: 'No, cancela'
+    }).then((result) => {
+      if(result.isConfirmed){
+        this.servicio.deleteCertificado(idCertificado).subscribe(data => {
+          if(data){
+            this.getCertificadosEstudiantes();
+            Alert.fire(
+              'Eliminado!',
+              'El certificado se elimino',
+              'success'
+            )
+          }
+        });
+      }
+    })
   }
 }
