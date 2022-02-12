@@ -13,11 +13,13 @@
             <tr>
                 <th>Cedula</th>
                 <th>Nombre</th>
+                <th>Nombre del Proyecto</th>
                 <th>Relacion Laboral</th>
             </tr>
             <tr *ngFor="let item of listadoDocenteCertificados">
                 <td>{{item.participa.docente.cedulaDocente}}</td>
                 <td>{{item.participa.docente.nombreDocente}}</td>
+                <td>{{item.participa.proyecto.nombreProyecto}}</td>
                 <td>{{item.participa.docente.relacionLaboral}}</td>
             </tr>
         </table>
@@ -31,11 +33,13 @@
             <tr>
                 <th>Cedula</th>
                 <th>Nombre</th>
+                <th>Nombre del Proyecto</th>
                 <th>Semestre</th>
             </tr>
             <tr *ngFor="let item of listadoEstudianteCertificados">
                 <td>{{item.integra.estudiante.cedulaEstudiante}}</td>
                 <td>{{item.integra.estudiante.nombreEstudiante}}</td>
+                <td>{{item.integra.proyecto.nombreProyecto}}</td>
                 <td>{{item.integra.estudiante.semestre}}</td>
             </tr>
         </table>

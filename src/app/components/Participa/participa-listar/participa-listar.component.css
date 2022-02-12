@@ -6,12 +6,15 @@ table {
     width: 100%;
     margin-top: 10px;
     margin-right: 10%;
+    padding-left: 1%;
+    padding-right: 1%;
 }
 th{
     width: 10px;
 }
 .pointer{
     cursor: pointer;
+    margin-right: 5px;
 }
 .mat-form-field {
     width: 100%;
@@ -23,6 +26,15 @@ th{
     justify-content: center;
     height: 40px;
 }
+
+.mat-table .mat-cell:first-child, .mat-footer-cell:first-child, .mat-header-cell:first-child {
+    padding-left: 10px;
+}
+
+.mat-table .mat-cell:last-of-type, .mat-footer-cell:last-of-type, .mat-header-cell:last-of-type {
+    padding-right: 10px;
+}
+
 .mat-column-cedulaDocente{
     width: 10%;
 }
@@ -36,15 +48,19 @@ th{
     width:10%
 }
 .mat-column-facultad {
-    width: 14%;
+    width: 12%;
     text-align: center;
 }
-.mat-column-anioParticipaDoc{
-    width: 13%;
+.mat-column-participacionInicio{
+    width: 9%;
+    text-align: center;
+}
+.mat-column-participacionFinal{
+    width: 9%;
     text-align: center;
 }
 .mat-column-horasParticipacion{
-    width: 14%;
+    width: 12%;
     text-align: center;
 }
 .mat-raised-button{
@@ -58,18 +74,25 @@ th{
     width: 10%;
 }
 .mat-column-nombreEstudiante{
-    width: 30%;
+    width: 20%;
 }
 .mat-column-carrera{
-    width: 14%;
+    width: 12%;
     text-align: center;
 }
 .mat-column-semestre{
+    width: 11%;
     text-align: center;
 }
 .mat-column-formaParticipacion{
+    width: 12%;
     text-align: center;
 }
-.mat-column-anioParticipaEst{
+.mat-column-integraInicio{
+    width: 12%;
+    text-align: center;
+}
+.mat-column-integraFinal{
+    width: 12%;
     text-align: center;
 }

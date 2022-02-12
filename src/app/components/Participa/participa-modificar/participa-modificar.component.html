@@ -22,21 +22,32 @@
                     </mat-grid-tile>
                     <mat-grid-tile [colspan]="3" [rowspan]=1>
                         <mat-form-field class="ancho">
-                            <mat-label>Año de Participacion</mat-label>
-                            <input matInput autocomplete="off" formControlName="anioParticipacion" [matDatepicker]="picker">
+                            <mat-label>Inicio de Participacion</mat-label>
+                            <input matInput autocomplete="off" [readonly]="true" [max]="fechaMaxima" formControlName="participacionInicio" (dateChange)="modificoFechaInicio()" [matDatepicker]="picker">
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker
                                 startView="multi-year">
                             </mat-datepicker>
-                            <mat-error *ngIf="checkError('anioParticipacion','required')">
+                            <mat-error *ngIf="checkError('participacionInicio','required')">
                                 La fecha de la participación es necesaria.
                             </mat-error>
                         </mat-form-field>
                     </mat-grid-tile>
-                    <mat-grid-tile [colspan]="3" [rowspan]="1">
+                    <mat-grid-tile [colspan]="3" [rowspan]=1>
+                        <mat-form-field class="ancho">
+                            <mat-label>Finalización de Participacion</mat-label>
+                            <input matInput autocomplete="off" [readonly]="true" [max]="fechaMaxima" formControlName="participacionFinal" (dateChange)="modificoFechaFin()" [matDatepicker]="dp">
+                            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                            <mat-datepicker #dp
+                                startView="multi-year">
+                            </mat-datepicker>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="1" [rowspan]="1"></mat-grid-tile>
+                    <mat-grid-tile [colspan]="4" [rowspan]="1">
                         <mat-form-field class="ancho">
                             <mat-label>Horas de Participación</mat-label>
-                            <input matInput autocomplete="off" formControlName="horasParticipacion">
+                            <input matInput autocomplete="off" (input)="modificoHoras($event)" formControlName="horasParticipacion">
                             <mat-error *ngIf="checkError('horasParticipacion','required')">
                                 Las horas de participación son necesarias
                             </mat-error>
@@ -47,7 +58,7 @@
                     </mat-grid-tile>
                 </mat-grid-list>
                 
-                <button class="botonAceptar" type="submit" [disabled]="form.invalid" mat-raised-button color="primary">Aceptar</button>
+                <button class="botonAceptar" type="submit" [disabled]="!getModifico()" mat-raised-button color="primary">Aceptar</button>
             </form>
         </mat-card> 
     </div>

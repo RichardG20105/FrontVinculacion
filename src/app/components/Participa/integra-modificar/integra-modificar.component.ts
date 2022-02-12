@@ -5,7 +5,6 @@ import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { AlertifyService } from '../../../services/alertify.service';
 import { IntegraService } from '../../../services/integra.service';
 import { Integra } from '../../../interfaces/integra';
-import { MatDatepicker } from "@angular/material/datepicker";
 
 @Component({
   selector: 'app-integra-modificar',
@@ -13,10 +12,15 @@ import { MatDatepicker } from "@angular/material/datepicker";
   styleUrls: ['./integra-modificar.component.css']
 })
 export class IntegraModificarComponent implements OnInit {
-  formaParticipacion: any[] = ["Parte de Asignatura","Prácticas Comunitarias","Prácticas Preprofesionales"]
+  formaParticipacion: any[] = ["Parte de Asignatura","Prácticas Comunitarias","Prácticas Preprofesionales", "Trabajo de Integración Curricular"]
   idIntegra!: number
   form!: FormGroup
   integraEstudiante!: Integra
+  modifico = false;
+  fechaMaxima = new Date();
+  fechaInicio!:Date
+  fechaFin!:Date
+
   constructor(private fb: FormBuilder,
     private servicioIntegra: IntegraService,
     private adaptadorFecha: DateAdapter<Date>,
@@ -29,12 +33,21 @@ export class IntegraModificarComponent implements OnInit {
         cedula: [],
         nombre: [],
         formaParticipacion: [],
-        anioParticipacion: [],
+        integraInicio: [],
+        integraFinal: [],
       })
     }
 
   ngOnInit(): void {
     this.getIntegraEstudiante();
+  }
+
+  modificoAlgo(){
+    this.modifico = true;
+  }
+
+  getModifico(){
+    return this.modifico
   }
   
   getIntegraEstudiante(){
@@ -50,8 +63,38 @@ export class IntegraModificarComponent implements OnInit {
       cedula: [`${this.integraEstudiante.estudiante.cedulaEstudiante}`],
       nombre: [`${this.integraEstudiante.estudiante.nombreEstudiante}`],
       formaParticipacion: [`${this.integraEstudiante.formaParticipacion}`,Validators.required],
-      anioParticipacion: [`${this.integraEstudiante.anioParticipaEst}`,Validators.required],
+      integraInicio: [`${this.integraEstudiante.integraInicio}`,Validators.required],
+      integraFinal: [`${this.integraEstudiante.integraFinal}`],
     })
+
+    this.setFechaInicio(new Date(this.integraEstudiante.integraInicio))
+    this.setFechaFin(new Date(this.integraEstudiante.integraFinal))
+  }
+
+  modificoFechaInicio(){
+    this.modifico = true;
+    this.setFechaInicio(this.form.value.integraInicio)
+    if(this.fechaFin < this.fechaInicio){
+      this.alerta.error("La Fecha de Inicio debe ser mayor que la de Fin");
+      this.modifico = false
+    }
+  }
+
+  modificoFechaFin(){
+    this.modifico = true
+    this.setFechaFin(this.form.value.integraFinal);
+    if(this.fechaFin < this.fechaInicio){
+      this.alerta.error("La Fecha de Inicio debe ser mayor que la de Fin");
+      this.modifico = false
+    }
+  }
+
+  setFechaInicio(fecha: Date){
+    this.fechaInicio = fecha;
+  }
+
+  setFechaFin(fecha: Date){
+    this.fechaFin = fecha
   }
 
   guardarEstudiante(){
@@ -59,10 +102,13 @@ export class IntegraModificarComponent implements OnInit {
       idIntegra: this.idIntegra,
       carrera: this.integraEstudiante.carrera,
       formaParticipacion: this.form.value.formaParticipacion,
-      anioParticipaEst: this.form.value.anioParticipacion,
+      integraInicio: this.form.value.integraInicio,
+      integraFinal: this.form.value.integraFinal,
       estudiante: this.integraEstudiante.estudiante,
       proyecto: this.integraEstudiante.proyecto
     }
+
+    console.log(integra);
     this.servicioIntegra.updateIntegra(integra, this.idIntegra).subscribe(() => {
       this.form.reset();
       this.alerta.success("Se ha modificado el estudiante");

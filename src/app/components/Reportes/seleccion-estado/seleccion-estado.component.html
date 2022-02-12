@@ -1,0 +1,21 @@
+<div class="container">
+    <p style="margin-bottom: 1%"></p>
+    <mat-toolbar>
+        <span>Escoga el Estado</span>
+    </mat-toolbar>
+    <mat-card style="margin-top: 1%;">
+        <form [formGroup]="form">
+            <mat-form-field [style.width.%]="70">
+                <mat-label>Estado</mat-label>
+                <mat-select (selectionChange)="escogio($event)" formControlName="opcion">
+                    <mat-option *ngFor="let item of Estados" [value]="item">
+                        {{item}}
+                    </mat-option>
+                </mat-select>
+            </mat-form-field>
+            <button class="botonAceptar" [disabled]="form.invalid" mat-raised-button color="primary" (click)="PDF()">
+                Consultar
+            </button>
+        </form>
+    </mat-card>
+</div>

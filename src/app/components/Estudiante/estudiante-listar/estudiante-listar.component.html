@@ -8,7 +8,7 @@
       
       <mat-divider style="margin-top: 1%;"></mat-divider>
   
-      <div class="Estudiantes" *ngIf="estudiantesFind; else noEstudiantes">
+      <div class="Estudiantes" [hidden]="!estudiantesFind">
       <mat-form-field appearance="standard">
         <mat-label>Filtro de Búsqueda</mat-label>
         <input matInput (keyup)="applyFilter($event)" placeholder="Ex. Pedro, FE" #input autocomplete="off">
@@ -58,11 +58,11 @@
         </mat-paginator>
       </div>
       </div>   
-      <ng-template #noEstudiantes>
+      <div [hidden]="estudiantesFind">
         <br/> <br/> <br/> <br/> <br/> <br/> <br/>
         <p style="margin-bottom: 1%; text-align: center;font-size: large;">
           <span style = "color: #c3c3c3; font-size: 20px;">No existen Estudiantes registrados</span>
         </p>
-      </ng-template>   
+      </div>   
     </div>
   </div>

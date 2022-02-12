@@ -8,18 +8,66 @@
     
         <mat-card style="margin-top: 10px; margin-bottom: 10px;">
             <form [formGroup]="form" (ngSubmit)="guardarProyecto()" style="text-align: center;">
-                <mat-form-field class="ancho">
-                    <mat-label>Codigo</mat-label>
-                    <input matInput autocomplete="off" formControlName="codigo">
-                </mat-form-field>
-                <mat-form-field class="ancho">
-                    <mat-label>Nombre</mat-label>
-                    <textarea matInput autocomplete="off" formControlName="nombre" cdkTextareaAutosize></textarea>
-                </mat-form-field>
-                <mat-form-field class="ancho">
-                    <mat-label>Resolución</mat-label>
-                    <input matInput autocomplete="off" formControlName="resolucion">
-                </mat-form-field>
+                <mat-grid-list cols="6" rowHeight="90px">
+                    <mat-grid-tile [colspan]="3" [rowspan]="1">
+                        <mat-form-field class="ancho">
+                            <mat-label>Codigo</mat-label>
+                            <input matInput autocomplete="off" formControlName="codigo">
+                            <mat-error *ngIf="checkError('codigo','required')">
+                                El código es requerido
+                            </mat-error>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="3" [rowspan]="1">
+                        <mat-form-field class="ancho">
+                            <mat-label>Nombre</mat-label>
+                            <textarea matInput autocomplete="off" formControlName="nombre" class="scroll" rows="1"></textarea>
+                            <mat-error *ngIf="checkError('nombre','required')">
+                                El nombre del proyecto es necesario
+                            </mat-error>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="3" [rowspan]="1">
+                        <mat-form-field class="ancho">
+                            <mat-label>Facultad</mat-label>
+                            <mat-select formControlName="facultad">
+                              <mat-option *ngFor="let item of facultad" [value]="item"> 
+                                {{item.nombreFacultad}}
+                              </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="checkError('facultad','required')">
+                                Seleccione una facultad
+                            </mat-error>
+                        </mat-form-field>    
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="3" [rowspan]="1">
+                        <mat-form-field class="ancho">
+                            <mat-label>Carreras</mat-label>
+                            <mat-select formControlName="carrera" multiple>
+                                <mat-option *ngFor="let carrera of carreras" [value]="carrera">{{carrera.nombreCarrera}}</mat-option>
+                              </mat-select>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="3" [rowspan]="1">
+                        <mat-form-field class="ancho">
+                            <mat-label>Estado</mat-label>
+                            <mat-select formControlName="estado">
+                                <mat-option *ngFor="let item of estado" [value]="item">
+                                {{item}}
+                                </mat-option>
+                            </mat-select>
+                            <mat-error *ngIf="checkError('estado','required')">
+                                Seleccione una opción
+                            </mat-error>
+                        </mat-form-field>                
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="3" [rowspan]="1">
+                        <mat-form-field class="ancho">
+                            <mat-label>Resolución</mat-label>
+                            <input matInput autocomplete="off" formControlName="resolucion">
+                        </mat-form-field>
+                    </mat-grid-tile>
+                </mat-grid-list>
                 <button class="botonAceptar" type="submit" [disabled]="form.invalid" mat-raised-button color="primary">Aceptar</button>
             </form>
         </mat-card>

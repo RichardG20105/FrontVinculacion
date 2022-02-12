@@ -4,7 +4,7 @@ import { ParticipaService } from '../../../services/participa.service';
 import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 import jsPDF from 'jspdf';
 import autoTable from 'jspdf-autotable'
-import * as XLSX from 'xlsx';
+import * as XLSX from 'xlsx'
 
 @Component({
   selector: 'app-participa-docente-facultad-total',
@@ -14,7 +14,7 @@ import * as XLSX from 'xlsx';
 export class ParticipaDocenteFacultadTotalComponent implements OnInit {
   listaDocentes!: Participa[];
   facultad!: string;
-  anterior = 0;
+  anterior = 35;
    
   constructor(private servicioParticipa: ParticipaService,
     private dialog: MatDialogRef<ParticipaDocenteFacultadTotalComponent>,
@@ -42,12 +42,13 @@ export class ParticipaDocenteFacultadTotalComponent implements OnInit {
     let Titulo = "ParticipacionDocentesFacultad_"+`${fecha.getDay()}${fecha.getMonth()}${fecha.getFullYear()}${fecha.getHours()}${fecha.getMinutes()}${fecha.getSeconds()}`;
     
     const PDF = new jsPDF("p","mm","a4")
+    PDF.addImage("../assets/img/Fondo.png","PNG",0,0,210,297)
     PDF.setFontSize(14)
     PDF.setFont("times","normal","bold")
     PDF.text("Reporte Participación Docentes",75, this.setAnterior());
     PDF.setFontSize(12)
     PDF.setFont("times","normal","normal")
-    PDF.text("Cantidad de Docentes de la Facultad de "+this.facultad+": "+this.listaDocentes.length, 14 ,this.setAnterior());
+    PDF.text("Número de Docentes de la Facultad de "+this.facultad+": "+this.listaDocentes.length, 14 ,this.setAnterior());
     autoTable(PDF,{startY: this.setAnterior(),html: '#datosDocentes' })
     PDF.save(Titulo+".pdf");
     this.dialog.close()

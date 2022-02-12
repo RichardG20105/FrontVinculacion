@@ -15,12 +15,10 @@ export class CertificadosFacultadComponent implements OnInit {
   facultad!: string
   listaCertificadosDocente!: Certificado[]
   listaCertificadosEstudiantes!: Certificado[]
-  anterior = 0;
-  finalY = 0;
-  Docente = false;
-  Estudiante = false;
-  noEncontroDocente = false;
-  noEncontroEstudiante = false;
+  anterior = 35
+  finalY = 0
+  Docente = false
+  Estudiante = false
 
   constructor(private servicioCertificado: CertificadoService,
     private dialog: MatDialogRef<CertificadosFacultadComponent>,
@@ -31,27 +29,22 @@ export class CertificadosFacultadComponent implements OnInit {
   ngOnInit(): void {
     this.getCertificados()
   }
+
   setAnterior(){
     this.anterior += this.finalY + 10;
     return this.anterior
   }
 
   getCertificados(){
-    let resp = this.servicioCertificado.getCertificadosDocenteFacultad(this.facultad)
-    resp.subscribe(data => {
+    this.servicioCertificado.getCertificadosDocenteFacultad(this.facultad).subscribe(data => {
       this.listaCertificadosDocente = data as Certificado[]
       this.Docente = true
-    }, error => this.noEncontroDocente = true)
+    })
     
-    let res = this.servicioCertificado.getCertificadosEstudianteFacultad(this.facultad)
-    res.subscribe(data => {
+    this.servicioCertificado.getCertificadosEstudianteFacultad(this.facultad).subscribe(data => {
       this.listaCertificadosEstudiantes = data as Certificado[]
-      this.Estudiante = true;
-    },error => this.noEncontroEstudiante = true)
-
-    if(this.noEncontroDocente && this.noEncontroEstudiante){
-      this.dialog.close();
-    }
+      this.Estudiante = true
+    })
   }
 
   getCantidad(){
@@ -73,12 +66,13 @@ export class CertificadosFacultadComponent implements OnInit {
     let Titulo = "CertificadosFacultad_"+`${fecha.getDay()}${fecha.getMonth()}${fecha.getFullYear()}${fecha.getHours()}${fecha.getMinutes()}${fecha.getSeconds()}`;
     
     const PDF = new jsPDF("p","mm","a4")
+    PDF.addImage("../assets/img/Fondo.png","PNG",0,0,210,297)
     PDF.setFontSize(14)
     PDF.setFont("times","normal","bold")
-    PDF.text("Reporte Cantidad de Certificados",75, this.setAnterior());
+    PDF.text("Reporte Número de Certificados",75, this.setAnterior());
     PDF.setFontSize(12)
     PDF.setFont("times","normal","normal")
-    PDF.text("Cantidad de Certificados emitidos de la Facultad de "+this.facultad+": "+this.getCantidad(), 14 ,this.setAnterior());
+    PDF.text("Número de Certificados emitidos de la Facultad de "+this.facultad+": "+this.getCantidad(), 14 ,this.setAnterior());
     PDF.setFontSize(14)
     PDF.setFont("times","normal","bold")
     if(this.Docente){

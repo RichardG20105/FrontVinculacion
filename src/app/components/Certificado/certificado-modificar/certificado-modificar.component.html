@@ -45,9 +45,9 @@
                 <mat-grid-tile [colspan]="2" [rowspan]="1">
                     <mat-form-field class="ancho">
                         <mat-label>Fecha Recepcion</mat-label>
-                        <input matInput [readonly]="true" autocomplete="off" (dateChange)="modificoFechaRec()" formControlName="fechaRecepcion" [matDatepicker]="picker">
+                        <input matInput [readonly]="true" autocomplete="off" [max]="fechaMaxima" (dateChange)="modificoFechaRec()" formControlName="fechaRecepcion" [matDatepicker]="picker">
                         <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-                            <mat-datepicker #picker disable="false"
+                            <mat-datepicker #picker disabled="false"
                                 startView="multi-year">
                             </mat-datepicker>
                     </mat-form-field>
@@ -55,7 +55,7 @@
                 <mat-grid-tile [colspan]="2" [rowspan]="1">
                     <mat-form-field class="ancho">
                         <mat-label>Fecha Entrega</mat-label>
-                        <input matInput autocomplete="off" [readonly]="true" (dateChange)="modificoFechaEnt()" formControlName="fechaEntrega" [matDatepicker]="dp">
+                        <input matInput autocomplete="off" [readonly]="true" [max]="fechaMaxima" (dateChange)="modificoFechaEnt()" formControlName="fechaEntrega" [matDatepicker]="dp">
                         <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
                             <mat-datepicker #dp disabled="false"
                                 startView="multi-year">

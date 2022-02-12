@@ -16,6 +16,10 @@ export class ParticipaModificarComponent implements OnInit {
   idParticipa!: number
   form!: FormGroup
   participaDocente!: Participa
+  modifico = false
+  fechaMaxima = new Date()
+  fechaInicio!:Date
+  fechaFin!:Date
   constructor(private fb: FormBuilder,
     private alerta: AlertifyService,
     private servicio: ParticipaService,
@@ -27,7 +31,8 @@ export class ParticipaModificarComponent implements OnInit {
     this.form = this.fb.group({
       cedula: [],
       nombre: [],
-      anioParticipacion: [],
+      participacionInicio: [],
+      participacionFinal: [],
       horasParticipacion: [],
     })
    }
@@ -47,9 +52,53 @@ export class ParticipaModificarComponent implements OnInit {
     this.form = this.fb.group({
       cedula: [`${this.participaDocente.docente.cedulaDocente}`],
       nombre: [`${this.participaDocente.docente.nombreDocente}`],
-      anioParticipacion: [`${this.participaDocente.anioParticipaDoc}`,Validators.required],
-      horasParticipacion: [`${this.participaDocente.horasParticipacion}`, [Validators.required, Validators.pattern("^[0-9]*$")]],
+      participacionInicio: [`${this.participaDocente.participacionInicio}`,Validators.required],
+      participacionFinal: [`${this.participaDocente.participacionFinal}`],
+      horasParticipacion: [`${this.participaDocente.horasParticipacion}`, [Validators.required,Validators.pattern("^[0-9]*$")]],
     })
+    this.setFechaInicio(new Date(this.participaDocente.participacionInicio))
+    this.setFechaFin(new Date(this.participaDocente.participacionFinal))
+  }
+
+  modificoHoras(event: any): void{
+    if(event.target.value != '')
+      this.modifico = true;
+    else
+      this.modifico = false;
+  }
+
+  modificoFechaInicio(){
+    this.modifico = true;
+    this.setFechaInicio(this.form.value.participacionInicio)
+    if(this.fechaFin < this.fechaInicio){
+      this.alerta.error("La Fecha de Inicio debe ser mayor que la de Fin");
+      this.modifico = false
+    }
+  }
+
+  modificoFechaFin(){
+    this.modifico = true
+    this.setFechaFin(this.form.value.participacionFinal);
+    if(this.fechaFin < this.fechaInicio){
+      this.alerta.error("La Fecha de Inicio debe ser mayor que la de Fin");
+      this.modifico = false
+    }
+  }
+
+  setFechaInicio(fecha: Date){
+    this.fechaInicio = fecha;
+  }
+
+  setFechaFin(fecha: Date){
+    this.fechaFin = fecha
+  }
+
+  modificoAlgo(){
+    this.modifico = true
+  }
+
+  getModifico(){
+    return this.modifico
   }
 
   guardarDocente(){
@@ -57,7 +106,8 @@ export class ParticipaModificarComponent implements OnInit {
       idParticipa: this.idParticipa,
       cargo: this.participaDocente.cargo,
       horasParticipacion: this.form.value.horasParticipacion,
-      anioParticipaDoc: this.form.value.anioParticipacion,
+      participacionInicio: this.form.value.participacionInicio,
+      participacionFinal: this.form.value.participacionFinal,
       facultad: this.participaDocente.facultad,
       docente: this.participaDocente.docente,
       proyecto: this.participaDocente.proyecto

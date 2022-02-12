@@ -6,6 +6,7 @@ import { MAT_DIALOG_DATA, MatDialog } from '@angular/material/dialog';
 import { ParticipaDocenteFacultadTotalComponent } from '../participa-docente-facultad-total/participa-docente-facultad-total.component';
 import { ParticipaEstudianteFacultadComponent } from '../participa-estudiante-facultad/participa-estudiante-facultad.component';
 import { CertificadosFacultadComponent } from '../certificados-facultad/certificados-facultad.component';
+import { ProyectosFacultadComponent } from '../proyectos-facultad/proyectos-facultad.component';
 
 @Component({
   selector: 'app-seleccion-facultad',
@@ -53,6 +54,9 @@ export class SeleccionFacultadComponent implements OnInit {
       case 3:
         this.certificadosPDF();
         break;
+      case 4:
+        this.proyectosFacultad();
+        break;
       default:
         break;
     }
@@ -83,6 +87,16 @@ export class SeleccionFacultadComponent implements OnInit {
       width: "50vw",
       height: "50vh",
       data:{
+        facultad: this.facultad
+      }
+    })
+  }
+
+  proyectosFacultad(){
+    this.dialog.open(ProyectosFacultadComponent, {
+      width: "50vw",
+      height: "50vh",
+      data: {
         facultad: this.facultad
       }
     })

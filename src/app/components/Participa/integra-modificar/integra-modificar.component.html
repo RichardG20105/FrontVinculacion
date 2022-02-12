@@ -23,28 +23,37 @@
                     </mat-grid-tile>
                     <mat-grid-tile [colspan]="2" [rowspan]="1">
                         <mat-form-field class="ancho">
-                            <mat-label>Forma de Participación</mat-label>
-                            <mat-select formControlName="formaParticipacion">
-                                <mat-option *ngFor="let item of formaParticipacion" [value]="item">
-                                    {{item}}
-                                </mat-option>
-                            </mat-select>
-                        </mat-form-field>
-                    </mat-grid-tile>
-                    <mat-grid-tile [colspan]="2" [rowspan]="1">
-                        <mat-form-field class="ancho">
-                            <mat-label>Año de Participación</mat-label>
-                            <input matInput autocomplete="off" formControlName="anioParticipacion" [matDatepicker]="picker">
+                            <mat-label>Inicio de la Participación</mat-label>
+                            <input matInput autocomplete="off" [readonly]="true" [max]="fechaMaxima" formControlName="integraInicio" (dateChange)="modificoFechaInicio()" [matDatepicker]="picker">
                             <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
                             <mat-datepicker #picker 
                                 startView="multi-year">
                             </mat-datepicker>
                         </mat-form-field>
                     </mat-grid-tile>
-                    <mat-grid-tile [colspan]="4" [rowspan]="1">
-                        <button class="botonAceptar" type="submit" [disabled]="form.invalid" mat-raised-button color="primary">Guardar</button>
+                    <mat-grid-tile [colspan]="2" [rowspan]="1">
+                        <mat-form-field class="ancho">
+                            <mat-label>Finalización de la Participación</mat-label>
+                            <input matInput autocomplete="off" [max]="fechaMaxima" [readonly]="true" formControlName="integraFinal" (dateChange)="modificoFechaFin()" [matDatepicker]="dp">
+                            <mat-datepicker-toggle matSuffix [for]="dp"></mat-datepicker-toggle>
+                            <mat-datepicker #dp 
+                                startView="multi-year">
+                            </mat-datepicker>
+                        </mat-form-field>
+                    </mat-grid-tile>
+                    <mat-grid-tile [colspan]="1" [rowspan]="1"></mat-grid-tile>
+                    <mat-grid-tile [colspan]="2" [rowspan]="1">
+                        <mat-form-field class="ancho">
+                            <mat-label>Forma de Participación</mat-label>
+                            <mat-select formControlName="formaParticipacion" (selectionChange)="modificoAlgo()">
+                                <mat-option *ngFor="let item of formaParticipacion" [value]="item">
+                                    {{item}}
+                                </mat-option>
+                            </mat-select>
+                        </mat-form-field>
                     </mat-grid-tile>
                 </mat-grid-list>
+                <button class="botonAceptar" type="submit" [disabled]="form.invalid || !getModifico()" mat-raised-button color="primary">Guardar</button>
             </form>
         </mat-card>
     </div>

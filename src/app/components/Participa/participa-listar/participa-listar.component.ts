@@ -12,7 +12,6 @@ import { Proyecto } from 'src/app/interfaces/proyecto';
 import { Integra } from 'src/app/interfaces/integra';
 import { IntegraService } from 'src/app/services/integra.service';
 import { AsignarEstudianteComponent } from '../asignar-estudiante/asignar-estudiante.component';
-import { MatSort } from '@angular/material/sort';
 import { MatTableFilter } from 'mat-table-filter';
 import { IntegraModificarComponent } from '../integra-modificar/integra-modificar.component';
 import Alert from 'sweetalert2';
@@ -41,16 +40,14 @@ export class ParticipaListarComponent implements OnInit {
   nombreFacultad!: String
   filterType!: MatTableFilter;
 
-  displayedColumns: string[] = ['cedulaDocente', 'nombreDocente','contacto','correoElectronico','facultad','anioParticipaDoc', 'horasParticipacion','acciones'];
-  displayedColumnsEstudiantes: string[] = ['cedulaEstudiante', 'nombreEstudiante','carrera','semestre','formaParticipacion','anioParticipaEst','acciones']
-  
+  displayedColumnsDocentes: string[] = ['cedulaDocente', 'nombreDocente','contacto','correoElectronico','facultad','participacionInicio','participacionFinal', 'horasParticipacion','acciones'];
+  displayedColumnsEstudiantes: string[] = ['cedulaEstudiante', 'nombreEstudiante','carrera','semestre','formaParticipacion','integraInicio','integraFinal','acciones']
+
   dataSourceDocentes = new MatTableDataSource<Participa>(this.listaDocentes);
-  @ViewChild('TablaUnoPaginador',{static: true}) tablaUnoPaginador!: MatPaginator;
-  @ViewChild('TablaUnoSort',{static: true}) tablaUnoSort!: MatSort;
-  
+  @ViewChild('TablaUnoPaginador') tablaUnoPaginador!: MatPaginator;
+
   dataSourceEstudiantes = new MatTableDataSource<Integra>(this.listaEstudiantes);
-  @ViewChild('TablaDosPaginador',{static: true}) tablaDosPaginador!: MatPaginator;
-  @ViewChild('TablaDosSort',{static: true}) tablaDosSort!: MatSort;
+  @ViewChild('TablaDosPaginador') tablaDosPaginador!: MatPaginator;
 
   constructor(private servicio: ParticipaService,
     private servicioProyecto: ProyectoService,
@@ -90,9 +87,7 @@ export class ParticipaListarComponent implements OnInit {
   
   ngAfterViewInit(){
     this.dataSourceDocentes.paginator = this.tablaUnoPaginador;
-    this.dataSourceDocentes.sort = this.tablaUnoSort
     this.dataSourceEstudiantes.paginator = this.tablaDosPaginador;
-    this.dataSourceEstudiantes.sort = this.tablaDosSort;
   }
 
   applyFilter(event: Event) {
@@ -228,7 +223,7 @@ export class ParticipaListarComponent implements OnInit {
   onEdit(idParticipacion: number){
     const dial = this.dialog.open(ParticipaModificarComponent, {
       width: '50vw',
-      height: '62vh',
+      height: '78vh',
       data: {
         id: idParticipacion
       }
@@ -313,7 +308,7 @@ export class ParticipaListarComponent implements OnInit {
   onEditEstudiante(idIntegra: number){
     const dial = this.dialog.open(IntegraModificarComponent, {
       width: '50vw',
-      height: '68vh',
+      height: '78vh',
       data: {
         id: idIntegra
       }

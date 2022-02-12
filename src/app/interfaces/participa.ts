@@ -5,7 +5,8 @@ export interface Participa {
     idParticipa: number,
     cargo: string,
     facultad: string,
-    anioParticipaDoc: Date,
+    participacionInicio: Date,
+    participacionFinal: Date,
     horasParticipacion: number,
     docente: Docente,
     proyecto: Proyecto

@@ -28,12 +28,10 @@ export class CertificadoListarComponent implements OnInit {
   displayedColumnsDocentes: string[] = ['nombreDocente', 'nombreFacultad', 'nombreProyecto', 'fechaRecepcion', 'fechaEntrega', 'observacion', 'acciones'];
   
   dataSourceEstudiantes = new MatTableDataSource<Certificado>(this.listaCertificadosEstudiantes);
-  @ViewChild('TablaUnoPaginador',{static: true})tablaUnoPaginador!: MatPaginator;
-  @ViewChild('TablaUnoSort',{static: true}) tablaUnoSort!: MatSort;
+  @ViewChild('TablaUnoPaginador') tablaUnoPaginador!: MatPaginator;
   
   dataSourceDocentes = new MatTableDataSource<Certificado>(this.listaCertificadosDocentes);
-  @ViewChild('TablaDosPaginador',{static: true})tablaDosPaginador!: MatPaginator;
-  @ViewChild('TablaDosSort',{static: true}) tablaDosSort!: MatSort;
+  @ViewChild('TablaDosPaginador') tablaDosPaginador!: MatPaginator;
 
 
   constructor(
@@ -48,10 +46,8 @@ export class CertificadoListarComponent implements OnInit {
   }
 
   ngAfterViewInit() {
-    this.dataSourceEstudiantes.paginator = this.tablaUnoPaginador;
-    this.dataSourceEstudiantes.sort = this.tablaUnoSort;
-    this.dataSourceDocentes.paginator = this.tablaDosPaginador;
-    this.dataSourceDocentes.sort = this.tablaDosSort;
+    this.dataSourceDocentes.paginator = this.tablaUnoPaginador;
+    this.dataSourceEstudiantes.paginator = this.tablaDosPaginador;
   }
 
   filtroDocente(){

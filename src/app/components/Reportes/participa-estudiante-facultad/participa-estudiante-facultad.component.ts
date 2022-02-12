@@ -15,7 +15,7 @@ export class ParticipaEstudianteFacultadComponent implements OnInit {
 
   listaEstudiantes!: Integra[]; 
   facultad!: string;
-  anterior = 0;
+  anterior = 35;
   constructor(private servicioIntegra: IntegraService,
     private dialog: MatDialogRef<ParticipaEstudianteFacultadComponent>,
     @Inject(MAT_DIALOG_DATA)datos: any) { 
@@ -45,12 +45,13 @@ export class ParticipaEstudianteFacultadComponent implements OnInit {
     let Titulo = "ParticipacionEstudiantesFacultad_"+`${fecha.getDay()}${fecha.getMonth()}${fecha.getFullYear()}${fecha.getHours()}${fecha.getMinutes()}${fecha.getSeconds()}`;
     
     const PDF = new jsPDF("p","mm","a4")
+    PDF.addImage("../assets/img/Fondo.png","PNG",0,0,210,297)
     PDF.setFontSize(14)
     PDF.setFont("times","normal","bold")
     PDF.text("Reporte Participación Estudiantes", 75, this.setAnterior());
     PDF.setFontSize(12)
     PDF.setFont("times","normal","normal")
-    PDF.text("Cantidad de Estudiantes de la Facultad de "+this.facultad+": "+this.listaEstudiantes.length, 14 ,this.setAnterior());
+    PDF.text("Número de Estudiantes de la Facultad de "+this.facultad+": "+this.listaEstudiantes.length, 14 ,this.setAnterior());
     autoTable(PDF,{startY: this.setAnterior(),html: '#datosEstudiantes' })
     PDF.save(Titulo+".pdf");
     this.dialog.close()

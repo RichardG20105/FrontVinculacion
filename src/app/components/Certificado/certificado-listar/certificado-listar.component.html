@@ -17,13 +17,13 @@
         </p>
         <mat-divider style="margin-top: 1%;"></mat-divider>
   
-        <div class="CertDocentes" *ngIf="certDocentesFind; else noCertDocentes">
-        <mat-form-field appearance="standard">
-            <mat-label>Filtro de Búsqueda</mat-label>
-            <input matInput (keyup)="applyFilterDocentes($event)" placeholder="Ex. Pedro, FE" autocomplete="off">
-        </mat-form-field>
+        <div class="CertDocentes" [hidden]="!certDocentesFind">
+          <mat-form-field appearance="standard">
+              <mat-label>Filtro de Búsqueda</mat-label>
+              <input matInput (keyup)="applyFilterDocentes($event)" placeholder="Ex. Pedro, FE" autocomplete="off">
+          </mat-form-field>
 
-        <div class="mat-elevation-z8">
+          <div class="mat-elevation-z8">
             <table mat-table [dataSource]="dataSourceDocentes">          
               <!-- Integrante Column -->
               <ng-container matColumnDef="nombreDocente">
@@ -46,13 +46,13 @@
               <!-- Fecha Recepción -->
               <ng-container matColumnDef="fechaRecepcion">
                   <th mat-header-cell *matHeaderCellDef> F. Recepción </th>
-                  <td mat-cell *matCellDef="let element"> {{element.fechaRecepcion}} </td>
+                  <td mat-cell *matCellDef="let element"> {{element.fechaRecepcion | date:'dd/MM/yyyy'}} </td>
               </ng-container>
   
               <!-- Fecha Entrega -->
               <ng-container matColumnDef="fechaEntrega">
                   <th mat-header-cell *matHeaderCellDef> F. Entrega </th>
-                 <td mat-cell *matCellDef="let element"> {{element.fechaEntrega}} </td>
+                 <td mat-cell *matCellDef="let element"> {{element.fechaEntrega | date:'dd/MM/yyyy'}} </td>
               </ng-container>
   
               <!-- Fecha Entrega -->
@@ -79,19 +79,20 @@
               
               <tr mat-header-row *matHeaderRowDef="displayedColumnsDocentes"></tr>
               <tr mat-row *matRowDef="let row; columns: displayedColumnsDocentes;"></tr>
-          </table>
-          <mat-paginator #TablaUnoPaginador="matPaginator" [pageSizeOptions]="[5, 10, 20, 50, 100]"
+            </table>
+            
+            <mat-paginator #TablaUnoPaginador="matPaginator" [pageSizeOptions]="[5, 10, 20, 50, 100]"
                 showFirstLastButtons aria-label="Select page of periodic elements">
-          </mat-paginator>
-        </div>
+            </mat-paginator>
+          </div>
         </div>
 
-        <ng-template #noCertDocentes>
+        <div [hidden]="certDocentesFind">
           <br/> <br/>
           <p style="margin-bottom: 1%; text-align: center;font-size: large;">
             <span style = "color: #c3c3c3; font-size: 20px;">No existen Certificados de Docentes registrados</span>
           </p>
-        </ng-template>
+        </div>
 
         <mat-divider style="margin-top: 3%;margin-bottom: 1%;"></mat-divider>
         
@@ -101,16 +102,16 @@
 
         <mat-divider style="margin-top: 1%;"></mat-divider>
   
-        <div class="CertEstudiantes" *ngIf="certEstudiantesFind; else noCertEstudiantes">
-        <mat-form-field appearance="standard">
+        <div class="CertEstudiantes" [hidden]="!certEstudiantesFind">
+          <mat-form-field appearance="standard">
             <mat-label>Filtro de Búsqueda</mat-label>
             <input matInput (keyup)="applyFilterEstudiantes($event)" placeholder="Ex. Pedro, FE" autocomplete="off">
-        </mat-form-field>
+          </mat-form-field>
         
-        <div class="mat-elevation-z8">
-          <table mat-table [dataSource]="dataSourceEstudiantes">          
-            <!-- Integrante Column -->
-            <ng-container matColumnDef="nombreIntegrante">
+          <div class="mat-elevation-z8">
+            <table mat-table [dataSource]="dataSourceEstudiantes">          
+              <!-- Integrante Column -->
+              <ng-container matColumnDef="nombreIntegrante">
                 <th mat-header-cell *matHeaderCellDef> Nombre </th>
               <td mat-cell *matCellDef="let element"> {{element.integra.estudiante.nombreEstudiante}} </td>
             </ng-container>
@@ -163,19 +164,18 @@
             
             <tr mat-header-row *matHeaderRowDef="displayedColumnsEstudiantes"></tr>
             <tr mat-row *matRowDef="let row; columns: displayedColumnsEstudiantes;"></tr>
-        </table>
-        <mat-paginator #TablaDosPaginador="matPaginator" [pageSizeOptions]="[5, 10, 20, 50, 100]"
+          </table>
+          <mat-paginator #TablaDosPaginador="matPaginator" [pageSizeOptions]="[5, 10, 20, 50, 100]"
               showFirstLastButtons aria-label="Select page of periodic elements">
-        </mat-paginator>
+          </mat-paginator>
         </div>
-        </div>
+      </div>
 
-        <ng-template #noCertEstudiantes>
-          <br/> <br/>
-          <p style="margin-bottom: 1%; text-align: center;font-size: large;">
-            <span style = " font-size: 20px; color: #c3c3c3;">No existen Certificados de Estudiantes registrados</span>
-          </p>
-        </ng-template>
-
+      <div [hidden]="certEstudiantesFind">
+        <br/> <br/>
+        <p style="margin-bottom: 1%; text-align: center;font-size: large;">
+          <span style = " font-size: 20px; color: #c3c3c3;">No existen Certificados de Estudiantes registrados</span>
+        </p>
+      </div>
     </div>
 </div>

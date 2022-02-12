@@ -13,11 +13,17 @@
         <tr>
             <th>Cedula</th>
             <th>Nombre</th>
+            <th>Nombre del Proyecto</th>
+            <th>Cargo</th>
+            <th>Facultad</th>
             <th>Relacion Laboral</th>
         </tr>
         <tr *ngFor="let item of listaDocentes">
             <td>{{item.docente.cedulaDocente}}</td>
             <td>{{item.docente.nombreDocente}}</td>
+            <td>{{item.proyecto.nombreProyecto}}</td>
+            <td>{{item.cargo}}</td>
+            <td>{{item.facultad}}</td>
             <td>{{item.docente.relacionLaboral}}</td>
         </tr>
     </table>

@@ -5,7 +5,8 @@ export interface Integra{
     idIntegra: number,
     carrera: string,
     formaParticipacion: string,
-    anioParticipaEst: Date,
+    integraInicio: Date,
+    integraFinal: Date,
     estudiante: Estudiante,
     proyecto: Proyecto
 }

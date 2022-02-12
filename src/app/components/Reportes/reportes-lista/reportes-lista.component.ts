@@ -4,6 +4,8 @@ import { SeleccionFacultadComponent } from '../seleccion-facultad/seleccion-facu
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { SeleccionFacultadGeneroComponent } from '../seleccion-facultad-genero/seleccion-facultad-genero.component';
 import { SeleccionObservacionComponent } from '../seleccion-observacion/seleccion-observacion.component';
+import { SeleccionCarreraComponent } from '../seleccion-carrera/seleccion-carrera.component';
+import { SeleccionEstadoComponent } from '../seleccion-estado/seleccion-estado.component';
 
 interface Props{
   id: number,
@@ -22,10 +24,13 @@ export class ReportesListaComponent implements OnInit {
   opcionesReportes: Props[] = [
     {id: 1,nombre: 'Participación de Docentes por Facultad '},
     {id: 2, nombre: 'Participacion de Estudiantes por Facultad'},
-    {id: 3,nombre:'Cantidad de Docentes por Facultad y Genero'},
-    {id: 4,nombre:'Cantidad de Estudiantes por Facultad y Genero'},
-    {id: 5,nombre:'Cantidad de Certificados por Facultad'},
-    {id: 6,nombre:'Cantidad de Certificados por Observación'},
+    {id: 3,nombre:'Número de Docentes por Facultad y Genero'},
+    {id: 4,nombre:'Número de Estudiantes por Facultad y Genero'},
+    {id: 5,nombre:'Número de Certificados por Facultad'},
+    {id: 6,nombre:'Número de Certificados por Observación'},
+    {id: 7, nombre:'Número de Proyectos por Facultad'},
+    {id: 8, nombre:'Número de Proyectos por Carrera'},
+    {id: 9, nombre: 'Número de Proyectos por Estado'}
   ];
 
   constructor(private dialog: MatDialog,
@@ -61,6 +66,15 @@ export class ReportesListaComponent implements OnInit {
         break;
       case 6:
         this.onCertificadosObservacion();
+        break;
+      case 7:
+        this.onProyectosFacultad();
+        break;
+      case 8:
+        this.onProyectosCarrera();
+        break;
+      case 9:
+        this.onProyectosEstado();
         break;
       default:
         break;
@@ -121,5 +135,29 @@ export class ReportesListaComponent implements OnInit {
       width: '35vw',
       height: '35vh'
     });
+  }
+
+  onProyectosFacultad(){
+    this.dialog.open(SeleccionFacultadComponent,{
+      width: '35vw',
+      height: '30vh',
+      data: {
+        opcion: 4
+      }
+    })
+  }
+
+  onProyectosCarrera(){
+    this.dialog.open(SeleccionCarreraComponent, {
+      width: '35vw',
+      height: '30vh'
+    })
+  }
+
+  onProyectosEstado(){
+    this.dialog.open(SeleccionEstadoComponent,{
+      width: '35vw',
+      height: '30vh'
+    })
   }
 }

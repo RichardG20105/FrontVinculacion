@@ -19,7 +19,7 @@ export class CertificadoObservacionComponent implements OnInit {
   noEncontroEstudiante = false;
   Docente = false;
   Estudiante = false;
-  anterior = 0;
+  anterior = 35;
   finalY = 0;
   constructor(private servicioCertificado: CertificadoService,
     private dialog: MatDialogRef<CertificadoObservacionComponent>,
@@ -72,12 +72,13 @@ export class CertificadoObservacionComponent implements OnInit {
     let Titulo = "CertificadosObservacion_"+`${fecha.getDay()}${fecha.getMonth()}${fecha.getFullYear()}${fecha.getHours()}${fecha.getMinutes()}${fecha.getSeconds()}`;
     
     const PDF = new jsPDF("p","mm","a4")
+    PDF.addImage("../assets/img/Fondo.png","PNG",0,0,210,297)
     PDF.setFontSize(14)
     PDF.setFont("times","normal","bold")
-    PDF.text("Reporte Cantidad de Certificados",75, this.setAnterior());
+    PDF.text("Reporte Número de Certificados",75, this.setAnterior());
     PDF.setFontSize(12)
     PDF.setFont("times","normal","normal")
-    PDF.text("Cantidad de Certificados con la Observacion "+this.observacion+": "+this.getCantidad(), 14 ,this.setAnterior());
+    PDF.text("Número de Certificados con la Observacion "+this.observacion+": "+this.getCantidad(), 14 ,this.setAnterior());
     PDF.setFontSize(14)
     PDF.setFont("times","normal","bold")
     if(this.Docente){

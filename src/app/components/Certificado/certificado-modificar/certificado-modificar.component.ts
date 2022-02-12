@@ -22,6 +22,7 @@ export class CertificadoModificarComponent implements OnInit {
   fechaRec! : Date;
   fechaEnt!: Date
   setFechaRecEstado = false;
+  fechaMaxima = new Date();
   constructor(private fb: FormBuilder,
     private alerta: AlertifyService,
     private servicioCertificado: CertificadoService,
@@ -77,7 +78,6 @@ export class CertificadoModificarComponent implements OnInit {
     this.fechaRec = fecha;
     this.setFechaRecEstado = true;
     if(this.fechaRec > this.fechaEnt){
-      console.log("Hola")
       this.alerta.error("La Fecha de Entrega debe ser mayor a la Fecha de Recepción");
       this.modifico = false;
     }

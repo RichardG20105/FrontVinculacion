@@ -21,6 +21,18 @@ export class ProyectoService {
     return this.http.get<Proyecto>(this.URLBase+'/Proyecto/'+id);
   }
 
+  getProyectosFacultad(facultad: string): Observable<Proyecto[]>{
+    return this.http.get<Proyecto[]>(this.URLBase+'/Proyecto/Listado/Facultad/'+facultad);
+  }
+
+  getProyectosCarrera(carrera: string): Observable<Proyecto[]>{
+    return this.http.get<Proyecto[]>(this.URLBase+'/Proyecto/Listado/Carrera/'+carrera);
+  }
+
+  getProyectoEstado(estado: string): Observable<Proyecto[]>{
+    return this.http.get<Proyecto[]>(this.URLBase + '/Proyecto/Listado/Estado/'+estado);
+  }
+
   saveProyecto(proyecto: Proyecto): Observable<Object>{
     return this.http.post(this.URLBase+'/Proyecto/Registrar',proyecto);
   }

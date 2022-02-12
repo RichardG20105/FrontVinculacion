@@ -99,7 +99,8 @@ export class AsignarEstudianteComponent implements OnInit {
         idIntegra: 0,
         carrera: this.carrera,
         formaParticipacion: '',
-        anioParticipaEst: this.fecha,
+        integraInicio: this.fecha,
+        integraFinal: this.fecha,
         estudiante: this.estudiante,
         proyecto: this.proyecto
       }
@@ -112,7 +113,8 @@ export class AsignarEstudianteComponent implements OnInit {
       idIntegra: 0,
       carrera: this.carrera,
       formaParticipacion: '',
-      anioParticipaEst: this.fecha,
+      integraInicio: this.fecha,
+      integraFinal: this.fecha,
       estudiante: this.estudiante,
       proyecto: this.proyecto
     }

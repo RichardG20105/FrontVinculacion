@@ -21,3 +21,9 @@
     color: white;
     justify-content: center;
 }
+.scroll{
+    resize: none;
+}
+.scroll::-webkit-scrollbar {
+    display: none;
+}

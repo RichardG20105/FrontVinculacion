@@ -12,11 +12,15 @@
         <tr>
             <th>Cedula</th>
             <th>Nombre</th>
+            <th>Nombre del Proyecto</th>
+            <th>Carrera</th>
             <th>Semestre</th>
         </tr>
         <tr *ngFor="let item of listaEstudiantes">
             <td>{{item.estudiante.cedulaEstudiante}}</td>
             <td>{{item.estudiante.nombreEstudiante}}</td>
+            <td>{{item.proyecto.nombreProyecto}}</td>
+            <td>{{item.carrera}}</td>
             <td>{{item.estudiante.semestre}}</td>
         </tr>
     </table>

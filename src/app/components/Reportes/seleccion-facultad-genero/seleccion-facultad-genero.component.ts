@@ -6,6 +6,7 @@ import { Facultad } from 'src/app/interfaces/facultad';
 import { MatDialog, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { EstudiantesFacultadGeneroComponent } from '../estudiantes-facultad-genero/estudiantes-facultad-genero.component';
 import { CertificadosFacultadComponent } from '../certificados-facultad/certificados-facultad.component';
+import { DocentesFacultadGeneroComponent } from '../docentes-facultad-genero/docentes-facultad-genero.component';
 
 @Component({
   selector: 'app-seleccion-facultad-genero',
@@ -74,7 +75,7 @@ export class SeleccionFacultadGeneroComponent implements OnInit {
     })
   }
   docentePDF(){
-    const dialogo = this.dialog.open(EstudiantesFacultadGeneroComponent, {
+    const dialogo = this.dialog.open(DocentesFacultadGeneroComponent, {
       width: "50vw",
       height: "50vh",
       data:{

@@ -19,10 +19,10 @@ export class ProyectoListarComponent implements OnInit {
   listaProyectos!: Proyecto[];
   proyectoFind: Boolean = false
 
-  displayedColumns: string[] = ['codigo','nombreProyecto','resolucion','acciones']
+  displayedColumns: string[] = ['codigo','nombreProyecto', 'estado','resolucion','acciones']
   dataSource = new MatTableDataSource<Proyecto>(this.listaProyectos);
   
-  @ViewChild(MatPaginator) paginator!: MatPaginator;
+  @ViewChild(MatPaginator, { static: false }) paginator!: MatPaginator;
   
   constructor(private servicio: ProyectoService, 
     private dialog: MatDialog,
@@ -31,10 +31,6 @@ export class ProyectoListarComponent implements OnInit {
 
   ngOnInit(): void {
     this.getProyectos();
-  }
-
-  ngAfterViewInit(){
-    this.dataSource.paginator = this.paginator;
   }
 
   applyFilter(event: Event) {
@@ -46,13 +42,14 @@ export class ProyectoListarComponent implements OnInit {
     let resp = this.servicio.getProyectos();
     resp.subscribe(datos => {
       this.dataSource.data = datos as Proyecto[]
+      this.dataSource.paginator = this.paginator;
       this.proyectoFind = true;
     }, () => this.proyectoFind = false)
   }
 
   onCreate(){
     const dial = this.dialog.open(ProyectoCrearComponent,{
-      height: '68vh',
+      height: '78vh',
       width: '50vw'
     })
     dial.afterClosed().subscribe(data => {
@@ -63,7 +60,7 @@ export class ProyectoListarComponent implements OnInit {
   onEdit(idProyecto: number){
     const dial = this.dialog.open(ProyectoModificarComponent, {
       width: '50vw',
-      height: '68vh',
+      height: '78vh',
       data:{
         id: idProyecto
       }
