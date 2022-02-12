@@ -62,11 +62,10 @@ export class IntegraModificarComponent implements OnInit {
     this.form = this.fb.group({
       cedula: [`${this.integraEstudiante.estudiante.cedulaEstudiante}`],
       nombre: [`${this.integraEstudiante.estudiante.nombreEstudiante}`],
-      formaParticipacion: [`${this.integraEstudiante.formaParticipacion}`,Validators.required],
-      integraInicio: [`${this.integraEstudiante.integraInicio}`,Validators.required],
+      formaParticipacion: [`${this.integraEstudiante.formaParticipacion}`],
+      integraInicio: [`${this.integraEstudiante.integraInicio}`],
       integraFinal: [`${this.integraEstudiante.integraFinal}`],
     })
-
     this.setFechaInicio(new Date(this.integraEstudiante.integraInicio))
     this.setFechaFin(new Date(this.integraEstudiante.integraFinal))
   }
@@ -74,6 +73,9 @@ export class IntegraModificarComponent implements OnInit {
   modificoFechaInicio(){
     this.modifico = true;
     this.setFechaInicio(this.form.value.integraInicio)
+  }
+
+  validaFecha(){
     if(this.fechaFin < this.fechaInicio){
       this.alerta.error("La Fecha de Inicio debe ser mayor que la de Fin");
       this.modifico = false
@@ -83,10 +85,7 @@ export class IntegraModificarComponent implements OnInit {
   modificoFechaFin(){
     this.modifico = true
     this.setFechaFin(this.form.value.integraFinal);
-    if(this.fechaFin < this.fechaInicio){
-      this.alerta.error("La Fecha de Inicio debe ser mayor que la de Fin");
-      this.modifico = false
-    }
+    this.validaFecha()
   }
 
   setFechaInicio(fecha: Date){

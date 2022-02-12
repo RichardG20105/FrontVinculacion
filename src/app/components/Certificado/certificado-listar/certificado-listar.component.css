@@ -27,21 +27,21 @@ th{
     height: 40px;
 }
 .mat-column-nombreDocente{
-    width: 17%;
+    width: 14%;
 }
 .mat-column-nombreIntegrante{
-    width: 17%;
+    width: 14%;
 }
 .mat-column-nombreFacultad {
-    width: 15%;
+    width: 14%;
     text-align: center;
 }
 .mat-column-nombreCarrera{
-    width: 15%;
+    width: 14%;
     text-align: center;
 }
 .mat-column-nombreProyecto{
-    width: 35%;
+    width: 29%;
 }
 .mat-column-fechaRecepcion{
     width: 11%;
@@ -54,4 +54,11 @@ th{
 .mat-column-observacion{
     width: 12%;
     text-align: center;
+}
+.mat-table .mat-cell:first-child, .mat-footer-cell:first-child, .mat-header-cell:first-child {
+    padding-left: 15px;
+}
+
+.mat-table .mat-cell:last-of-type, .mat-footer-cell:last-of-type, .mat-header-cell:last-of-type {
+    padding-right: 15px;
 }

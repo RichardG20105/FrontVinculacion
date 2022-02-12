@@ -53,7 +53,7 @@
                         </mat-form-field>
                     </mat-grid-tile>
                 </mat-grid-list>
-                <button class="botonAceptar" type="submit" [disabled]="form.invalid || !getModifico()" mat-raised-button color="primary">Guardar</button>
+                <button class="botonAceptar" type="submit" [disabled]="!getModifico()" mat-raised-button color="primary">Guardar</button>
             </form>
         </mat-card>
     </div>
