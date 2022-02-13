@@ -2,7 +2,7 @@
     <div class="container">
         <p style="margin-bottom: 1%">
             <mat-toolbar>
-                <span>Modificar Participacion del Docentes </span>
+                <span>Modificar Participacion del Docente</span>
             </mat-toolbar>
         </p>
         <mat-card style="margin-top: 10px; margin-bottom: 10px;">
@@ -47,7 +47,7 @@
                     <mat-grid-tile [colspan]="4" [rowspan]="1">
                         <mat-form-field class="ancho">
                             <mat-label>Horas de Participación</mat-label>
-                            <input matInput autocomplete="off" (input)="modificoHoras($event)" formControlName="horasParticipacion">
+                            <input matInput autocomplete="off" class="horas" type="number" min="0" (input)="modificoHoras($event)" formControlName="horasParticipacion">
                             <mat-error *ngIf="checkError('horasParticipacion','required')">
                                 Las horas de participación son necesarias
                             </mat-error>

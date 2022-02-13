@@ -1,3 +1,11 @@
+.body{
+    margin: 10px;
+    display: block;
+    margin-bottom: 100%;
+}
+.container{
+    height: 100%;
+}
 .ancho{
     width: 90%;
 }
@@ -9,4 +17,9 @@
 }
 .mat-input-element:disabled{
     color: black !important; 
+}
+.mat-toolbar{
+    background:#00893E;
+    color: white;
+    justify-content: center;
 }

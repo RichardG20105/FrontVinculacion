@@ -15,14 +15,14 @@
           <mat-form-field *ngIf="coordinadorFind; else agregarCoordinador" class="ancho" appearance="fill">
             <mat-label>Coordinador del Proyecto</mat-label>
             <input matInput [readonly]="true" value="{{coordinador.docente.nombreDocente}}">
-            <button matSuffix mat-icon-button class="pointer" matTooltip="Generar Certificado" (click)="onCertificadoDocente(coordinador.idParticipa)">
-              <mat-icon class="pointer">description</mat-icon>
+            <button matSuffix mat-icon-button class="puntero" matTooltip="Generar Certificado" (click)="onCertificadoDocente(coordinador.idParticipa)">
+              <mat-icon>description</mat-icon>
             </button>
-            <button matSuffix mat-icon-button class="pointer" matTooltip="Modificar Coordinador" (click)="onEdit(coordinador.idParticipa)">
-              <mat-icon class="pointer">edit</mat-icon>
+            <button matSuffix mat-icon-button class="puntero" matTooltip="Modificar Coordinador" (click)="onEdit(coordinador.idParticipa)">
+              <mat-icon >edit</mat-icon>
             </button>
-            <button matSuffix mat-icon-button class="pointer" matTooltip="Eliminar Coordinador" (click)="onDelete(coordinador.idParticipa)">
-              <mat-icon class="pointer">delete</mat-icon>
+            <button matSuffix mat-icon-button class="puntero" matTooltip="Eliminar Coordinador" (click)="onDelete(coordinador.idParticipa)">
+              <mat-icon>delete</mat-icon>
             </button>
           </mat-form-field>
           <ng-template #agregarCoordinador>

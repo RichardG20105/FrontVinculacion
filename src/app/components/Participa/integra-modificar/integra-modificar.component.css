@@ -13,3 +13,8 @@
     margin-top: 2%;
     cursor: pointer;
 }
+.mat-toolbar{
+    background:#00893E;
+    color: white;
+    justify-content: center;
+}

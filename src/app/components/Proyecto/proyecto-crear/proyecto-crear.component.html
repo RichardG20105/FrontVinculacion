@@ -9,7 +9,7 @@
         <mat-card style="margin-top: 10px; margin-bottom: 10px;">
             <form [formGroup]="form" (ngSubmit)="guardarProyecto()" style="text-align: center;">
                 <mat-grid-list cols="6" rowHeight="90px">
-                    <mat-grid-tile [colspan]="3" [rowspan]="1">
+                    <mat-grid-tile [colspan]="2" [rowspan]="1">
                         <mat-form-field class="ancho">
                             <mat-label>Codigo</mat-label>
                             <input matInput autocomplete="off" formControlName="codigo">
@@ -18,7 +18,7 @@
                             </mat-error>
                         </mat-form-field>
                     </mat-grid-tile>
-                    <mat-grid-tile [colspan]="3" [rowspan]="1">
+                    <mat-grid-tile [colspan]="4" [rowspan]="1">
                         <mat-form-field class="ancho">
                             <mat-label>Nombre</mat-label>
                             <textarea matInput autocomplete="off" formControlName="nombre" class="scroll" rows="1"></textarea>

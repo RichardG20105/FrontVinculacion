@@ -13,3 +13,8 @@
 .mat-icon{
     font-size: large;
 }
+.mat-toolbar{
+    background:#00893E;
+    color: white;
+    justify-content: center;
+}

@@ -5,3 +5,8 @@
 .botonAceptar{
     margin-left: 10px;
 }
+.mat-toolbar{
+    background:#00893E;
+    color: white;
+    justify-content: center;
+}

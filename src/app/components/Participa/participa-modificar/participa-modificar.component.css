@@ -13,3 +13,17 @@
     margin-top: 2%;
     cursor: pointer;
 }
+.mat-toolbar{
+    background:#00893E;
+    color: white;
+    justify-content: center;
+}
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+    
+    -webkit-appearance: none;
+    margin: 0;
+}
+input[type=number] {
+    -moz-appearance:textfield;
+}

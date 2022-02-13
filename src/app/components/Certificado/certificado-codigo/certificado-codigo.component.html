@@ -1,17 +1,17 @@
 <div class="container">
     <mat-toolbar>
-        <span>Codigo del Certificado</span>
+        <span>Código del Certificado</span>
     </mat-toolbar>
 
     <mat-card style="margin-top: 1%;">
         <form [formGroup]="form">
             <mat-form-field class="ancho">
-                <mat-label>Codigo</mat-label>
+                <mat-label>Código</mat-label>
                 <input matInput [readonly]="true" autocomplete="off" formControlName="codigo" >
                 <button matSuffix mat-icon-button aria-label="Copiar" [cdkCopyToClipboard]="codigo" (click)="Copiar()">
                     <mat-icon class="pointer">file_copy</mat-icon>
                 </button>
-                <mat-hint *ngIf="onCopiado()">El codigo se copió</mat-hint>
+                <mat-hint *ngIf="onCopiado()">El código se copió</mat-hint>
             </mat-form-field>
         </form>
         <button style="text-align: center;margin-left: 35%;" mat-raised-button color="warn" (click)="Cerrar()">Cerrar</button>

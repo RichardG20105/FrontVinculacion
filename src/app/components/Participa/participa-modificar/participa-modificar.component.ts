@@ -54,34 +54,47 @@ export class ParticipaModificarComponent implements OnInit {
       nombre: [`${this.participaDocente.docente.nombreDocente}`],
       participacionInicio: [`${this.participaDocente.participacionInicio}`,Validators.required],
       participacionFinal: [`${this.participaDocente.participacionFinal}`],
-      horasParticipacion: [`${this.participaDocente.horasParticipacion}`, [Validators.required,Validators.pattern("^[0-9]*$")]],
+      horasParticipacion: [`${this.participaDocente.horasParticipacion}`, [Validators.required, Validators.pattern("^[0-9]*$")]],
     })
-    this.setFechaInicio(new Date(this.participaDocente.participacionInicio))
-    this.setFechaFin(new Date(this.participaDocente.participacionFinal))
+    if(this.participaDocente.participacionInicio != null)
+      this.setFechaInicio(new Date(this.participaDocente.participacionInicio))
+    if(this.participaDocente.participacionFinal != null)
+      this.setFechaFin(new Date(this.participaDocente.participacionFinal))
   }
 
   modificoHoras(event: any): void{
-    if(event.target.value != '')
-      this.modifico = true;
-    else
-      this.modifico = false;
+      if(event.target.value != '0')
+        this.modifico = true;
+      else
+        this.modifico = false;
   }
 
   modificoFechaInicio(){
     this.modifico = true;
     this.setFechaInicio(this.form.value.participacionInicio)
-    if(this.fechaFin < this.fechaInicio){
-      this.alerta.error("La Fecha de Inicio debe ser mayor que la de Fin");
-      this.modifico = false
+    console.log(this.fechaFin)
+    if(this.fechaFin != null){
+      if(!this.validaFecha()){
+        this.alerta.error("La Fecha de Inicio debe ser mayor que la de Fin");
+        this.modifico = false
+      }
     }
+  }
+  validaFecha(){
+    if(this.fechaFin < this.fechaInicio){
+      return false;
+    }
+    return true;
   }
 
   modificoFechaFin(){
     this.modifico = true
     this.setFechaFin(this.form.value.participacionFinal);
-    if(this.fechaFin < this.fechaInicio){
-      this.alerta.error("La Fecha de Inicio debe ser mayor que la de Fin");
-      this.modifico = false
+    if(this.fechaInicio != null){
+      if(!this.validaFecha()){
+        this.alerta.error("La Fecha de Inicio debe ser mayor que la de Fin");
+        this.modifico = false
+      }
     }
   }
 
@@ -91,10 +104,6 @@ export class ParticipaModificarComponent implements OnInit {
 
   setFechaFin(fecha: Date){
     this.fechaFin = fecha
-  }
-
-  modificoAlgo(){
-    this.modifico = true
   }
 
   getModifico(){

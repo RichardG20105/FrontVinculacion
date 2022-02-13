@@ -1,4 +1,4 @@
-<div class="body" style="height: 90%;">
+<div class="body">
     <div class="container">
         <p style="margin-bottom: 1%;">
             <mat-toolbar>
@@ -78,10 +78,8 @@
                         </mat-select>
                     </mat-form-field>
                 </mat-grid-tile>
-                <mat-grid-tile [colspan]="4" [rowspan]="1">
-                    <button class="botonAceptar" type="submit" [disabled]="!getModifico()" mat-raised-button color="primary">Aceptar</button>
-                </mat-grid-tile>
             </mat-grid-list>
+            <button class="botonAceptar" type="submit" [disabled]="!getModifico()" mat-raised-button color="primary">Aceptar</button>
         </form>
     </mat-card>
 </div>

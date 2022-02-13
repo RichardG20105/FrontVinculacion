@@ -6,6 +6,11 @@
 .ancho{
     width: 90%;
 }
+.mat-toolbar{
+    background:#00893E;
+    color: white;
+    justify-content: center;
+}
 .textAreaAlto{
     width: 100%;
 }
